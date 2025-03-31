@@ -48,7 +48,7 @@ onUnmounted(() => {
           <span class="relative z-10">Services</span> 
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
         </a> 
-        <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group"> 
+        <a href="mics-website/about" class="relative overflow-hidden px-4 py-2 font-medium group"> 
           <span class="relative z-10">About Us</span> 
           <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
         </a> 

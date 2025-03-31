@@ -1,0 +1,547 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+---
+
+<Layout title="About Us">
+    <!-- Hero Section -->
+    <section
+        class="relative pt-16 pb-24 flex flex-col justify-center md:min-h-[70dvh] bg-gradient-to-br from-blue-200 to-neutral-50 overflow-hidden"
+    >
+        <!-- Decorative Elements -->
+        <div
+            class="absolute top-0 right-0 w-32 h-32 bg-secondary-500 rounded-full -translate-y-1/3 translate-x-1/4 opacity-30"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-48 h-48 bg-primary-500 rounded-full translate-y-1/3 -translate-x-1/4 opacity-20"
+        >
+        </div>
+
+        <!-- Simplified curved transition -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <div class="w-full h-16 bg-white rounded-t-[100%]"></div>
+        </div>
+
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="block">Our</span>
+                        <span class="text-primary-600 relative">
+                            Story <span class="absolute -bottom-2 left-0 w-full h-1 bg-primary-500"></span>
+                        </span>
+                        <span class="block mt-2">
+                            and <span class="text-secondary-600">Vision</span>
+                        </span>
+                    </h1>
+                    <p class="text-gray-700 text-xl mb-8 md:max-w-lg">
+                        Two decades of excellence in medical equipment supply and technical support, 
+                        driven by integrity and a deep understanding of healthcare needs.
+                    </p>
+                    <Button href="#services" variant="primary">
+                        Our Services
+                    </Button>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <div class="relative w-full h-[400px] rounded-lg overflow-hidden shadow-2xl transform lg:-rotate-2 hover:rotate-0 transition-all duration-500">
+                        <img
+                            src="https://images.unsplash.com/photo-1504439904031-93ded9f93e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Medical professionals collaborating"
+                            class="w-full h-full object-cover"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-600/70 to-transparent">
+                        </div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <p class="text-2xl font-bold">
+                                Medical Infection Control Solutions
+                            </p>
+                            <p class="opacity-90">
+                                Excellence in healthcare equipment since 2003
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview Section -->
+    <section class="py-20 px-8 bg-white relative overflow-hidden">
+        
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <div class="inline-block mb-4">
+                    <span class="bg-primary-100 text-primary-700 px-4 py-1 rounded-full font-medium">Who We Are</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Over <span class="text-secondary-600">Two Decades</span> of Medical Excellence
+                </h2>
+                <p class="text-lg text-gray-700">
+                    Medical Infection Control Solutions (MICS) brings more than twenty years of 
+                    specialized experience in the medical field, with comprehensive knowledge 
+                    spanning technical support, sales management, equipment maintenance, and turnkey project implementation.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">build</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Technical Support</h3>
+                    <p class="text-gray-600 text-center">
+                        Management and implementation of comprehensive technical solutions for healthcare facilities.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">trending_up</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Sales Management</h3>
+                    <p class="text-gray-600 text-center">
+                        Strategic sales oversight and marketing management for medical equipment and accessories.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">settings</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Maintenance & Repair</h3>
+                    <p class="text-gray-600 text-center">
+                        Expert service, repairs, and preventative maintenance for critical medical equipment.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">construction</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Installation</h3>
+                    <p class="text-gray-600 text-center">
+                        Professional installation of equipment ranging from individual units to complete turnkey projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Expertise Section -->
+    <section class="py-20 px-8 bg-gradient-to-br from-neutral-50 to-blue-100 relative overflow-hidden">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="relative">
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-secondary-500 rounded-full opacity-10"></div>
+                        <div class="relative z-10 bg-white rounded-xl shadow-xl p-8 transform hover:-translate-y-1 transition-all duration-300">
+                            <h3 class="text-2xl font-bold mb-6">Our Specialized Approach</h3>
+                            <p class="text-gray-700 mb-4">
+                                The experience MICS has acquired is focused into a niche area of Equipment and Accessory supply, 
+                                with qualified and trained technical back up, an area often misunderstood or misinterpreted by 
+                                general companies and clients in the industry.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                This highly specialized field requires someone with local knowledge as well as an understanding 
+                                of the needs for each area of the equipment and technical support environment. This is the 
+                                value-add that we bring to the market place.
+                            </p>
+                            <p class="text-gray-700">
+                                The company is run with the highest level of Integrity, whilst always maintaining and valuing our 
+                                Clients' needs and confidentiality.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 lg:pl-12">
+                    <div class="mb-10">
+                        <h2 class="text-3xl font-bold mb-6">
+                            Our <span class="text-secondary-600">Experience</span> Is Your Advantage
+                        </h2>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Our experience includes networking and support with Private Groups and Public Sector 
+                            entities at all levels within the supply chain. Our staff have been sales staff, 
+                            managers, customers and suppliers, so we understand the relationship, supply and demand chain.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6 transform hover:-translate-y-1 transition-all duration-300">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="material-symbols-outlined text-xl text-primary-600">visibility</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Our Vision</h3>
+                                <p class="text-gray-700">
+                                    To be seen as the Leader in medical equipment accessory supply as well as back up from 
+                                    solid Clinical Engineering Technical support in the local medical industry.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:-translate-y-1 transition-all duration-300">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="material-symbols-outlined text-xl text-primary-600">stars</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Our Goal</h3>
+                                <p class="text-gray-700">
+                                    "To be the best service provider in our industry" - ensuring your company meets equipment 
+                                    and budget targets with value-added products and top talent for patient safety and customer satisfaction.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simplified curved transition -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <div class="w-full h-16 bg-white rounded-t-[100%]"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-8 bg-white relative">
+        
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Our <span class="text-secondary-600">Services</span> & Offerings
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    We provide a comprehensive range of services to meet the diverse needs of healthcare facilities,
+                    ensuring optimal equipment performance and patient safety.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-12 bg-primary-600"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="material-symbols-outlined text-primary-500 mr-2">inventory_2</span>
+                            <h3 class="text-xl font-bold">Supply of Niche Products</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Specialized medical equipment and accessories carefully sourced to meet the specific needs of healthcare facilities.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-12 bg-primary-600"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="material-symbols-outlined text-primary-500 mr-2">assignment</span>
+                            <h3 class="text-xl font-bold">Equipment Asset Management</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Comprehensive asset registers and valuations for medical equipment and facilities to optimize resource management.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-12 bg-primary-600"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="material-symbols-outlined text-primary-500 mr-2">shopping_cart</span>
+                            <h3 class="text-xl font-bold">Procurement Support</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Expert assistance with medical equipment procurement processes, ensuring optimal value and functionality.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-12 bg-primary-600"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="material-symbols-outlined text-primary-500 mr-2">build</span>
+                            <h3 class="text-xl font-bold">Technical Support</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Specialized technical support and outsourcing solutions for medical equipment maintenance and repair.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-12 bg-primary-600"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="material-symbols-outlined text-primary-500 mr-2">description</span>
+                            <h3 class="text-xl font-bold">Service Contract Management</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Contract advice, negotiation, and management to ensure optimal coverage and cost-effectiveness.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="h-12 bg-primary-600"></div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="material-symbols-outlined text-primary-500 mr-2">home_repair_service</span>
+                            <h3 class="text-xl font-bold">Workshop Management</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Assessment and management of workshop facilities with a multi-vendor approach for comprehensive maintenance solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <Button href="#contact" variant="secondary">Contact Us For Services</Button>
+            </div>
+        </div>
+
+        <!-- Simplified skewed transition -->
+        <div class="absolute bottom-0 left-0 w-full h-16 bg-blue-100 transform skew-y-1 translate-y-6"></div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-20 px-8 bg-gradient-to-b from-blue-100 to-neutral-50 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute bottom-0 right-0 w-64 h-64 bg-primary-500 rounded-full translate-y-1/2 translate-x-1/4 opacity-10"></div>
+        
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 order-2 lg:order-1">
+                    <div class="relative h-[400px] w-full rounded-xl overflow-hidden shadow-2xl">
+                        <img 
+                            src="https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Johannesburg skyline"
+                            class="w-full h-full object-cover"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <p class="text-2xl font-bold">Strategically Located</p>
+                            <p class="opacity-90">For national accessibility and rapid service</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 lg:pl-16 order-1 lg:order-2">
+                    <div class="inline-block mb-4">
+                        <span class="bg-secondary-100 text-secondary-700 px-4 py-1 rounded-full font-medium">Our Location</span>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-6">
+                        Centrally <span class="text-secondary-600">Positioned</span> for Nationwide Service
+                    </h2>
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-6 transform hover:scale-105 transition-all duration-300">
+                        <p class="text-gray-700 mb-4">
+                            MICS is based in Gauteng, South Africa's economic hub. Located just 20 minutes from the main airport,
+                            our strategic position makes us accessible to the rest of the country for any needs that may arise.
+                        </p>
+                        <p class="text-gray-700">
+                            This central location enables us to provide prompt service and delivery to healthcare facilities nationwide,
+                            ensuring minimal downtime and maximum efficiency for our clients.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center bg-white px-4 py-3 rounded-full shadow-md">
+                            <span class="material-symbols-outlined text-primary-600 mr-2">location_on</span>
+                            <span class="font-medium">Gauteng, South Africa</span>
+                        </div>
+                        <div class="flex items-center bg-white px-4 py-3 rounded-full shadow-md">
+                            <span class="material-symbols-outlined text-primary-600 mr-2">flight_takeoff</span>
+                            <span class="font-medium">20 min from Airport</span>
+                        </div>
+                        <div class="flex items-center bg-white px-4 py-3 rounded-full shadow-md">
+                            <span class="material-symbols-outlined text-primary-600 mr-2">public</span>
+                            <span class="font-medium">Nationwide Service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simplified curved transition -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <div class="w-full h-16 bg-white rounded-t-[100%]"></div>
+        </div>
+    </section>
+
+    <!-- Compliance & Certification Section -->
+    <section class="py-20 px-8 bg-white relative">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/3 bg-primary-600 text-white p-8 flex flex-col justify-center relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-primary-500 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div class="absolute bottom-0 left-0 w-16 h-16 bg-primary-500 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                            <div class="relative z-10">
+                                <h3 class="text-2xl font-bold mb-4">Compliance & Quality Standards</h3>
+                                <p class="opacity-90 mb-6">
+                                    We maintain the highest standards of compliance and quality in all our operations.
+                                </p>
+                                <div class="inline-block bg-white/20 px-4 py-2 rounded-lg">
+                                    <span class="text-white font-medium">Level 4 BEE Certified</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="material-symbols-outlined text-xl text-secondary-600">verified</span>
+                                </div>
+                                <h3 class="text-xl font-bold">BEE Certification</h3>
+                            </div>
+                            <p class="text-gray-700 mb-6">
+                                MICS is proud to hold a level 4 BEE (Broad-Based Black Economic Empowerment) rating, 
+                                demonstrating our commitment to transformation and economic inclusion in South Africa.
+                            </p>
+                            <div class="flex flex-wrap gap-4 mb-6">
+                                <div class="bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
+                                    <span class="font-medium">BEE Level 4 Rating</span>
+                                </div>
+                                <div class="bg-gray-50 px-4 py-2 rounded-lg border border-gray-200">
+                                    <span class="font-medium">Certificate Available Upon Request</span>
+                                </div>
+                            </div>
+                            <div class="border-t border-gray-100 pt-6">
+                                <p class="text-gray-700">
+                                    Our commitment to compliance extends beyond certifications to every aspect of our operation,
+                                    ensuring that we maintain the highest standards of quality, safety, and business ethics.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials & References Section -->
+    <section class="py-20 px-8 bg-gradient-to-br from-neutral-50 to-blue-100 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-secondary-500 rounded-full -translate-y-1/3 translate-x-1/4 opacity-20"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-primary-500 rounded-full translate-y-1/3 -translate-x-1/4 opacity-20"></div>
+        
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Our <span class="text-secondary-600">Reputation</span> Speaks For Itself
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    With over two decades of service excellence, we've built strong relationships with healthcare 
+                    facilities across South Africa. References are available upon request.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-xl p-8 relative mb-8">
+                    <!-- Quotation mark decorative element -->
+                    <div class="absolute top-4 left-4 text-6xl text-primary-200 opacity-50 font-serif">"</div>
+                    <div class="relative z-10">
+                        <p class="text-lg text-gray-700 italic mb-6">
+                            MICS has consistently delivered exceptional service and high-quality medical equipment solutions 
+                            to our facility. Their technical expertise and understanding of healthcare needs set them apart 
+                            in the industry.
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-100 rounded-full mr-4"></div>
+                            <div>
+                                <p class="font-bold">Healthcare Professional</p>
+                                <p class="text-gray-600">Leading Hospital, Gauteng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-xl p-8 transform md:translate-x-12">
+                    <p class="text-gray-700 mb-6">
+                        References are available should you wish to contact any person/s to verify our service quality,
+                        technical expertise, or business practices.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 italic">E & O.E.</p>
+                        <Button href="#contact" variant="primary">Request References</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simplified curved transition -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <div class="w-full h-16 bg-white rounded-t-[100%]"></div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section id="contact" class="py-20 px-8 bg-white relative">
+        
+        <div class="container mx-auto">
+            <div class="max-w-5xl mx-auto bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl shadow-2xl overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 p-12 text-white relative">
+                        <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Medical Space?</h2>
+                            <p class="mb-8 opacity-90">
+                                Contact us today to discuss how MICS can help with your healthcare facility's equipment,
+                                maintenance, and technical support needs.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined mr-3">email</span>
+                                    <span>info@mics-medical.com</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined mr-3">call</span>
+                                    <span>+1 (555) 123-4567</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined mr-3">location_on</span>
+                                    <span>123 Healthcare Avenue, Medical District, MD 21001</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 bg-white p-12">
+                        <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="name">Name</label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
+                                    placeholder="Your name"
+                                />
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="email">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
+                                    placeholder="Your email"
+                                />
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="message">Message</label>
+                                <textarea 
+                                    id="message" 
+                                    rows="4"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
+                                    placeholder="How can we help you?"
+                                ></textarea>
+                            </div>
+                            <Button type="submit" variant="secondary" fullWidth={true}>Send Message</Button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
