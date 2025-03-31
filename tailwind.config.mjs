@@ -93,11 +93,22 @@ export default {
           "light": "#ecfdff",
           "dark": "#078cb3"
         },
-        // Keep secondary colors from original config
+        // New secondary colors (red) replacing the purple
         secondary: {
-          light: '#A78BFA',  // Purple 400
-          DEFAULT: '#8B5CF6', // Purple 500
-          dark: '#7C3AED',   // Purple 600
+          "50": "#fff0f0",
+          "100": "#ffe0e0",
+          "200": "#ffbdbd",
+          "300": "#ff9b9b",
+          "400": "#ff5a5a",
+          "500": "#fc0301",
+          "600": "#e50000",
+          "700": "#cc0000", 
+          "800": "#a30000",
+          "900": "#7a0000",
+          "950": "#520000",
+          "DEFAULT": "#fc0301",
+          "light": "#ff5a5a",
+          "dark": "#e50000"
         },
         // Keep accent colors from original config
         accent: {

@@ -32,7 +32,7 @@ onUnmounted(() => {
     <!-- Navigation -->
     <nav class="relative z-10 flex justify-between items-center px-8 h-full">
       <div class="flex items-center"> 
-        <a href="/" class="text-2xl font-bold text-primary-600">MICS</a> 
+        <a href="/" class="text-2xl font-bold"><span class="text-primary-600">MI</span><span class="text-secondary-600">CS</span></a> 
       </div>
       
       <div class="hidden md:flex space-x-6"> 
