@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/products/ProductCard.vue';
+
+// This would typically come from your database or API
+const products = [
+  {
+    id: 1,
+    name: "Classic T-Shirt",
+    price: 29.99,
+    description: "A comfortable and stylish t-shirt for everyday wear.",
+    image: "https://picsum.photos/400/300?random=1"
+  },
+  {
+    id: 2,
+    name: "Denim Jeans",
+    price: 79.99,
+    description: "High-quality denim jeans with perfect fit.",
+    image: "https://picsum.photos/400/300?random=2"
+  },
+  {
+    id: 3,
+    name: "Sneakers",
+    price: 99.99,
+    description: "Lightweight and comfortable sneakers for active lifestyle.",
+    image: "https://picsum.photos/400/300?random=3"
+  }
+];
+---
+
+<Layout title="Welcome to Our Shop">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-neutral-900">Welcome to Our Shop</h1>
+    <p class="mt-4 text-lg text-neutral-600">Discover our latest products</p>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {products.map(product => (
+      <ProductCard client:load product={product} />
+    ))}
+  </div>
+</Layout>
