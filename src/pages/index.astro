@@ -1,42 +1,595 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/products/ProductCard.vue';
-
-// This would typically come from your database or API
-const products = [
-  {
-    id: 1,
-    name: "Classic T-Shirt",
-    price: 29.99,
-    description: "A comfortable and stylish t-shirt for everyday wear.",
-    image: "https://picsum.photos/400/300?random=1"
-  },
-  {
-    id: 2,
-    name: "Denim Jeans",
-    price: 79.99,
-    description: "High-quality denim jeans with perfect fit.",
-    image: "https://picsum.photos/400/300?random=2"
-  },
-  {
-    id: 3,
-    name: "Sneakers",
-    price: 99.99,
-    description: "Lightweight and comfortable sneakers for active lifestyle.",
-    image: "https://picsum.photos/400/300?random=3"
-  }
-];
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Our Shop">
-  <div class="text-center mb-12">
-    <h1 class="text-4xl font-bold text-neutral-900">Welcome to Our Shop</h1>
-    <p class="mt-4 text-lg text-neutral-600">Discover our latest products</p>
-  </div>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {products.map(product => (
-      <ProductCard client:load product={product} />
-    ))}
-  </div>
+<Layout title="Page">
+    <section class="relative pt-16 pb-[150px] flex flex-col justify-between md:h-[90dvh] min-h-[600px] bg-gradient-to-br from-blue-200 to-neutral-50">
+        <div class="relative h-full z-10 flex flex-col md:flex-row px-8">
+            <div class="md:w-1/2 mb-12 md:mb-0 flex flex-col justify-center">
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+                >
+                    <span class="block">The answer is</span>
+                    <span class="text-primary-600 relative">
+                        YES <span
+                            class="absolute -bottom-2 left-0 w-full h-1 bg-primary-500"
+                        ></span>
+                    </span>
+                    <span class="block mt-2">How can we help you?</span>
+                </h1>
+                <p class="text-gray-700 text-xl mb-8 md:max-w-lg">
+                    Your premier medical equipment provider delivering
+                    innovative solutions to hospitals and healthcare facilities.
+                    Let&#x27;s transform your medical space together.
+                </p>
+                <div
+                    class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+                >
+                    <button
+                        class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 font-medium"
+                    >
+                        Explore Products
+                    </button>
+                    <button
+                        class="bg-white border-2 border-primary-600 text-primary-600 hover:bg-primary-50 px-8 py-3 rounded-full shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 font-medium"
+                    >
+                        Request Consultation
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative flex flex-col justify-center">
+                <div
+                    class="relative w-full h-[400px] rounded-lg overflow-hidden shadow-2xl transform md:rotate-2 hover:rotate-0 transition-all duration-500"
+                >
+                    <img
+                        src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="Modern hospital interior"
+                        class="w-full h-full object-cover"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-primary-600/70 to-transparent"
+                    >
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 text-white">
+                        <p class="text-2xl font-bold">
+                            Transforming Healthcare Environments
+                        </p>
+                        <p class="opacity-90">
+                            With Innovative Equipment Solutions
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div
+        class="relative bg-white py-6 px-8 rounded-3xl shadow-md transform translate-y-1 my-[-100px] md:my-[-60px] lg:my-[-45px]"
+    >
+        <div class="flex flex-col md:flex-row items-center justify-center">
+            <div class="flex items-center mb-4 md:mb-0 md:mr-8">
+                <p class="font-medium mr-4">Proud Supplier of</p>
+                <div
+                    class="bg-white p-2 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300"
+                >
+                    <span class="text-xl font-bold text-blue-600"
+                        >Tradewinds</span
+                    >
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div
+                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
+                >
+                    <span
+                        class="material-symbols-outlined mr-2 text-primary-600"
+                        >verified</span
+                    >
+                    <span class="font-medium">Premium Quality</span>
+                </div>
+                <div
+                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
+                >
+                    <span
+                        class="material-symbols-outlined mr-2 text-primary-600"
+                        >medical_services</span
+                    >
+                    <span class="font-medium">Medical Grade</span>
+                </div>
+                <div
+                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
+                >
+                    <span
+                        class="material-symbols-outlined mr-2 text-primary-600"
+                        >inventory_2</span
+                    >
+                    <span class="font-medium">Quick Delivery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section
+        class="pb-12 pt-[150px] px-8 bg-gradient-to-br from-neutral-50 to-blue-200"
+    >
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Our Product Categories
+            </h2>
+            <p class="text-gray-700 max-w-2xl mx-auto">
+                We specialize in providing top-tier medical equipment solutions
+                designed to enhance efficiency, comfort, and care in healthcare
+                environments.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div
+                class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+                <div class="h-48 overflow-hidden relative">
+                    <img
+                        src="https://images.unsplash.com/photo-1613578723743-ea195e325231?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="Medical Shelving"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300"
+                    >
+                        <p class="font-medium">
+                            Explore our versatile shelving options designed for
+                            medical storage needs.
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="material-symbols-outlined text-primary-500 mr-2"
+                            >shelves</span
+                        >
+                        <h3 class="text-xl font-bold">Medical Shelving</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Space-efficient storage solutions engineered for
+                        healthcare environments, ensuring organization and
+                        accessibility.
+                    </p>
+                    <button
+                        class="text-primary-600 font-medium flex items-center group-hover:text-primary-700"
+                    >
+                        Learn More <span
+                            class="material-symbols-outlined ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
+                            >arrow_forward</span
+                        >
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+                <div class="h-48 overflow-hidden relative">
+                    <img
+                        src="https://images.unsplash.com/photo-1584889369527-a283e62d1711?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="Medical Trolleys"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300"
+                    >
+                        <p class="font-medium">
+                            Discover our range of medical trolleys designed for
+                            mobility and functionality.
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="material-symbols-outlined text-primary-500 mr-2"
+                            >luggage</span
+                        >
+                        <h3 class="text-xl font-bold">Medical Trolleys</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Mobile carts and trolleys that streamline workflows,
+                        making patient care more efficient and accessible.
+                    </p>
+                    <button
+                        class="text-primary-600 font-medium flex items-center group-hover:text-primary-700"
+                    >
+                        Learn More <span
+                            class="material-symbols-outlined ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
+                            >arrow_forward</span
+                        >
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+                <div class="h-48 overflow-hidden relative">
+                    <img
+                        src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="Curtains & Tracks"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300"
+                    >
+                        <p class="font-medium">
+                            Privacy solutions with our specialized curtains and
+                            track systems.
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="material-symbols-outlined text-primary-500 mr-2"
+                            >curtains</span
+                        >
+                        <h3 class="text-xl font-bold">Curtains &amp; Tracks</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Privacy and infection control solutions with
+                        antimicrobial curtains and smooth-gliding track systems.
+                    </p>
+                    <button
+                        class="text-primary-600 font-medium flex items-center group-hover:text-primary-700"
+                    >
+                        Learn More <span
+                            class="material-symbols-outlined ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
+                            >arrow_forward</span
+                        >
+                    </button>
+                </div>
+            </div>
+            <div
+                class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+                <div class="h-48 overflow-hidden relative">
+                    <img
+                        src="https://images.unsplash.com/photo-1631815587646-b85a1bb027e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        alt="Custom Solutions"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
+                    />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300"
+                    >
+                        <p class="font-medium">
+                            Tailored solutions for your specific healthcare
+                            facility needs.
+                        </p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="material-symbols-outlined text-primary-500 mr-2"
+                            >settings_suggest</span
+                        >
+                        <h3 class="text-xl font-bold">Custom Solutions</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Bespoke equipment and refurbishment services designed to
+                        meet your hospital&#x27;s unique requirements.
+                    </p>
+                    <button
+                        class="text-primary-600 font-medium flex items-center group-hover:text-primary-700"
+                    >
+                        Learn More <span
+                            class="material-symbols-outlined ml-1 transform group-hover:translate-x-1 transition-transform duration-300"
+                            >arrow_forward</span
+                        >
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-16 text-center">
+            <button
+                class="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 font-medium"
+            >
+                View All Products
+            </button>
+        </div>
+    </section>
+    <section class="relative py-16 px-8 overflow-hidden">
+        <div
+            class="absolute top-0 left-0 w-full h-full bg-primary-300 opacity-20"
+        >
+        </div>
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Why Choose Us?
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    We bring creativity and innovation to medical equipment
+                    supply, going beyond the standard to deliver exceptional
+                    solutions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
+                >
+                    <div
+                        class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto"
+                    >
+                        <span
+                            class="material-symbols-outlined text-3xl text-primary-600"
+                            >medical_services</span
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">
+                        Healthcare Specialists
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        We understand the unique needs of medical institutions
+                        and provide solutions that enhance patient care.
+                    </p>
+                </div>
+                <div
+                    class="bg-white rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
+                >
+                    <div
+                        class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto"
+                    >
+                        <span
+                            class="material-symbols-outlined text-3xl text-primary-600"
+                            >lightbulb</span
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">
+                        Creative Approach
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        We bring fresh ideas to medical equipment supply, making
+                        functional solutions also aesthetically pleasing.
+                    </p>
+                </div>
+                <div
+                    class="bg-white rounded-xl shadow-lg p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
+                >
+                    <div
+                        class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto"
+                    >
+                        <span
+                            class="material-symbols-outlined text-3xl text-primary-600"
+                            >support_agent</span
+                        >
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">
+                        Exceptional Support
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        Our team provides comprehensive support from
+                        consultation to installation and maintenance.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-16 bg-white rounded-xl group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 transform shadow-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <div class="mb-6 inline-block">
+                            <span
+                                class="bg-primary-100 text-primary-700 px-4 py-1 rounded-full font-medium"
+                                >Tradewinds Partner</span
+                            >
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">
+                            Quality Guaranteed with Tradewinds
+                        </h3>
+                        <p class="text-gray-700 mb-6">
+                            As a proud supplier of Tradewinds products, we
+                            deliver top-quality medical equipment that meets the
+                            highest standards of durability, functionality, and
+                            design.
+                        </p>
+                        <button
+                            class="flex items-center font-medium text-primary-600 hover:text-primary-700"
+                        >
+                            Learn about our partnership <span
+                                class="material-symbols-outlined ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
+                                >arrow_forward</span
+                            >
+                        </button>
+                    </div>
+                    <div
+                        class="md:w-1/2 bg-primary-600 p-8 md:p-12 text-white relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-primary-500 rounded-full -translate-y-1/2 translate-x-1/2"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 w-24 h-24 bg-primary-500 rounded-full translate-y-1/2 -translate-x-1/2"
+                        >
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-4">
+                                Ready to Transform Your Medical Space?
+                            </h3>
+                            <p class="mb-6 opacity-90">
+                                Contact us today for a consultation and discover
+                                how our solutions can enhance your healthcare
+                                facility.
+                            </p>
+                            <button
+                                class="bg-white text-primary-600 hover:bg-primary-50 px-6 py-2 rounded-full shadow-lg font-medium transition-all duration-300 hover:shadow-xl"
+                            >
+                                Request a Consultation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- New Footer Section -->
+    <footer class="relative bg-gradient-to-b from-neutral-50 to-blue-100 pt-24 pb-8 overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-full h-20 bg-primary-300 opacity-20 -skew-y-2 transform -translate-y-11"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500 rounded-full -translate-y-3/2 translate-x-1/3 opacity-40"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-primary-500 rounded-full translate-y-1/3 -translate-x-1/4 opacity-30"></div>
+        
+        <!-- Footer Content -->
+        <div class="container mx-auto relative z-10 px-4">
+            <div class="flex flex-col lg:flex-row justify-between mb-12">
+                <!-- Company Info -->
+                <div class="mb-10 lg:mb-0 lg:w-1/3 pr-8">
+                    <div class="flex items-center mb-6">
+                        <h2 class="text-2xl font-bold text-primary-600">MICS</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Medical Innovative & Creative Solutions providing high-quality medical equipment and services to healthcare facilities nationwide.
+                    </p>
+                    <div class="bg-white shadow-lg rounded-xl p-6 transform hover:-translate-y-1 transition-all duration-300">
+                        <p class="font-bold text-gray-700 mb-2">Our Location</p>
+                        <p class="text-gray-600">123 Healthcare Avenue</p>
+                        <p class="text-gray-600">Medical District, MD 21001</p>
+                        <div class="mt-4 pt-4 border-t border-gray-100">
+                            <p class="font-bold text-gray-700 mb-2">Contact Us</p>
+                            <p class="text-gray-600">info@mics-medical.com</p>
+                            <p class="text-gray-600">+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="mb-10 lg:mb-0 lg:w-1/4">
+                    <h3 class="text-lg font-bold text-gray-800 mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Products -->
+                <div class="mb-10 lg:mb-0 lg:w-1/4">
+                    <h3 class="text-lg font-bold text-gray-800 mb-6">Our Products</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Medical Shelving
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Medical Trolleys
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Curtains & Tracks
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-600 hover:text-primary-600 flex items-center group">
+                                <span class="material-symbols-outlined mr-2 text-primary-400 group-hover:text-primary-600 text-sm">chevron_right</span>
+                                Custom Solutions
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="lg:w-1/4">
+                    <h3 class="text-lg font-bold text-gray-800 mb-6">Stay Updated</h3>
+                    <p class="text-gray-600 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
+                    <div class="bg-white rounded-xl shadow-md p-4">
+                        <form class="space-y-3">
+                            <div>
+                                <input 
+                                    type="email" 
+                                    placeholder="Enter your email" 
+                                    class="w-full px-4 py-2 rounded-full text-gray-700 border border-gray-200 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
+                                />
+                            </div>
+                            <button 
+                                type="submit" 
+                                class="w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full shadow hover:shadow-lg transition-all duration-300"
+                            >
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8 pt-8 border-t border-gray-200">
+                <a href="#" class="bg-white w-10 h-10 rounded-full shadow-md flex items-center justify-center transform hover:scale-110 hover:shadow-lg transition-all duration-300">
+                    <svg class="fill-current text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" height="20" width="20"><defs><linearGradient x1="50%" x2="50%" y1="97.078%" y2="0%" id="a"><stop offset="0%" stop-color="#0062E0"/><stop offset="100%" stop-color="#19AFFF"/></linearGradient></defs><path d="M15 35.8C6.5 34.3 0 26.9 0 18 0 8.1 8.1 0 18 0s18 8.1 18 18c0 8.9-6.5 16.3-15 17.8l-1-.8h-4l-1 .8z"/><path fill="#FFF" d="m25 23 .8-5H21v-3.5c0-1.4.5-2.5 2.7-2.5H26V7.4c-1.3-.2-2.7-.4-4-.4-4.1 0-7 2.5-7 7v4h-4.5v5H15v12.7c1 .2 2 .3 3 .3s2-.1 3-.3V23h4z"/></svg>
+                </a>
+                <a href="#" class="bg-white w-10 h-10 rounded-full shadow-md flex items-center justify-center transform hover:scale-110 hover:shadow-lg transition-all duration-300">
+                    <svg class="fill-current text-primary-600" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 1200 1227"><path d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"/></svg>
+                </a>
+                <a href="#" class="bg-white w-10 h-10 rounded-full shadow-md flex items-center justify-center transform hover:scale-110 hover:shadow-lg transition-all duration-300">
+                    <svg class="fill-current text-primary-600" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 256"><path d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453"/></svg>
+                </a>
+                <a href="#" class="bg-white w-10 h-10 rounded-full shadow-md flex items-center justify-center transform hover:scale-110 hover:shadow-lg transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" class="fill-current text-primary-600">
+                        <path d="M128 23.064c34.177 0 38.225.13 51.722.745 12.48.57 19.258 2.655 23.769 4.408 5.974 2.322 10.238 5.096 14.717 9.575 4.48 4.479 7.253 8.743 9.575 14.717 1.753 4.511 3.838 11.289 4.408 23.768.615 13.498.745 17.546.745 51.723 0 34.178-.13 38.226-.745 51.723-.57 12.48-2.655 19.257-4.408 23.768-2.322 5.974-5.096 10.239-9.575 14.718-4.479 4.479-8.743 7.253-14.717 9.574-4.511 1.753-11.289 3.839-23.769 4.408-13.495.616-17.543.746-51.722.746-34.18 0-38.228-.13-51.723-.746-12.48-.57-19.257-2.655-23.768-4.408-5.974-2.321-10.239-5.095-14.718-9.574-4.479-4.48-7.253-8.744-9.574-14.718-1.753-4.51-3.839-11.288-4.408-23.768-.616-13.497-.746-17.545-.746-51.723 0-34.177.13-38.225.746-51.722.57-12.48 2.655-19.258 4.408-23.769 2.321-5.974 5.095-10.238 9.574-14.717 4.48-4.48 8.744-7.253 14.718-9.575 4.51-1.753 11.288-3.838 23.768-4.408 13.497-.615 17.545-.745 51.723-.745M128 0C93.237 0 88.878.147 75.226.77c-13.625.622-22.93 2.786-31.071 5.95-8.418 3.271-15.556 7.648-22.672 14.764C14.367 28.6 9.991 35.738 6.72 44.155 3.555 52.297 1.392 61.602.77 75.226.147 88.878 0 93.237 0 128c0 34.763.147 39.122.77 52.774.622 13.625 2.785 22.93 5.95 31.071 3.27 8.417 7.647 15.556 14.763 22.672 7.116 7.116 14.254 11.492 22.672 14.763 8.142 3.165 17.446 5.328 31.07 5.95 13.653.623 18.012.77 52.775.77s39.122-.147 52.774-.77c13.624-.622 22.929-2.785 31.07-5.95 8.418-3.27 15.556-7.647 22.672-14.763 7.116-7.116 11.493-14.254 14.764-22.672 3.164-8.142 5.328-17.446 5.95-31.07.623-13.653.77-18.012.77-52.775s-.147-39.122-.77-52.774c-.622-13.624-2.786-22.929-5.95-31.07-3.271-8.418-7.648-15.556-14.764-22.672C227.4 14.368 220.262 9.99 211.845 6.72c-8.142-3.164-17.447-5.328-31.071-5.95C167.122.147 162.763 0 128 0Zm0 62.27C91.698 62.27 62.27 91.7 62.27 128c0 36.302 29.428 65.73 65.73 65.73 36.301 0 65.73-29.428 65.73-65.73 0-36.301-29.429-65.73-65.73-65.73Zm0 108.397c-23.564 0-42.667-19.103-42.667-42.667S104.436 85.333 128 85.333s42.667 19.103 42.667 42.667-19.103 42.667-42.667 42.667Zm83.686-110.994c0 8.484-6.876 15.36-15.36 15.36-8.483 0-15.36-6.876-15.36-15.36 0-8.483 6.877-15.36 15.36-15.36 8.484 0 15.36 6.877 15.36 15.36Z"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center text-gray-500 text-sm">
+                <p>© {new Date().getFullYear()} MICS - Medical Innovative & Creative Solutions. All rights reserved.</p>
+                <div class="flex justify-center space-x-4 mt-2">
+                    <a href="#" class="hover:text-primary-600 transition-colors">Privacy Policy</a>
+                    <span class="text-gray-300">|</span>
+                    <a href="#" class="hover:text-primary-600 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </Layout>

@@ -16,7 +16,7 @@ const handleRemove = (productId: number) => {
 </script>
 
 <template>
-  <div class="fixed inset-0 z-50" @click="emit('close')">
+  <div class="fixed inset-0 z-30" @click="emit('close')">
     <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity"></div>
     <div
       class="absolute right-0 top-0 h-full w-96 bg-white shadow-xl transform transition-transform"

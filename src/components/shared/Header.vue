@@ -28,14 +28,41 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="bg-white shadow-sm">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="/" class="text-2xl font-bold text-primary-dark">Shop</a>
+  <header class="h-[10dvh] min-h-16">
+    <!-- Navigation -->
+    <nav class="relative z-10 flex justify-between items-center px-8 h-full">
+      <div class="flex items-center"> 
+        <a href="/" class="text-2xl font-bold text-primary-600">MICS</a> 
+      </div>
+      
+      <div class="hidden md:flex space-x-6"> 
+        <a href="/" class="relative overflow-hidden px-4 py-2 font-medium group"> 
+          <span class="relative z-10">Home</span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+        </a> 
+        <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group"> 
+          <span class="relative z-10">Products</span> 
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+        </a> 
+        <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group"> 
+          <span class="relative z-10">Services</span> 
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+        </a> 
+        <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group"> 
+          <span class="relative z-10">About Us</span> 
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+        </a> 
+        <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group"> 
+          <span class="relative z-10">Contact</span>
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+        </a> 
+      </div> 
+      
       <div class="flex items-center space-x-4">
-        <a href="/products" class="text-neutral-600 hover:text-neutral-900">Products</a>
+        <!-- Cart Button (preserved from original) -->
         <button
           @click="isCartOpen = !isCartOpen"
-          class="relative text-neutral-600 hover:text-neutral-900"
+          class="relative text-primary-600 hover:text-primary-700"
         >
           <span class="sr-only">Cart</span>
           <svg
@@ -58,8 +85,21 @@ onUnmounted(() => {
             {{ cart.items.length }}
           </span>
         </button>
+        
+        <!-- Mobile menu button -->
+        <button class="md:hidden relative z-10"> 
+          <span class="material-symbols-outlined">menu</span>
+        </button> 
+        
+        <!-- CTA Button -->
+        <button
+          class="hidden md:block bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+          Get in Touch 
+        </button>
       </div>
     </nav>
+    
+    <!-- MiniCart component (preserved from original) -->
     <MiniCart
       v-if="isCartOpen"
       :cart="cart"
