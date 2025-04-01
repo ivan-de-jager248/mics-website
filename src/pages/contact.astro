@@ -1,0 +1,324 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+---
+
+<Layout title="Contact Us">
+    <!-- Hero Section -->
+    <section
+        class="relative pt-16 pb-24 flex flex-col justify-center md:min-h-[60dvh] bg-gradient-to-br from-blue-200 to-neutral-50 overflow-hidden"
+    >
+        <!-- Decorative Elements -->
+        <div
+            class="absolute top-0 right-0 w-32 h-32 bg-secondary-500 rounded-full -translate-y-1/3 translate-x-1/4 opacity-30"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-48 h-48 bg-primary-500 rounded-full translate-y-1/3 -translate-x-1/4 opacity-20"
+        >
+        </div>
+
+        <!-- Curved transition -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <div class="w-full h-16 bg-white rounded-t-[100%]"></div>
+        </div>
+
+        <div class="container mx-auto px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="block">Get in</span>
+                        <span class="text-primary-600 relative">
+                            Touch <span class="absolute -bottom-2 left-0 w-full h-1 bg-primary-500"></span>
+                        </span>
+                        <span class="block mt-2">
+                            With <span class="text-secondary-600">Us</span>
+                        </span>
+                    </h1>
+                    <p class="text-gray-700 text-xl mb-8 md:max-w-lg">
+                        We're here to answer your questions and provide the medical equipment solutions you need. Reach out to us today.
+                    </p>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <div class="relative w-full h-[400px] rounded-lg overflow-hidden shadow-2xl transform lg:rotate-2 hover:rotate-0 transition-all duration-500">
+                        <img
+                            src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Contact our team"
+                            class="w-full h-full object-cover"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-600/70 to-transparent">
+                        </div>
+                        <div class="absolute bottom-0 left-0 p-6 text-white">
+                            <p class="text-2xl font-bold">
+                                Always Ready to Assist
+                            </p>
+                            <p class="opacity-90">
+                                Your healthcare equipment partner
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Details Section -->
+    <section class="py-16 px-8 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    Our <span class="text-secondary-600">Contact</span> Information
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    Multiple ways to reach us for your medical equipment needs
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Phone Contact Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">call</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Phone</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Call us for immediate assistance
+                    </p>
+                    <div class="text-center">
+                        <a href="tel:+27829979977" class="text-primary-600 font-medium">082 997 9977</a>
+                    </div>
+                </div>
+                
+                <!-- Email Contact Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">email</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Email</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Send us your detailed inquiries
+                    </p>
+                    <div class="text-center">
+                        <a href="mailto:info@mmics.co.za" class="text-primary-600 font-medium">info@mmics.co.za</a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp Contact Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-secondary-500">
+                    <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-secondary-600">chat</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">WhatsApp</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Chat with us on WhatsApp
+                    </p>
+                    <div class="text-center">
+                        <a href="https://wa.me/27829979977" target="_blank" class="text-secondary-600 font-medium">Chat Now</a>
+                    </div>
+                </div>
+                
+                <!-- Address Contact Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition-all duration-300 hover:shadow-xl border-t-4 border-primary-500">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="material-symbols-outlined text-3xl text-primary-600">location_on</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-3">Office</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Visit us at our location
+                    </p>
+                    <div class="text-center">
+                        <p class="text-primary-600 font-medium">149 Leeuwpoort St, Boksburg South, Boksburg, 1459</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-16 px-8 bg-gradient-to-br from-neutral-50 to-blue-100">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">
+                    Find <span class="text-secondary-600">Us</span> Here
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    Our location in Boksburg, South Africa
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                <div class="aspect-w-16 aspect-h-9 h-[400px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.0960687030586!2d28.241283376012774!3d-26.22406307447959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9518dfb0950555%3A0xb3598b7cba7004db!2s149%20Leeuwpoort%20St%2C%20Boksburg%20South%2C%20Boksburg%2C%201459!5e0!3m2!1sen!2sza!4v1696577782010!5m2!1sen!2sza"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-16 px-8 bg-white relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 w-40 h-40 bg-secondary-500 rounded-full -translate-y-1/2 translate-x-1/3 opacity-5"></div>
+        <div class="absolute bottom-0 left-0 w-56 h-56 bg-primary-500 rounded-full translate-y-1/3 -translate-x-1/4 opacity-5"></div>
+        
+        <div class="container mx-auto max-w-4xl relative z-10">
+            <div class="text-center mb-12">
+                <div class="inline-block mb-4">
+                    <span class="bg-primary-100 text-primary-700 px-4 py-1 rounded-full font-medium">Get in Touch</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">
+                    Send Us a <span class="text-secondary-600 relative">
+                        Message
+                        <span class="absolute -bottom-1 left-0 w-full h-1 bg-secondary-500"></span>
+                    </span>
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto">
+                    Have questions? Fill out the form below and we'll get back to you
+                </p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl shadow-2xl overflow-hidden transform hover:shadow-3xl transition-all duration-500 relative">
+                <!-- Decorative blobs -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-primary-500 rounded-full -translate-y-1/2 translate-x-1/3 opacity-30"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/4"></div>
+                
+                <div class="p-8 md:p-12 relative z-10">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="group">
+                                <label class="text-white mb-2 flex items-center group-hover:text-secondary-200 transition-colors duration-300" for="name">
+                                    <span class="material-symbols-outlined mr-2 text-neutral-50 group-hover:scale-110 transition-transform duration-300">person</span>
+                                    Name
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
+                                        placeholder="Your name"
+                                    />
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none">
+                                        <span class="material-symbols-outlined">badge</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <label class="text-white mb-2 flex items-center group-hover:text-neutral-50 transition-colors duration-300" for="email">
+                                    <span class="material-symbols-outlined mr-2 text-neutral-50 group-hover:scale-110 transition-transform duration-300">mail</span>
+                                    Email
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
+                                        placeholder="Your email"
+                                    />
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none">
+                                        <span class="material-symbols-outlined">alternate_email</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="group">
+                            <label class="block text-white mb-2 flex items-center group-hover:text-neutral-50 transition-colors duration-300" for="inquiry-type">
+                                <span class="material-symbols-outlined mr-2 text-neutral-50 group-hover:scale-110 transition-transform duration-300">category</span>
+                                Inquiry Type
+                            </label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                                <div class="flex items-center">
+                                    <input type="radio" id="product-info" name="inquiry" value="product" class="hidden peer" checked>
+                                    <label for="product-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
+                                        <span class="material-symbols-outlined mr-2">inventory_2</span>
+                                        Products
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="service-info" name="inquiry" value="service" class="hidden peer">
+                                    <label for="service-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
+                                        <span class="material-symbols-outlined mr-2">build</span>
+                                        Services
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="quote-info" name="inquiry" value="quote" class="hidden peer">
+                                    <label for="quote-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
+                                        <span class="material-symbols-outlined mr-2">request_quote</span>
+                                        Quote
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="other-info" name="inquiry" value="other" class="hidden peer">
+                                    <label for="other-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
+                                        <span class="material-symbols-outlined mr-2">help</span>
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="group">
+                            <label class="block text-white mb-2 flex items-center group-hover:text-neutral-50 transition-colors duration-300" for="subject">
+                                <span class="material-symbols-outlined mr-2 text-neutral-50 group-hover:scale-110 transition-transform duration-300">subject</span>
+                                Subject
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="text" 
+                                    id="subject" 
+                                    class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
+                                    placeholder="Subject of your message"
+                                />
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none">
+                                    <span class="material-symbols-outlined">title</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="group">
+                            <label class="text-white mb-2 flex items-center group-hover:text-neutral-50 transition-colors duration-300" for="message">
+                                <span class="material-symbols-outlined mr-2 text-neutral-50 group-hover:scale-110 transition-transform duration-300">chat</span>
+                                Message
+                            </label>
+                            <div class="relative">
+                                <textarea 
+                                    id="message" 
+                                    rows="4"
+                                    class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
+                                    placeholder="Your message"
+                                ></textarea>
+                                <span class="absolute left-3 top-6 opacity-50 pointer-events-none">
+                                    <span class="material-symbols-outlined">forum</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-4">
+                            <input id="newsletter" type="checkbox" class="w-5 h-5 rounded text-secondary-500 focus:ring-neutral-50">
+                            <label for="newsletter" class="ml-2 text-sm text-white">Subscribe to our newsletter for the latest updates</label>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="bg-secondary-500 hover:bg-secondary-600 text-white px-8 py-3 rounded-full font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center mx-auto group">
+                                <span class="mr-2">Send Message</span>
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform duration-300">send</span>
+                            </button>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <p class="text-white/70 text-sm">We usually respond within 24 hours</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
