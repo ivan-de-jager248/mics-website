@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+
+import { Image } from "astro:assets";
+import aboutHeroImage from "../assets/about_hero.jpg"
 ---
 
 <Layout title="About Us">
@@ -45,8 +48,8 @@ import Button from "../components/Button.astro";
                 </div>
                 <div class="lg:w-1/2 relative">
                     <div class="relative w-full h-[400px] rounded-lg overflow-hidden shadow-2xl transform lg:-rotate-2 hover:rotate-0 transition-all duration-500">
-                        <img
-                            src="https://images.unsplash.com/photo-1504439904031-93ded9f93e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        <Image
+                            src={aboutHeroImage}
                             alt="Medical professionals collaborating"
                             class="w-full h-full object-cover"
                         />
