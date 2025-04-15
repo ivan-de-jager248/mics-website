@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+import ParallaxSection from "../components/ParallaxSection.astro";
 
 import { Image } from "astro:assets";
 import tradeWindsLogo from "../assets/tradewinds_logo_transparent.png";
@@ -9,6 +10,7 @@ import shelvingImage from "../assets/Perforated Shelving.webp";
 import trolleyImage from "../assets/Packing Table 903x1204.jpg";
 import curtainTracks from "../assets/Curtain Tracks.avif";
 import customBuildImage from "../assets/Custom Build Accessories.jpg";
+import dnaImage from "../assets/DNA image.jpg";
 ---
 
 <Layout title="Home">
@@ -60,80 +62,31 @@ import customBuildImage from "../assets/Custom Build Accessories.jpg";
                 <div
                     class="relative w-full h-[400px] rounded-lg overflow-hidden shadow-2xl transform md:rotate-2 hover:rotate-0 transition-all duration-500"
                 >
-                    <Image src={heroImage} alt="Modern hospital interior" class="w-full h-full object-cover"/>
+                    <Image src={tradeWindsLogo} alt="Tradewinds Logo" class="w-full h-full object-cover"/>
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-primary-600/70 to-transparent"
                     >
                     </div>
                     <div class="absolute bottom-0 left-0 p-6 text-white">
                         <p class="text-2xl font-bold">
-                            Transforming Healthcare Environments
+                            Proud Sole Distributors of Tradewinds
                         </p>
                         <p class="opacity-90">
-                            With Innovative Equipment Solutions
+                            Bringing you exclusive access to top-tier medical equipment.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <div
-        class="relative bg-white py-6 px-8 shadow-md transform translate-y-1 my-[-100px] md:my-[-60px] lg:my-[-45px]"
-    >
-        <div class="relative flex flex-col items-center justify-center gap-10">
-            <!-- Subtle decorative elements -->
-            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <!-- Subtle dots pattern -->
-                <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] opacity-30 [background-size:16px_16px]"></div>
-            </div>
-
-            <h3 class="text-2xl font-extrabold text-primary-700">Proud Supplier of</h3>
-            <div class="flex flex-row items-center gap-5 mb-4 md:mb-0">
-                <div
-                    class="bg-white p-2 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300"
-                >
-                    <Image src={tradeWindsLogo} alt="Tradewinds Logo" width="250"/>
-                </div>
-            </div>
-            <div class="flex flex-wrap justify-center gap-6">
-                <div
-                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
-                >
-                    <span
-                        class="material-symbols-outlined mr-2 text-primary-600"
-                        >verified</span
-                    >
-                    <span class="font-medium">Premium Quality</span>
-                </div>
-                <div
-                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
-                >
-                    <span
-                        class="material-symbols-outlined mr-2 text-primary-600"
-                        >medical_services</span
-                    >
-                    <span class="font-medium">Medical Grade</span>
-                </div>
-                <div
-                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
-                >
-                    <span
-                        class="material-symbols-outlined mr-2 text-primary-600"
-                        >inventory_2</span
-                    >
-                    <span class="font-medium">Quick Delivery</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <section
-        class="pb-12 pt-[150px] px-8 bg-gradient-to-br from-neutral-50 to-blue-200"
+    <!-- Product Category section -->
+    <ParallaxSection imageUrl={dnaImage.src} overlayColor="bg-primary-700" overlayOpacity={.8} class="text-neutral-100"
     >
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                Our <span class="text-secondary-600">Product</span> Categories
+                Our <span class="bg-neutral-100 text-secondary-600 px-4 py-1 rounded-full inline-block">Product</span> Categories
             </h2>
-            <p class="text-gray-700 max-w-2xl mx-auto">
+            <p class="max-w-2xl mx-auto">
                 We specialize in providing top-tier medical equipment solutions
                 designed to enhance efficiency, comfort, and care in healthcare
                 environments.
@@ -168,7 +121,7 @@ import customBuildImage from "../assets/Custom Build Accessories.jpg";
                             class="material-symbols-outlined text-primary-500 mr-2"
                             >shelves</span
                         >
-                        <h3 class="text-xl font-bold">Medical Shelving</h3>
+                        <h3 class="text-xl font-bold text-gray-500">Medical Shelving</h3>
                     </div>
                     <p class="text-gray-600 mb-4">
                         Space-efficient storage solutions engineered for
@@ -213,7 +166,7 @@ import customBuildImage from "../assets/Custom Build Accessories.jpg";
                             class="material-symbols-outlined text-primary-500 mr-2"
                             >luggage</span
                         >
-                        <h3 class="text-xl font-bold">Medical Trolleys</h3>
+                        <h3 class="text-xl font-bold text-gray-500">Medical Trolleys</h3>
                     </div>
                     <p class="text-gray-600 mb-4">
                         Mobile carts and trolleys that streamline workflows,
@@ -257,7 +210,7 @@ import customBuildImage from "../assets/Custom Build Accessories.jpg";
                             class="material-symbols-outlined text-primary-500 mr-2"
                             >curtains</span
                         >
-                        <h3 class="text-xl font-bold">Curtains &amp; Tracks</h3>
+                        <h3 class="text-xl font-bold text-gray-500">Curtains &amp; Tracks</h3>
                     </div>
                     <p class="text-gray-600 mb-4">
                         Privacy and infection control solutions with
@@ -307,7 +260,7 @@ import customBuildImage from "../assets/Custom Build Accessories.jpg";
                             class="material-symbols-outlined text-primary-500 mr-2"
                             >settings_suggest</span
                         >
-                        <h3 class="text-xl font-bold">Custom Solutions</h3>
+                        <h3 class="text-xl font-bold text-gray-500">Custom Solutions</h3>
                     </div>
                     <p class="text-gray-600 mb-4">
                         Bespoke equipment and refurbishment services designed to
@@ -325,9 +278,59 @@ import customBuildImage from "../assets/Custom Build Accessories.jpg";
             </div>
         </div>
         <div class="mt-16 text-center">
-            <Button> View All Products </Button>
+            <Button variant="secondary"> View All Products </Button>
+        </div>
+    </ParallaxSection>
+    <section
+        class="relative bg-white py-6 px-8 shadow-md transform translate-y-1"
+    >
+        <div class="relative flex flex-col items-center justify-center gap-10">
+            <!-- Subtle decorative elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <!-- Subtle dots pattern -->
+                <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] opacity-30 [background-size:16px_16px]"></div>
+            </div>
+
+            <h3 class="text-2xl font-extrabold text-primary-700">Proud Supplier of</h3>
+            <div class="flex flex-row items-center gap-5 mb-4 md:mb-0">
+                <div
+                    class="bg-white p-2 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300"
+                >
+                    <Image src={tradeWindsLogo} alt="Tradewinds Logo" width="250"/>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div
+                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
+                >
+                    <span
+                        class="material-symbols-outlined mr-2 text-primary-600"
+                        >verified</span
+                    >
+                    <span class="font-medium">Premium Quality</span>
+                </div>
+                <div
+                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
+                >
+                    <span
+                        class="material-symbols-outlined mr-2 text-primary-600"
+                        >medical_services</span
+                    >
+                    <span class="font-medium">Medical Grade</span>
+                </div>
+                <div
+                    class="bg-gray-50 px-4 py-2 rounded-full border border-gray-200 flex items-center transform hover:scale-105 transition-all hover:bg-primary-50 hover:border-primary-200"
+                >
+                    <span
+                        class="material-symbols-outlined mr-2 text-primary-600"
+                        >inventory_2</span
+                    >
+                    <span class="font-medium">Quick Delivery</span>
+                </div>
+            </div>
         </div>
     </section>
+    <!-- Why Choose Us Section -->
     <section class="relative py-16 px-8 overflow-hidden">
         <div class="relative z-10 max-w-5xl mx-auto">
             <div class="text-center mb-12">

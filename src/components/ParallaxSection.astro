@@ -1,0 +1,56 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'section'> {
+    imageUrl: string;
+    minHeight?: string; // e.g., '400px', '50vh'
+    overlayColor?: string; // e.g., 'black', 'rgba(0, 0, 0, 0.5)', 'primary-600' (Tailwind color name)
+    overlayOpacity?: number; // e.g., 0.3, 0.5 (0 to 1)
+}
+
+const {
+    imageUrl,
+    minHeight = '400px',
+    overlayColor = 'black', // Default overlay color
+    overlayOpacity = 0.3, // Default overlay opacity (30%)
+    class: className,
+    ...rest
+} = Astro.props;
+
+const backgroundStyles = `
+    background-image: url("${imageUrl}");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: ${minHeight};
+`;
+
+// Initialize overlay variables
+let overlayClasses = "absolute inset-0 z-0";
+let overlayBgStyle = '';
+
+// Check if overlayColor is a Tailwind background class
+if (overlayColor.startsWith('bg-')) {
+    // Apply Tailwind class for the background color
+    overlayClasses += ` ${overlayColor}`;
+    // Apply opacity via inline style
+    overlayBgStyle = `opacity: ${overlayOpacity};`;
+} else {
+    // Apply direct CSS color and opacity via inline style
+    overlayBgStyle = `background-color: ${overlayColor}; opacity: ${overlayOpacity};`;
+}
+
+---
+<section
+    style={backgroundStyles}
+    class:list={["relative py-16 px-8 overflow-hidden", className]}
+    {...rest}
+>
+    <!-- Overlay: Apply classes and inline style for opacity/color -->
+    <div class={overlayClasses} style={overlayBgStyle}></div>
+    <!-- Content container -->
+    <div class="relative z-10">
+        <slot />
+    </div>
+</section>
