@@ -32,7 +32,7 @@ onUnmounted(() => {
     <!-- Navigation -->
     <nav class="relative z-10 flex justify-between items-center px-8 h-full">
       <div class="flex items-center">
-        <a href="/mics-website" class="text-2xl font-bold"><span class="text-primary-600">MI</span><span
+        <a href="/mics-website" class="text-4xl font-bold"><span class="text-primary-600">MI</span><span
             class="text-secondary-600">CS</span></a>
       </div>
 
@@ -44,11 +44,6 @@ onUnmounted(() => {
         </a>
         <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group">
           <span class="relative z-10">Products</span>
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
-        </a>
-        <a href="#" class="relative overflow-hidden px-4 py-2 font-medium group">
-          <span class="relative z-10">Services</span>
           <span
             class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
         </a>
