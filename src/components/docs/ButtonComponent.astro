@@ -1,0 +1,277 @@
+---
+// Documentation content for the Button component
+import Button from '../Button.astro'; // Import the Button component for examples
+---
+<section id="button" class="mb-16 scroll-mt-24">
+  <div class="flex items-center mb-6">
+    <h2 class="text-2xl font-bold">Button Component</h2>
+    <div class="ml-4 px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-xs font-medium">UI Component</div>
+  </div>
+  
+  <p class="mb-6">
+    The Button component provides a consistent button styling with multiple variants. 
+    It supports both standard button and link functionality with extensive customization options.
+  </p>
+
+  <!-- API Reference -->
+  <h3 class="font-bold text-lg mb-4">Props Reference</h3>
+  <div class="overflow-x-auto mb-8">
+    <table class="w-full border-collapse text-sm">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2 text-left">Prop</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Default</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">variant</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>'primary' | 'secondary' | 'outline' | 'text'</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>'primary'</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Button style variant</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">href</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>string</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>undefined</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">URL for the button (renders as <code>&lt;a&gt;</code> if provided)</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">size</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>'sm' | 'md' | 'lg'</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>'md'</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Button size</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">external</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>boolean</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>false</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Open link in new tab (adds target="_blank" and rel attributes)</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">fullWidth</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>boolean</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>false</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Makes button take full width of container</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">disabled</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>boolean</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>false</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Disables the button</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">iconBefore</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>string</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>undefined</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Material icon name to display before text</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">iconAfter</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>string</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>undefined</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Material icon name to display after text</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">class</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>string</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>''</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Additional CSS classes</td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">ariaLabel</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>string</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">
+            <code>undefined</code>
+          </td>
+          <td class="border border-gray-300 px-4 py-2">Optional aria-label for accessibility</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Examples -->
+  <h3 class="font-bold text-lg mb-4">Examples</h3>
+  
+  <!-- Basic Variants -->
+  <div class="mb-10">
+    <h4 class="font-semibold text-gray-800 mb-3">Button Variants</h4>
+    <p class="text-gray-600 mb-4">The Button component supports multiple style variants.</p>
+    
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
+      <div class="flex flex-wrap gap-4">
+        <Button>Default Primary Button</Button>
+        <Button variant="secondary">Secondary Button</Button>
+        <Button variant="outline">Outline Button</Button>
+        <Button variant="text">Text Button</Button>
+      </div>
+    </div>
+    
+    <div class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-x-auto text-sm font-mono">
+      ```astro
+      <Button>Default Primary Button</Button>
+      <Button variant="secondary">Secondary Button</Button>
+      <Button variant="outline">Outline Button</Button>
+      <Button variant="text">Text Button</Button>
+      ```
+    </div>
+  </div>
+  
+  <!-- Link Buttons -->
+  <div class="mb-10">
+    <h4 class="font-semibold text-gray-800 mb-3">Link Buttons</h4>
+    <p class="text-gray-600 mb-4">Add an <code>href</code> prop to make the button act as a link.</p>
+    
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
+      <div class="flex flex-wrap gap-4">
+        <Button href="/products">Explore Products</Button>
+        <Button href="/contact" variant="secondary">Request Consultation</Button>
+        <Button href="https://example.com" external>External Link</Button>
+      </div>
+    </div>
+    
+    <div class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-x-auto text-sm font-mono">
+      ```astro
+      <Button href="/products">Explore Products</Button>
+      <Button href="/contact" variant="secondary">Request Consultation</Button>
+      <Button href="https://example.com" external>External Link</Button>
+      ```
+    </div>
+  </div>
+  
+  <!-- Button Sizes -->
+  <div class="mb-10">
+    <h4 class="font-semibold text-gray-800 mb-3">Button Sizes</h4>
+    <p class="text-gray-600 mb-4">Adjust the button size with the <code>size</code> prop.</p>
+    
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
+      <div class="flex flex-wrap gap-4 items-center">
+        <Button size="sm">Small</Button>
+        <Button>Medium (Default)</Button>
+        <Button size="lg">Large</Button>
+      </div>
+    </div>
+    
+    <div class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-x-auto text-sm font-mono">
+      ```astro
+      <Button size="sm">Small</Button>
+      <Button>Medium (Default)</Button>
+      <Button size="lg">Large</Button>
+      ```
+    </div>
+  </div>
+  
+  <!-- Icons -->
+  <div class="mb-10">
+    <h4 class="font-semibold text-gray-800 mb-3">Buttons with Icons</h4>
+    <p class="text-gray-600 mb-4">Add icons before or after the button text using Material Icons.</p>
+    
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
+      <div class="flex flex-wrap gap-4">
+        <Button iconBefore="shopping_cart">Add to Cart</Button>
+        <Button iconAfter="arrow_forward">Learn More</Button>
+        <Button variant="secondary" iconBefore="calendar_today">Book Appointment</Button>
+      </div>
+    </div>
+    
+    <div class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-x-auto text-sm font-mono">
+      ```astro
+      <Button iconBefore="shopping_cart">Add to Cart</Button>
+      <Button iconAfter="arrow_forward">Learn More</Button>
+      <Button variant="secondary" iconBefore="calendar_today">Book Appointment</Button>
+      ```
+    </div>
+    
+    <p class="text-gray-600 mt-4">
+      <strong>Note:</strong> This component uses Material Symbols icons. Make sure to include the Material Icons font in your project:
+    </p>
+    <div class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-x-auto text-sm font-mono mt-2">
+      ```html
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+      ```
+    </div>
+  </div>
+  
+  <!-- Special States -->
+  <div class="mb-10">
+    <h4 class="font-semibold text-gray-800 mb-3">Special States</h4>
+    <p class="text-gray-600 mb-4">Button component supports disabled state and full-width display.</p>
+    
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-4">
+      <div class="flex flex-wrap gap-4 mb-4">
+        <Button disabled>Disabled Button</Button>
+      </div>
+      <Button fullWidth>Full Width Button</Button>
+    </div>
+    
+    <div class="bg-slate-800 text-slate-200 p-4 rounded-lg overflow-x-auto text-sm font-mono">
+      ```astro
+      <Button disabled>Disabled Button</Button>
+      <Button fullWidth>Full Width Button</Button>
+      ```
+    </div>
+  </div>
+  
+  <!-- Usage Guidelines -->
+  <h3 class="font-bold text-lg mb-4">Usage Guidelines</h3>
+  <div class="space-y-4 text-gray-700">
+    <p>
+      <strong>When to use:</strong> Use buttons to enable users to perform an action or navigate to a different page.
+    </p>
+    <ul class="list-disc pl-8 space-y-2">
+      <li>Use <strong>primary</strong> buttons for main calls to action and primary user flows</li>
+      <li>Use <strong>secondary</strong> buttons for secondary actions that support the main action</li>
+      <li>Use <strong>outline</strong> buttons for less important actions or in dense UIs</li>
+      <li>Use <strong>text</strong> buttons for the least important actions or where space is limited</li>
+    </ul>
+    <p>
+      <strong>Best practices:</strong>
+    </p>
+    <ul class="list-disc pl-8 space-y-2">
+      <li>Use clear, action-oriented labels (e.g., "Save" instead of "OK")</li>
+      <li>Maintain hierarchy - limit the number of primary buttons on a single page</li>
+      <li>Use icons to enhance meaning, not replace text</li>
+      <li>Consider mobile users - ensure buttons are large enough for touch targets (min 44×44px)</li>
+    </ul>
+  </div>
+</section>

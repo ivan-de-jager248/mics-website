@@ -11,14 +11,14 @@
       <div class="px-2">
         <div class="flex items-center justify-between mb-2">
           <span class="text-sm text-gray-600">$0</span>
-          <span class="text-sm text-gray-600">${{ localMaxPrice }}</span>
+          <span class="text-sm text-gray-600">${{ computedMaxPrice }}</span>
         </div>
         <input 
           type="range" 
           min="0" 
           max="2000" 
           step="100"
-          v-model="localMaxPrice"
+          v-model="computedMaxPrice"
           class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer"
         />
       </div>
@@ -28,12 +28,12 @@
     <div class="mb-8">
       <h3 class="font-semibold text-lg mb-3 text-gray-800">Categories</h3>
       <div class="space-y-2">
-        <div v-for="category in categories" :key="category" class="flex items-center">
+        <div v-for="category in props.categories" :key="category" class="flex items-center">
           <input 
             type="checkbox" 
             :id="`category-${formatId(category)}`"
             :value="category"
-            v-model="localSelectedCategories"
+            v-model="computedSelectedCategories"
             class="w-4 h-4 text-primary-600 rounded border-gray-300 focus:ring-primary-500"
           />
           <label :for="`category-${formatId(category)}`" class="ml-2 text-sm text-gray-700">
@@ -47,12 +47,12 @@
     <div class="mb-8">
       <h3 class="font-semibold text-lg mb-3 text-gray-800">Properties</h3>
       <div class="space-y-2">
-        <div v-for="property in properties" :key="property" class="flex items-center">
+        <div v-for="property in props.properties" :key="property" class="flex items-center">
           <input 
             type="checkbox" 
             :id="`property-${formatId(property)}`"
             :value="property"
-            v-model="localSelectedProperties"
+            v-model="computedSelectedProperties"
             class="w-4 h-4 text-primary-600 rounded border-gray-300 focus:ring-primary-500"
           />
           <label :for="`property-${formatId(property)}`" class="ml-2 text-sm text-gray-700">
@@ -68,57 +68,68 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    categories: {
-      type: Array,
-      required: true
-    },
-    properties: {
-      type: Array,
-      required: true
-    },
-    selectedCategories: {
-      type: Array,
-      default: () => []
-    },
-    selectedProperties: {
-      type: Array,
-      default: () => []
-    },
-    maxPrice: {
-      type: Number,
-      default: 2000
-    }
+<script setup>
+import { computed } from 'vue';
+
+// Define props
+const props = defineProps({
+  categories: {
+    type: Array,
+    required: true
   },
-  data() {
-    return {
-      localSelectedCategories: this.selectedCategories,
-      localSelectedProperties: this.selectedProperties,
-      localMaxPrice: this.maxPrice
-    };
+  properties: {
+    type: Array,
+    required: true
   },
-  watch: {
-    localSelectedCategories(newVal) {
-      this.$emit('update:selectedCategories', newVal);
-    },
-    localSelectedProperties(newVal) {
-      this.$emit('update:selectedProperties', newVal);
-    },
-    localMaxPrice(newVal) {
-      this.$emit('update:maxPrice', parseInt(newVal));
-    }
+  selectedCategories: {
+    type: Array,
+    default: () => []
   },
-  methods: {
-    formatId(str) {
-      return str.replace(/\s+/g, '-').toLowerCase();
-    },
-    clearFilters() {
-      this.localSelectedCategories = [];
-      this.localSelectedProperties = [];
-      this.localMaxPrice = 2000;
-    }
+  selectedProperties: {
+    type: Array,
+    default: () => []
+  },
+  maxPrice: {
+    type: Number,
+    default: 2000
   }
+});
+
+// Define emits for v-model updates
+const emit = defineEmits([
+  'update:selectedCategories', 
+  'update:selectedProperties', 
+  'update:maxPrice'
+]);
+
+// Computed property for selectedCategories v-model
+const computedSelectedCategories = computed({
+  get: () => props.selectedCategories,
+  set: (value) => emit('update:selectedCategories', value)
+});
+
+// Computed property for selectedProperties v-model
+const computedSelectedProperties = computed({
+  get: () => props.selectedProperties,
+  set: (value) => emit('update:selectedProperties', value)
+});
+
+// Computed property for maxPrice v-model
+// Ensure the emitted value is a number
+const computedMaxPrice = computed({
+  get: () => props.maxPrice,
+  set: (value) => emit('update:maxPrice', parseInt(value))
+});
+
+// Helper function to format IDs
+const formatId = (str) => {
+  return str.replace(/\s+/g, '-').toLowerCase();
+};
+
+// Method to clear filters by emitting update events
+const clearFilters = () => {
+  emit('update:selectedCategories', []);
+  emit('update:selectedProperties', []);
+  emit('update:maxPrice', 2000); // Reset to default max price
 };
 </script>

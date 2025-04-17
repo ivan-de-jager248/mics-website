@@ -98,6 +98,9 @@ const products = [
 const categories = [...new Set(products.map((product) => product.category))];
 const allProperties = products.flatMap((product) => product.properties);
 const uniqueProperties = [...new Set(allProperties)];
+
+// Get initial search query from URL for the search input component
+const initialSearchQuery = Astro.url.searchParams.get('q') || '';
 ---
 
 <Layout title="Products">
@@ -116,7 +119,7 @@ const uniqueProperties = [...new Set(allProperties)];
                 </p>
 
                 <!-- Search input using Vue component -->
-                <ProductSearch client:load searchQuery="" />
+                <ProductSearch client:load searchQuery={initialSearchQuery} />
             </div>
         </div>
 

@@ -1,0 +1,97 @@
+---
+// Component to document the URL filtering feature for the products page
+---
+<section id="url-filtering" class="mb-16 scroll-mt-24">
+  <div class="flex items-center mb-6">
+    <h2 class="text-2xl font-bold">Product Page URL Filtering</h2>
+    <div class="ml-4 px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Feature</div>
+  </div>
+  
+  <p class="mb-6">
+    The Products page (`/products`) supports filtering the displayed products directly via URL query parameters. 
+    This allows linking to pre-filtered views of the product catalog.
+  </p>
+
+  <!-- Parameters Reference -->
+  <h3 class="font-bold text-lg mb-4">Query Parameters</h3>
+  <div class="overflow-x-auto mb-8">
+    <table class="w-full border-collapse text-sm">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2 text-left">Parameter</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Type</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Example Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">category</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">string</td>
+          <td class="border border-gray-300 px-4 py-2">Filters products by category. Multiple categories can be provided, separated by commas (<code>,</code>).</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs"><code>Medical%20Shelving</code> or <code>Medical%20Shelving,Medical%20Trolleys</code></td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">property</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">string</td>
+          <td class="border border-gray-300 px-4 py-2">Filters products by property. Multiple properties can be provided, separated by commas (<code>,</code>).</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs"><code>Mobile</code> or <code>Mobile,Lockable</code></td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">maxPrice</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">number</td>
+          <td class="border border-gray-300 px-4 py-2">Filters products by maximum price.</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs"><code>500</code></td>
+        </tr>
+        <tr>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">q</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs">string</td>
+          <td class="border border-gray-300 px-4 py-2">Filters products by search query (matches name or description). Also populates the search input field.</td>
+          <td class="border border-gray-300 px-4 py-2 font-mono text-xs"><code>cart</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-xs text-gray-600 mt-2">Note: Remember to URL-encode special characters like spaces (<code>%20</code>) in parameter values.</p>
+  </div>
+  
+  <!-- Examples -->
+  <h3 class="font-bold text-lg mb-4">Example URLs</h3>
+  
+  <div class="mb-10">
+    <h4 class="font-semibold text-gray-800 mb-3">Single Filter Examples</h4>
+    <ul class="list-disc pl-6 space-y-2 mb-4 text-sm">
+        <li>Filter by category "Medical Trolleys": <code class="text-xs bg-gray-100 p-1 rounded">/products?category=Medical%20Trolleys</code></li>
+        <li>Filter by property "Mobile": <code class="text-xs bg-gray-100 p-1 rounded">/products?property=Mobile</code></li>
+        <li>Filter by max price $1000: <code class="text-xs bg-gray-100 p-1 rounded">/products?maxPrice=1000</code></li>
+        <li>Search for "curtain": <code class="text-xs bg-gray-100 p-1 rounded">/products?q=curtain</code></li>
+    </ul>
+
+    <h4 class="font-semibold text-gray-800 mb-3">Combined Filter Examples</h4>
+     <ul class="list-disc pl-6 space-y-2 mb-4 text-sm">
+        <li>Filter by categories "Medical Shelving" OR "Medical Trolleys": <code class="text-xs bg-gray-100 p-1 rounded">/products?category=Medical%20Shelving,Medical%20Trolleys</code></li>
+        <li>Filter by category "Medical Trolleys" AND property "Mobile": <code class="text-xs bg-gray-100 p-1 rounded">/products?category=Medical%20Trolleys&property=Mobile</code></li>
+        <li>Search for "storage" within "Medical Shelving" category, under $900: <code class="text-xs bg-gray-100 p-1 rounded">/products?q=storage&category=Medical%20Shelving&maxPrice=900</code></li>
+    </ul>
+  </div>
+  
+  <!-- Usage Guidelines -->
+  <h3 class="font-bold text-lg mb-4">Usage Guidelines</h3>
+  <div class="space-y-4 text-gray-700">
+    <p>
+      <strong>When to use:</strong> Use URL filtering when you need to link users directly to a specific subset of products from other pages, marketing materials, or external sources.
+    </p>
+    <ul class="list-disc pl-8 space-y-2">
+      <li>Create links from category overview pages directly to the filtered product list.</li>
+      <li>Use in email campaigns to highlight specific product types (e.g., "View all Mobile Carts").</li>
+      <li>Allow users to share links to their current filtered view (though the URL doesn't update dynamically as filters are changed on the page itself yet).</li>
+    </ul>
+    <p>
+      <strong>Important Notes:</strong>
+    </p>
+    <ul class="list-disc pl-8 space-y-2">
+      <li>The URL parameters are only read on the initial page load. Changing filters via the UI does not currently update the URL.</li>
+      <li>Ensure the category and property names used in the URL exactly match the names defined in the product data (case-sensitive).</li>
+      <li>Invalid category/property names or non-numeric max prices in the URL will be ignored.</li>
+    </ul>
+  </div>
+</section>

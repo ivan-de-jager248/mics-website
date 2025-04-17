@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+// Remove direct Button import if no longer needed here
+// import Button from '../components/Button.astro'; 
+// Import the documentation components
+import UrlFilteringDocs from '../components/docs/UrlFiltering.astro';
+import ButtonDocs from '../components/docs/ButtonComponent.astro'; // Import ButtonDocs
+
+// Navigation items for component docs
+const components = [
+  { name: "Button", href: "#button" },
+  // Add more components here as they're documented
+];
+
+// Add a new entry for the URL Filtering documentation
+const features = [
+  { name: "URL Filtering", href: "#url-filtering" },
+];
+
+const title = "MICS Design System";
+---
+
+<Layout title={title}>
+  <div class="flex flex-col md:flex-row min-h-screen">
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-white border-r border-gray-200 md:h-screen md:sticky top-0">
+      <div class="p-6 border-b border-gray-200">
+        <h1 class="text-xl font-bold text-primary-600">MICS Design System</h1>
+        <p class="text-sm text-gray-600 mt-1">Internal Documentation</p>
+      </div>
+      
+      <nav class="p-4">
+        <p class="text-xs uppercase tracking-wider text-gray-500 font-medium mb-4">Components</p>
+        <ul class="space-y-2 mb-6">
+          {components.map((component) => (
+            <li>
+              <a href={component.href} class="block py-2 px-3 rounded-md hover:bg-primary-50 text-gray-700 hover:text-primary-600 font-medium transition-colors">
+                {component.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        {/* Add new section for Features */}
+        <p class="text-xs uppercase tracking-wider text-gray-500 font-medium mb-4">Features</p>
+        <ul class="space-y-2">
+          {features.map((feature) => (
+            <li>
+              <a href={feature.href} class="block py-2 px-3 rounded-md hover:bg-green-50 text-gray-700 hover:text-green-600 font-medium transition-colors">
+                {feature.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 md:p-8 lg:p-12 max-w-5xl">
+      <div class="prose max-w-none">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">Component Documentation</h1>
+        <p class="text-gray-600 mb-8">Reference documentation for MICS UI components</p>
+        
+        {/* Render the Button documentation component */}
+        <ButtonDocs />
+
+        {/* Render the URL Filtering documentation component */}
+        <UrlFilteringDocs />
+
+      </div>
+    </main>
+  </div>
+</Layout>
+
+<style>
+  /* Override default link styles inside code blocks */
+  .prose pre a {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
