@@ -7,6 +7,34 @@ import { getCart, updateQuantity } from '../../utils/cart';
 const isCartOpen = ref(false);
 const cart = ref<Cart>({ items: [], total: 0 });
 
+// Define links for the product dropdown
+const productDropdownLinks = [
+  { 
+    icon: 'shelves', 
+    title: 'Medical Shelving', 
+    subtext: 'Durable storage solutions', 
+    href: '/mics-website/products?category=Medical%20Shelving' 
+  },
+  { 
+    icon: 'local_shipping', 
+    title: 'Medical Trolleys', 
+    subtext: 'Mobile supply & instrument carts', 
+    href: '/mics-website/products?category=Medical%20Trolleys' 
+  },
+  { 
+    icon: 'curtains', 
+    title: 'Curtains & Tracks', 
+    subtext: 'Privacy and track systems', 
+    href: '/mics-website/products?category=Curtains%20%26%20Tracks' 
+  },
+   { 
+    icon: 'design_services', 
+    title: 'Custom Solutions', 
+    subtext: 'Tailored to your needs', 
+    href: '/mics-website/products?category=Custom%20Solutions' 
+  },
+];
+
 const loadCart = () => {
   cart.value = getCart();
 };
@@ -28,7 +56,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="h-[10dvh] min-h-16">
+  <header class="relative z-30 h-[10dvh] min-h-16 bg-white shadow-sm">
     <!-- Navigation -->
     <nav class="relative z-10 flex justify-between items-center px-8 h-full">
       <div class="flex items-center">
@@ -36,17 +64,47 @@ onUnmounted(() => {
             class="text-secondary-600">CS</span></a>
       </div>
 
-      <div class="hidden md:flex space-x-6">
+      <div class="hidden md:flex space-x-1">
         <a href="/mics-website" class="relative overflow-hidden px-4 py-2 font-medium group">
           <span class="relative z-10">Home</span>
           <span
             class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
         </a>
-        <a href="/mics-website/products" class="relative overflow-hidden px-4 py-2 font-medium group">
-          <span class="relative z-10">Products</span>
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
-        </a>
+        
+        <!-- Products Dropdown Wrapper -->
+        <div class="relative group">
+          <a href="/mics-website/products" class="relative overflow-hidden px-4 py-2 font-medium flex items-center group">
+            <span class="relative z-10">Products</span>
+            <span class="material-symbols-outlined text-sm ml-1 transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+             <!-- Underline animation span - adjusted for flex container -->
+            <span
+              class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          
+          <!-- Dropdown Menu - Adjusted positioning and transition -->
+          <div 
+            class="absolute left-0 top-full w-72 bg-white rounded-lg shadow-xl overflow-hidden
+                   opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                   transform scale-95 group-hover:scale-100 translate-y-[-5px] group-hover:translate-y-0
+                   transition-all duration-200 ease-out z-50 origin-top-left">
+            <div class="p-2">
+              <a 
+                v-for="link in productDropdownLinks" 
+                :key="link.title" 
+                :href="link.href" 
+                class="flex items-center p-3 rounded-md hover:bg-primary-50 transition-all duration-150 group/item"
+              >
+                <span class="material-symbols-outlined text-primary-600 mr-3 text-xl">{{ link.icon }}</span>
+                <div>
+                  <p class="font-semibold text-sm text-gray-800">{{ link.title }}</p>
+                  <p class="text-xs text-gray-500">{{ link.subtext }}</p>
+                </div>
+                 <span class="material-symbols-outlined text-gray-400 ml-auto text-lg opacity-0 group-hover/item:opacity-100 transform -translate-x-2 group-hover/item:translate-x-0 transition-all duration-200">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="/mics-website/about" class="relative overflow-hidden px-4 py-2 font-medium group">
           <span class="relative z-10">About Us</span>
           <span
