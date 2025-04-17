@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
-import { Image } from "astro:assets";
+import ParallaxSection from "../components/ParallaxSection.astro";
+import dnaImage from "../assets/DNA image.jpg";
 
 // Import Vue components
 import ProductPage from "../components/vue/ProductPage.vue";
@@ -9,137 +10,159 @@ import ProductSearch from "../components/vue/ProductSearch.vue";
 
 // Sample product data
 const products = [
-  {
-    id: 1,
-    name: "Premium Medical Shelf Unit",
-    category: "Medical Shelving",
-    description: "High-capacity medical grade shelving unit with adjustable heights",
-    price: 599,
-    properties: ["Adjustable", "Stainless Steel", "High Capacity"],
-    image: "https://images.unsplash.com/photo-1613578723743-ea195e325231?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    featured: true,
-  },
-  {
-    id: 2,
-    name: "Mobile Supply Cart",
-    category: "Medical Trolleys",
-    description: "Versatile mobile supply cart ideal for hospital departments",
-    price: 899,
-    properties: ["Mobile", "Lockable", "Antimicrobial"],
-    image: "https://images.unsplash.com/photo-1584889369527-a283e62d1711?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    id: 3,
-    name: "Antimicrobial Privacy Curtain",
-    category: "Curtains & Tracks",
-    description: "Hospital-grade privacy curtains with antimicrobial treatment",
-    price: 329,
-    properties: ["Antimicrobial", "Fire Resistant", "Washable"],
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    id: 4,
-    name: "Modular Storage System",
-    category: "Custom Solutions",
-    description: "Completely customizable storage system for specific medical needs",
-    price: 1499,
-    properties: ["Modular", "Customizable", "High Capacity"],
-    image: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    featured: true,
-  },
-  {
-    id: 5,
-    name: "Instrument Trolley",
-    category: "Medical Trolleys",
-    description: "Mobile trolley for surgical instruments with sterilization tray",
-    price: 749,
-    properties: ["Sterilizable", "Mobile", "Stainless Steel"],
-    image: "https://images.unsplash.com/photo-1579154341098-e4e158cc7f55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    id: 6,
-    name: "Track System - Standard",
-    category: "Curtains & Tracks",
-    description: "Standard ceiling-mounted curtain track system for healthcare settings",
-    price: 249,
-    properties: ["Easy Install", "Aluminum", "Ceiling Mount"],
-    image: "https://images.unsplash.com/photo-1597511605715-dbcabe7ef543?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    id: 7,
-    name: "Medical Storage Cabinet",
-    category: "Medical Shelving",
-    description: "Secure medical supply storage cabinet with transparent doors",
-    price: 849,
-    properties: ["Lockable", "Glass Doors", "Adjustable"],
-    image: "https://images.unsplash.com/photo-1595079989972-f87ef4152ffe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
-  {
-    id: 8,
-    name: "Custom Privacy Screen",
-    category: "Custom Solutions",
-    description: "Foldable privacy screen with antimicrobial fabric covering",
-    price: 399,
-    properties: ["Foldable", "Mobile", "Antimicrobial"],
-    image: "https://images.unsplash.com/photo-1603772022755-8a65dde6c6c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-  },
+    {
+        id: 1,
+        name: "Premium Medical Shelf Unit",
+        category: "Medical Shelving",
+        description:
+            "High-capacity medical grade shelving unit with adjustable heights",
+        price: 599,
+        properties: ["Adjustable", "Stainless Steel", "High Capacity"],
+        image: "https://images.unsplash.com/photo-1613578723743-ea195e325231?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        featured: true,
+    },
+    {
+        id: 2,
+        name: "Mobile Supply Cart",
+        category: "Medical Trolleys",
+        description:
+            "Versatile mobile supply cart ideal for hospital departments",
+        price: 899,
+        properties: ["Mobile", "Lockable", "Antimicrobial"],
+        image: "https://images.unsplash.com/photo-1584889369527-a283e62d1711?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+        id: 3,
+        name: "Antimicrobial Privacy Curtain",
+        category: "Curtains & Tracks",
+        description:
+            "Hospital-grade privacy curtains with antimicrobial treatment",
+        price: 329,
+        properties: ["Antimicrobial", "Fire Resistant", "Washable"],
+        image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+        id: 4,
+        name: "Modular Storage System",
+        category: "Custom Solutions",
+        description:
+            "Completely customizable storage system for specific medical needs",
+        price: 1499,
+        properties: ["Modular", "Customizable", "High Capacity"],
+        image: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+        featured: true,
+    },
+    {
+        id: 5,
+        name: "Instrument Trolley",
+        category: "Medical Trolleys",
+        description:
+            "Mobile trolley for surgical instruments with sterilization tray",
+        price: 749,
+        properties: ["Sterilizable", "Mobile", "Stainless Steel"],
+        image: "https://images.unsplash.com/photo-1579154341098-e4e158cc7f55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+        id: 6,
+        name: "Track System - Standard",
+        category: "Curtains & Tracks",
+        description:
+            "Standard ceiling-mounted curtain track system for healthcare settings",
+        price: 249,
+        properties: ["Easy Install", "Aluminum", "Ceiling Mount"],
+        image: "https://images.unsplash.com/photo-1597511605715-dbcabe7ef543?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+        id: 7,
+        name: "Medical Storage Cabinet",
+        category: "Medical Shelving",
+        description:
+            "Secure medical supply storage cabinet with transparent doors",
+        price: 849,
+        properties: ["Lockable", "Glass Doors", "Adjustable"],
+        image: "https://images.unsplash.com/photo-1595079989972-f87ef4152ffe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    },
+    {
+        id: 8,
+        name: "Custom Privacy Screen",
+        category: "Custom Solutions",
+        description:
+            "Foldable privacy screen with antimicrobial fabric covering",
+        price: 399,
+        properties: ["Foldable", "Mobile", "Antimicrobial"],
+        image: "https://images.unsplash.com/photo-1603772022755-8a65dde6c6c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    },
 ];
 
 // Extract unique categories and properties for filters
-const categories = [...new Set(products.map(product => product.category))];
-const allProperties = products.flatMap(product => product.properties);
+const categories = [...new Set(products.map((product) => product.category))];
+const allProperties = products.flatMap((product) => product.properties);
 const uniqueProperties = [...new Set(allProperties)];
 ---
 
 <Layout title="Products">
-  <!-- Header section with search -->
-  <section class="relative pt-16 pb-10 bg-gradient-to-br from-blue-200 to-neutral-50">
-    <div class="container mx-auto px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">
-          Our <span class="text-secondary-600">Medical</span> Equipment
-        </h1>
-        <p class="text-gray-700 text-xl mb-8">
-          Browse our comprehensive range of quality medical equipment solutions
-        </p>
-        
-        <!-- Search input using Vue component -->
-        <ProductSearch client:load searchQuery="" />
-      </div>
-    </div>
-    
-    <!-- Decorative elements -->
-    <div class="absolute top-0 right-0 w-24 h-24 bg-secondary-500 rounded-full opacity-20 -translate-y-1/3 translate-x-1/4"></div>
-  </section>
-  
-  <!-- Main content section -->
-  <section class="py-12 px-8 bg-gray-50">
-    <div class="container mx-auto">
-      <!-- Main product page component with all filters and product list -->
-      <ProductPage 
-        client:load
-        products={products}
-        categories={categories}
-        properties={uniqueProperties}
-      />
-    </div>
-  </section>
+    <!-- Header section with search -->
+    <section
+        class="relative pt-16 pb-10 bg-gradient-to-br from-blue-200 to-neutral-50"
+    >
+        <div class="container mx-auto px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    Our <span class="text-secondary-600">Medical</span> Equipment
+                </h1>
+                <p class="text-gray-700 text-xl mb-8">
+                    Browse our comprehensive range of quality medical equipment
+                    solutions
+                </p>
 
-  <!-- Call to action section -->
-  <section class="py-16 px-8 bg-primary-600 text-white">
-    <div class="container mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Can't find what you're looking for?</h2>
-      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-        We offer custom solutions tailored to your specific needs. Let's discuss your requirements.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <Button href="/contact" variant="secondary" size="lg">
-          Request Consultation
-        </Button>
-        <Button href="/custom-solutions" variant="secondary" size="lg">
-          Custom Solutions
-        </Button>
-      </div>
-    </div>
-  </section>
+                <!-- Search input using Vue component -->
+                <ProductSearch client:load searchQuery="" />
+            </div>
+        </div>
+
+        <!-- Decorative elements -->
+        <div
+            class="absolute top-0 right-0 w-24 h-24 bg-secondary-500 rounded-full opacity-20 -translate-y-1/3 translate-x-1/4"
+        >
+        </div>
+    </section>
+
+    <!-- Main content section -->
+    <section class="py-12 px-8 bg-gray-50">
+        <div class="container mx-auto">
+            <!-- Main product page component with all filters and product list -->
+            <ProductPage
+                client:load
+                products={products}
+                categories={categories}
+                properties={uniqueProperties}
+            />
+        </div>
+    </section>
+
+    <!-- Call to action section -->
+    <ParallaxSection
+        imageUrl={dnaImage.src}
+        overlayColor="bg-primary-700"
+        overlayOpacity={0.7}
+        class="py-16 px-8 text-white"
+    >
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                Can't find what you're looking for?
+            </h2>
+            <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+                We offer custom solutions tailored to your specific needs. Let's
+                discuss your requirements.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <Button href="/contact" variant="secondary" size="lg">
+                    Request Consultation
+                </Button>
+                <Button href="/custom-solutions" variant="secondary" size="lg">
+                    Custom Solutions
+                </Button>
+            </div>
+        </div>
+    </ParallaxSection>
 </Layout>

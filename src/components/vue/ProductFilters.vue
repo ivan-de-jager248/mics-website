@@ -4,6 +4,25 @@
       <span class="material-symbols-outlined mr-2 text-primary-600">filter_alt</span>
       Filters
     </h2>
+
+    <!-- Price range filter -->
+    <div class="mb-8">
+      <h3 class="font-semibold text-lg mb-3 text-gray-800">Price Range</h3>
+      <div class="px-2">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm text-gray-600">$0</span>
+          <span class="text-sm text-gray-600">${{ localMaxPrice }}</span>
+        </div>
+        <input 
+          type="range" 
+          min="0" 
+          max="2000" 
+          step="100"
+          v-model="localMaxPrice"
+          class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer"
+        />
+      </div>
+    </div>
     
     <!-- Categories filter -->
     <div class="mb-8">
@@ -40,25 +59,6 @@
             {{ property }}
           </label>
         </div>
-      </div>
-    </div>
-    
-    <!-- Price range filter -->
-    <div class="mb-8">
-      <h3 class="font-semibold text-lg mb-3 text-gray-800">Price Range</h3>
-      <div class="px-2">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-sm text-gray-600">$0</span>
-          <span class="text-sm text-gray-600">${{ localMaxPrice }}</span>
-        </div>
-        <input 
-          type="range" 
-          min="0" 
-          max="2000" 
-          step="100"
-          v-model="localMaxPrice"
-          class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer"
-        />
       </div>
     </div>
     
