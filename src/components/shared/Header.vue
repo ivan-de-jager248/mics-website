@@ -13,25 +13,25 @@ const productDropdownLinks = [
     icon: 'shelves', 
     title: 'Medical Shelving', 
     subtext: 'Durable storage solutions', 
-    href: '/mics-website/products?category=Medical%20Shelving' 
+    href: '/mics-website/products?category=medical-shelving' 
   },
   { 
     icon: 'local_shipping', 
     title: 'Medical Trolleys', 
     subtext: 'Mobile supply & instrument carts', 
-    href: '/mics-website/products?category=Medical%20Trolleys' 
+    href: '/mics-website/products?category=medical-trolleys' 
   },
   { 
     icon: 'curtains', 
     title: 'Curtains & Tracks', 
     subtext: 'Privacy and track systems', 
-    href: '/mics-website/products?category=Curtains%20%26%20Tracks' 
+    href: '/mics-website/products?category=curtains-and-tracks' 
   },
    { 
     icon: 'design_services', 
     title: 'Custom Solutions', 
     subtext: 'Tailored to your needs', 
-    href: '/mics-website/products?category=Custom%20Solutions' 
+    href: '/mics-website/products?category=custom-solutions' 
   },
 ];
 
