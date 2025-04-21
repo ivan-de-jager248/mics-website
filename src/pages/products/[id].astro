@@ -1,0 +1,174 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { removeFileExtension } from "../../utils/general";
+
+import Layout from "../../layouts/Layout.astro";
+import ImageGallery from "../../components/vue/ImageGallery.vue";
+import Button from "../../components/Button.astro";
+import { Image } from "astro:assets";
+
+// 1. Generate a static page for every product using its id (filename without extension)
+export async function getStaticPaths() {
+    const products = await getCollection("products", ({ data }) => data.draft === false);
+    return products.map((product) => ({
+        params: { id: removeFileExtension(product.id) }, // Use the entry id (filename)
+        props: { productId: removeFileExtension(product.id) }, // Pass id to fetch in component
+    }));
+}
+
+// 2. Get the product ID from props and fetch the full entry
+const { productId } = Astro.props;
+
+const product = await getEntry('products', productId); 
+console.log(`Fetched product: ${productId}`, product);
+console.log('Product images', product?.data.images);
+
+
+if (!product) {
+    // Optional: Handle case where product is not found (e.g., return a 404)
+    return Astro.redirect('/404');
+}
+
+const { Content } = await product.render();
+
+// Prepare images for the gallery component
+// Ensure the 'src' passed is the string URL from the processed image object
+const galleryImages = [
+    {
+        src: product.data.thumbnail.src, // Access the nested src string
+        alt: product.data.thumbnail.alt ?? `Thumbnail for ${product.data.name}`,
+        description: product.data.thumbnail.description,
+    },
+    ...(product.data.images?.map((img) => ({
+        src: img.src, // Access the nested src string
+        alt: img.alt ?? `Image for ${product.data.name}`,
+        description: img.description,
+    })) ?? []),
+];
+
+console.log(`Gallery images:`, galleryImages);
+
+// Fetch category details if needed (optional, depends on display requirements)
+const category = await getEntry('categories', product.data.category); // Fetch category entry if needed
+
+// Placeholder for related products logic
+const relatedProducts = []; // Replace with actual logic to find related products
+
+// Placeholder for reviews logic
+const reviews = []; // Replace with actual logic to fetch reviews
+---
+
+<Layout title={product.data.name}>
+    <section class="py-16 px-4 md:px-8 bg-gradient-to-br from-neutral-50 to-blue-100">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <!-- Image Gallery Column -->
+                <div>
+                    <ImageGallery client:load images={galleryImages} />
+                </div>
+
+                <!-- Product Details Column -->
+                <div class="flex flex-col justify-center">
+                    <!-- Optional: Breadcrumbs or Category Link -->
+                    <!-- <a href={`/categories/${product.data.category.slug}`} class="text-sm text-primary-600 hover:underline mb-2">
+                        {category?.data.name ?? 'Category'}
+                    </a> -->
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800">
+                        {product.data.name}
+                    </h1>
+
+                    
+                    <!-- SKU/Product Code -->
+                    {product.data.sku && <p class="text-sm text-gray-500 mb-6">SKU: {product.data.sku}</p>}
+                    
+                    <!-- Product Properties/Features -->
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">
+                            Category:
+                        </h3>
+                        <span class="text-sm bg-primary-100 text-primary-700 px-3 py-2 rounded-full hover:underline"><a href={`/mics-website/products?category=${category?.slug}`}>{ category?.data.name }</a></span>
+                    </div>
+                    
+                    <!-- Price Display -->
+                    <p class="text-2xl font-semibold text-secondary-600 mb-2">
+                        R {product.data.price.toFixed(2)}
+                    </p>
+
+                    <!-- Markdown Content Area (Product Description) -->
+                    <div class="prose prose-blue max-w-none mb-8 text-gray-700">
+                        <Content />
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                        <Button href="/mics-website/contact" size="md">Request Quote</Button>
+                        <Button href="/mics-website/products" variant="secondary">
+                            Back to Products
+                        </Button>
+                    </div>
+
+                    <!-- Social Sharing Placeholder -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-2 text-gray-700">Share:</h3>
+                        <div class="flex space-x-3">
+                            <a href="#" aria-label="Share on Facebook" class="text-gray-500 hover:text-blue-600 transition-colors">
+                                <!-- Placeholder: Add SVG icon --> F
+                            </a>
+                            <a href="#" aria-label="Share on Twitter" class="text-gray-500 hover:text-sky-500 transition-colors">
+                                <!-- Placeholder: Add SVG icon --> T
+                            </a>
+                            <a href="#" aria-label="Share on LinkedIn" class="text-gray-500 hover:text-blue-700 transition-colors">
+                                <!-- Placeholder: Add SVG icon --> L
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <hr class="my-8 border-gray-300" />
+
+                    <!-- Product Specifications -->
+                    {
+                        product.data.properties && product.data.properties.length > 0 && (
+                            <div class="mb-8">
+                                <h3 class="text-xl font-semibold mb-3 text-gray-700">
+                                    Properties:
+                                </h3>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    {product.data.properties.map((prop) => (
+                                        <li>{prop}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+
+            <!-- Customer Reviews Section Placeholder -->
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Customer Reviews</h2>
+                {reviews.length > 0 ? (
+                    <div class="space-y-4">
+                        {/* Map through actual reviews here */}
+                        <p class="text-gray-600">Review content goes here...</p>
+                    </div>
+                ) : (
+                    <p class="text-gray-500 italic">No reviews yet.</p>
+                )}
+            </div>
+
+            <!-- Related Products Section Placeholder -->
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Related Products</h2>
+                {relatedProducts.length > 0 ? (
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {/* Map through related products and display ProductCard components */}
+                        <p class="text-gray-600">Related product cards go here...</p>
+                    </div>
+                ) : (
+                    <p class="text-gray-500 italic">No related products found.</p>
+                )}
+            </div>
+        </div>
+    </section>
+</Layout>

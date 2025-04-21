@@ -1,14 +1,15 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
+import { removeFileExtension } from '../../utils/general';
 
-import Layout from "../layouts/Layout.astro";
-import Button from "../components/Button.astro";
-import ParallaxSection from "../components/ParallaxSection.astro";
-import dnaImage from "../assets/DNA image.jpg";
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/Button.astro";
+import ParallaxSection from "../../components/ParallaxSection.astro";
+import dnaImage from "../../assets/DNA image.jpg";
 
 // Import Vue components
-import ProductPage from "../components/vue/ProductPage.vue";
-import ProductSearch from "../components/vue/ProductSearch.vue";
+import ProductPage from "../../components/vue/ProductPage.vue";
+import ProductSearch from "../../components/vue/ProductSearch.vue";
 import type { CollectionEntry } from 'astro:content';
 
 const productCollection = await getCollection('products', ({ data }) => {
@@ -18,15 +19,16 @@ const productCollection = await getCollection('products', ({ data }) => {
 const products = productCollection.map((product: CollectionEntry<'products'>) => {
     return {
         ...product.data,
-        id: product.id.replace(/\.[^/.]+$/, ""), // Remove file extension
+        id: removeFileExtension(product.id)
     };
 });
+console.log(`Fetched products:`, products);
 
 const categoryCollection = await getCollection('categories');
 const categories = categoryCollection.map((category: CollectionEntry<'categories'>) => {
     return {
         ...category.data,
-        id: category.id.replace(/\.[^/.]+$/, ""), // Remove file extension
+        id: removeFileExtension(category.id)
     };
 });
 

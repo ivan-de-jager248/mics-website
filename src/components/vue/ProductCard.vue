@@ -31,7 +31,7 @@
         </span>
       </div>
       
-      <Button :href="`/product/${product.id}`" variant="primary" size="sm" classes="w-full justify-center">
+      <Button :href="`/mics-website/products/${product.id}`" variant="primary" size="sm" classes="w-full justify-center">
         View Details
       </Button>
     </div>
