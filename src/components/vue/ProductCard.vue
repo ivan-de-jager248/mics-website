@@ -5,8 +5,7 @@
         Featured
       </div>
       <img
-        :src="product.image"
-        :alt="product.name"
+        :src="product.thumbnail.src"
         class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
@@ -17,10 +16,10 @@
     <div class="p-6">
       <div class="flex justify-between items-start mb-2">
         <h3 class="text-xl font-bold">{{ product.name }}</h3>
-        <span class="text-secondary-600 font-bold">${{ product.price }}</span>
+        <span class="text-secondary-600 font-bold">R{{ product.price.toFixed(2) }}</span>
       </div>
       <div class="mb-4">
-        <span class="text-sm bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{{ product.category }}</span>
+        <span class="text-sm bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{{ categoryName }}</span>
       </div>
       <div class="flex flex-wrap gap-2 mb-4">
         <span 
@@ -44,6 +43,10 @@
 defineProps({
   product: {
     type: Object,
+    required: true
+  },
+  categoryName: {
+    type: String,
     required: true
   }
 });

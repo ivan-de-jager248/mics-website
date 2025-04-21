@@ -15,6 +15,7 @@
     <div class="md:w-3/4">
       <product-list 
         :products="props.products"
+        :categories="props.categories"
         :search-query="searchQuery"
         :selected-categories="selectedCategories"
         :selected-properties="selectedProperties"
@@ -36,8 +37,10 @@ const props = defineProps({
     required: true
   },
   categories: {
+    // Expect an array of objects with name and id
     type: Array,
-    required: true
+    required: true,
+    validator: (value) => value.every(cat => typeof cat === 'object' && cat.name && cat.id)
   },
   properties: {
     type: Array,
@@ -48,14 +51,14 @@ const props = defineProps({
 
 // Define reactive state
 const searchQuery = ref('');
-const selectedCategories = ref([]);
+const selectedCategories = ref([]); // Will store category IDs
 const selectedProperties = ref([]);
 const maxPrice = ref(2000); // Default max price
 
 // Read URL parameters on mount
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
-  
+
   const queryParam = urlParams.get('q');
   if (queryParam) {
     searchQuery.value = queryParam;
@@ -63,8 +66,10 @@ onMounted(() => {
 
   const categoryParam = urlParams.get('category');
   if (categoryParam) {
-    // Assuming categories are comma-separated if multiple are allowed via URL
-    selectedCategories.value = categoryParam.split(',').map(cat => cat.trim()).filter(cat => props.categories.includes(cat));
+    // Split potential comma-separated IDs and filter based on valid category IDs
+    const categoryIdsFromUrl = categoryParam.split(',').map(id => id.trim());
+    const validCategoryIds = props.categories.map(cat => cat.id);
+    selectedCategories.value = categoryIdsFromUrl.filter(id => validCategoryIds.includes(id));
   }
 
   const propertyParam = urlParams.get('property');

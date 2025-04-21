@@ -28,16 +28,16 @@
     <div class="mb-8">
       <h3 class="font-semibold text-lg mb-3 text-gray-800">Categories</h3>
       <div class="space-y-2">
-        <div v-for="category in props.categories" :key="category" class="flex items-center">
+        <div v-for="category in props.categories" :key="category.id" class="flex items-center">
           <input 
             type="checkbox" 
-            :id="`category-${formatId(category)}`"
-            :value="category"
+            :id="`category-${formatId(category.id)}`"
+            :value="category.id"
             v-model="computedSelectedCategories"
             class="w-4 h-4 text-primary-600 rounded border-gray-300 focus:ring-primary-500"
           />
-          <label :for="`category-${formatId(category)}`" class="ml-2 text-sm text-gray-700">
-            {{ category }}
+          <label :for="`category-${formatId(category.id)}`" class="ml-2 text-sm text-gray-700">
+            {{ category.name }}
           </label>
         </div>
       </div>
@@ -75,7 +75,8 @@ import { computed } from 'vue';
 const props = defineProps({
   categories: {
     type: Array,
-    required: true
+    required: true,
+    validator: (value) => value.every(cat => typeof cat === 'object' && cat.name && cat.id)
   },
   properties: {
     type: Array,
@@ -123,7 +124,8 @@ const computedMaxPrice = computed({
 
 // Helper function to format IDs
 const formatId = (str) => {
-  return str.replace(/\s+/g, '-').toLowerCase();
+  const cleanStr = str.replace(/\.[^/.]+$/, "");
+  return cleanStr.replace(/\s+/g, '-').toLowerCase();
 };
 
 // Method to clear filters by emitting update events

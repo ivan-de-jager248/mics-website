@@ -25,7 +25,8 @@
       <product-card 
         v-for="product in sortedProducts" 
         :key="product.id" 
-        :product="product" 
+        :product="product"
+        :category-name="getCategoryName(product.category)" 
       />
     </div>
     
@@ -50,12 +51,17 @@ export default {
       type: Array,
       required: true
     },
+    categories: {
+      type: Array,
+      required: true,
+      validator: (value) => value.every(cat => typeof cat === 'object' && cat.name && cat.id)
+    },
     searchQuery: {
       type: String,
       default: ''
     },
     selectedCategories: {
-      type: Array,
+      type: Array, // Expecting an array of category IDs
       default: () => []
     },
     selectedProperties: {
@@ -106,6 +112,12 @@ export default {
           return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
         }
       });
+    }
+  },
+  methods: {
+    getCategoryName(categoryId) {      
+      const category = this.categories.find(cat => cat.id === categoryId);
+      return category ? category.name : 'Uncategorized';
     }
   }
 };
