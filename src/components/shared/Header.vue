@@ -87,12 +87,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="relative z-30 h-[10dvh] min-h-16 bg-white shadow-sm">
+  <header class="relative z-30 h-[12dvh] min-h-16 bg-white shadow-sm">
     <!-- Navigation -->
     <nav class="relative z-10 flex justify-between items-center px-8 h-full">
       <div class="flex items-center">
-        <a href="/mics-website" class="text-4xl font-bold"><span class="text-primary-600">MI</span><span
-            class="text-secondary-600">CS</span></a>
+        <a href="/mics-website" class="text-4xl font-bold">
+          <slot name="logo" />
+        </a>
       </div>
 
       <!-- Desktop Navigation -->
@@ -179,8 +180,9 @@ onUnmounted(() => {
       <div v-if="isMobileMenuOpen" class="fixed inset-0 z-40 bg-white md:hidden flex flex-col">
         <!-- Mobile Menu Header -->
         <div class="flex justify-between items-center px-8 h-[10dvh] min-h-16 border-b border-gray-200">
-          <a href="/mics-website" class="text-4xl font-bold"><span class="text-primary-600">MI</span><span
-              class="text-secondary-600">CS</span></a>
+          <a href="/mics-website" class="text-4xl font-bold">
+            <slot name="logo" />
+          </a>
 
           <!-- Close button -->
           <button @click="toggleMobileMenu" class="md:hidden relative z-50 text-primary-600 hover:text-primary-700">
