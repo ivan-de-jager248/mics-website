@@ -22,7 +22,6 @@ const products = productCollection.map((product: CollectionEntry<'products'>) =>
         id: removeFileExtension(product.id)
     };
 });
-console.log(`Fetched products:`, products);
 
 const categoryCollection = await getCollection('categories');
 const categories = categoryCollection.map((category: CollectionEntry<'categories'>) => {
