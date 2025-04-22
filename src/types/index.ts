@@ -1,9 +1,8 @@
 export interface Product {
-  id: number;
+  id: string; // Use string ID from Astro content collection
   name: string;
   price: number;
-  description: string;
-  image: string;
+  thumbnail?: string; // Optional thumbnail URL for cart display
 }
 
 export interface CartItem {

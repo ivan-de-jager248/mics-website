@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch, defineExpose } from 'vue'; // Added defineExpose
 import type { Cart } from '../../types';
 import MiniCart from '../cart/MiniCart.vue';
 import { getCart, updateQuantity } from '../../utils/cart';
@@ -54,7 +54,7 @@ const loadCart = () => {
   cart.value = getCart();
 };
 
-const handleUpdateQuantity = (productId: number, newQuantity: number) => {
+const handleUpdateQuantity = (productId: string, newQuantity: number) => {
   updateQuantity(productId, newQuantity);
   loadCart();
 };
@@ -73,15 +73,31 @@ watch(isMobileMenuOpen, (isOpen) => {
   }
 });
 
+const openCart = () => {
+  isCartOpen.value = true;
+};
+
+// Expose the openCart method
+defineExpose({
+  openCart
+});
+
+// Function to handle the custom event
+const handleOpenCartEvent = () => {
+  openCart();
+};
 
 onMounted(() => {
   loadCart();
   window.addEventListener('storage', loadCart);
+  // Listen for the custom 'open-cart' event on the window
+  window.addEventListener('open-cart', handleOpenCartEvent); // Changed from document to window
 });
 
-// Clean up event listener and body style
+// Clean up event listeners and body style
 onUnmounted(() => {
   window.removeEventListener('storage', loadCart);
+  window.removeEventListener('open-cart', handleOpenCartEvent); // Changed from document to window
   document.body.style.overflow = ''; // Ensure scroll is re-enabled on unmount
 });
 </script>

@@ -21,6 +21,8 @@ export const getCart = (): Cart => {
 export const saveCart = (cart: Cart): void => {
   try {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    console.log('Cart saved to localStorage:', cart);
+    
   } catch (error) {
     console.error('Error saving cart to localStorage:', error);
   }
@@ -40,7 +42,8 @@ export const addToCart = (product: Product, quantity: number = 1): void => {
   saveCart(cart);
 };
 
-export const updateQuantity = (productId: number, quantity: number): void => {
+// Update productId type to string
+export const updateQuantity = (productId: string, quantity: number): void => {
   const cart = getCart();
   
   if (quantity <= 0) {
@@ -56,8 +59,10 @@ export const updateQuantity = (productId: number, quantity: number): void => {
   }
 };
 
-export const removeFromCart = (productId: number): void => {
+// Update productId type to string
+export const removeFromCart = (productId: string): void => {
   const cart = getCart();
+  // Use string comparison for ID
   cart.items = cart.items.filter(item => item.product.id !== productId);
   cart.total = calculateTotal(cart);
   saveCart(cart);
@@ -79,8 +84,10 @@ const isValidCart = (cart: any): cart is Cart => {
         item &&
         typeof item.quantity === 'number' &&
         item.product &&
-        typeof item.product.id === 'number' &&
-        typeof item.product.price === 'number'
+        typeof item.product.id === 'string' && // Validate ID as string
+        typeof item.product.price === 'number' &&
+        typeof item.product.name === 'string' // Also validate name
+        // Optional: Add validation for thumbnail if needed
     )
   );
 };

@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const emit = defineEmits(['close', 'update-quantity']);
 
-const handleRemove = (productId: number) => {
+const handleRemove = (productId: string) => {
   removeFromCart(productId);
   window.dispatchEvent(new Event('storage'));
 };
@@ -58,7 +58,7 @@ const handleRemove = (productId: number) => {
               class="py-4 flex"
             >
               <img
-                :src="item.product.image"
+                :src="item.product.thumbnail"
                 :alt="item.product.name"
                 class="h-20 w-20 object-cover rounded"
               />
@@ -66,7 +66,7 @@ const handleRemove = (productId: number) => {
                 <div class="flex items-start justify-between">
                   <h3 class="text-sm font-medium">{{ item.product.name }}</h3>
                   <p class="text-sm font-medium text-neutral-900">
-                    ${{ (item.product.price * item.quantity).toFixed(2) }}
+                    R{{ (item.product.price * item.quantity).toFixed(2) }}
                   </p>
                 </div>
                 <div class="mt-1 flex items-center justify-between">
@@ -99,11 +99,11 @@ const handleRemove = (productId: number) => {
           <div class="mt-4 border-t pt-4">
             <div class="flex items-center justify-between">
               <span class="text-sm font-medium">Total</span>
-              <span class="text-lg font-medium">${{ cart.total.toFixed(2) }}</span>
+              <span class="text-lg font-medium">R{{ cart.total.toFixed(2) }}</span>
             </div>
             <a
               href="/checkout"
-              class="mt-4 block w-full bg-accent hover:bg-accent-dark text-white text-center py-2 px-4 rounded-md transition-colors duration-200"
+              class="mt-4 block w-full bg-primary hover:bg-primary-dark text-white text-center py-2 px-4 rounded-md transition-colors duration-200"
             >
               Checkout
             </a>
