@@ -53,7 +53,7 @@ const initialSearchQuery = Astro.url.searchParams.get('q') || '';
                     solutions
                 </p>
 
-                <!-- Search input using Vue component -->
+                <!-- Pass initialSearchQuery to ProductSearch -->
                 <ProductSearch client:load searchQuery={initialSearchQuery} />
             </div>
         </div>
@@ -68,7 +68,7 @@ const initialSearchQuery = Astro.url.searchParams.get('q') || '';
     <!-- Main content section -->
     <section class="py-12 px-8 bg-gray-50">
         <div class="container mx-auto">
-            <!-- Main product page component with all filters and product list -->
+            <!-- ProductPage reads initial state from URL itself -->
             <ProductPage
                 client:load
                 products={products}

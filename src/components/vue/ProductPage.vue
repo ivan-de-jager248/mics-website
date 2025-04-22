@@ -26,9 +26,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import ProductFilters from './ProductFilters.vue';
 import ProductList from './ProductList.vue';
+import eventBus from '../../utils/eventBus';
 
 // Define props
 const props = defineProps({
@@ -46,7 +47,6 @@ const props = defineProps({
     type: Array,
     required: true
   }
-  // initialSearchQuery prop is removed as we read from URL now
 });
 
 // Define reactive state
@@ -55,14 +55,17 @@ const selectedCategories = ref([]); // Will store category IDs
 const selectedProperties = ref([]);
 const maxPrice = ref(2000); // Default max price
 
-// Read URL parameters on mount
+// Handler for search updates from the event bus
+const handleSearchUpdate = (query) => {
+  searchQuery.value = query;
+};
+
+// Read URL parameters on mount and set up listener
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);
 
-  const queryParam = urlParams.get('q');
-  if (queryParam) {
-    searchQuery.value = queryParam;
-  }
+  // Listen for search updates from the event bus
+  eventBus.on('search-updated', handleSearchUpdate);
 
   const categoryParam = urlParams.get('category');
   if (categoryParam) {
@@ -82,5 +85,10 @@ onMounted(() => {
   if (maxPriceParam && !isNaN(parseInt(maxPriceParam))) {
     maxPrice.value = parseInt(maxPriceParam);
   }
+});
+
+// Clean up the event listener when the component is unmounted
+onUnmounted(() => {
+  eventBus.off('search-updated', handleSearchUpdate);
 });
 </script>

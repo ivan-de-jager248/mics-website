@@ -10,8 +10,8 @@
       <h3 class="font-semibold text-lg mb-3 text-gray-800">Price Range</h3>
       <div class="px-2">
         <div class="flex items-center justify-between mb-2">
-          <span class="text-sm text-gray-600">$0</span>
-          <span class="text-sm text-gray-600">${{ computedMaxPrice }}</span>
+          <span class="text-sm text-gray-600">R0</span>
+          <span class="text-sm text-gray-600">R{{ computedMaxPrice }}</span>
         </div>
         <input 
           type="range" 
