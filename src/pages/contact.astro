@@ -4,6 +4,14 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import contactHeroImage from "../assets/contact_hero.jpeg";
 
+// Import environment variables
+const defaultFormSubmitId = import.meta.env.CONTACT_FORMSUBMIT_DEFAULT_ID;
+const quoteFormSubmitId = import.meta.env.CONTACT_FORMSUBMIT_QUOTE_ID;
+
+// Construct FormSubmit URLs
+const defaultActionUrl = `https://formsubmit.co/${defaultFormSubmitId}`;
+const quoteActionUrl = `https://formsubmit.co/${quoteFormSubmitId}`;
+
 // Construct the thank you page URL dynamically
 const thankYouUrl = new URL("/mics-website/thank-you", Astro.url).toString();
 ---
@@ -195,7 +203,7 @@ const thankYouUrl = new URL("/mics-website/thank-you", Astro.url).toString();
                 <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/4"></div>
                 
                 <div class="p-8 md:p-12 relative z-10">
-                    <form id="contact-form" action="https://formsubmit.co/5e0c55a2f049db7a5701a65b1c1ca8df" method="POST" class="space-y-6">
+                    <form id="contact-form" action={defaultActionUrl} method="POST" class="space-y-6">
                         <!-- FormSubmit Hidden Fields -->
                         <input type="hidden" name="_subject" value="New Contact Form Submission - MICS Website">
                         <input type="hidden" name="_next" value={thankYouUrl}>
@@ -340,20 +348,19 @@ const thankYouUrl = new URL("/mics-website/thank-you", Astro.url).toString();
         </div>
     </section>
 
-    <script is:inline>
+    <script define:vars={{ defaultActionUrl, quoteActionUrl }} is:inline>
         document.addEventListener('DOMContentLoaded', () => {
             const contactForm = document.getElementById('contact-form'); 
             const inquiryRadios = document.querySelectorAll('.inquiry-radio');
             
-            const defaultActionUrl = 'https://formsubmit.co/5e0c55a2f049db7a5701a65b1c1ca8df';
-            const quoteActionUrl = 'https://formsubmit.co/0592fae44781693fa42e1a3913742443';
-
             function updateFormSettings() {
                 const selectedRadio = document.querySelector('.inquiry-radio:checked');
                 if (selectedRadio && selectedRadio.value === 'quote') {
                     contactForm.action = quoteActionUrl; 
+                    contactForm.querySelector('input[name="_subject"]').value = "New Quote Request - MICS Website";
                 } else {
                     contactForm.action = defaultActionUrl; 
+                    contactForm.querySelector('input[name="_subject"]').value = "New Contact Form Submission - MICS Website";
                 }
             }
 

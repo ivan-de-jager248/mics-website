@@ -1,5 +1,12 @@
 ---
 import Button from "../Button.astro";
+
+// Import environment variable for the default form
+const defaultFormSubmitId = import.meta.env.CONTACT_FORMSUBMIT_DEFAULT_ID;
+const newsletterActionUrl = `https://formsubmit.co/${defaultFormSubmitId}`;
+
+// Construct the thank you page URL dynamically for the newsletter
+const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toString();
 ---
 
 <footer
@@ -187,11 +194,21 @@ import Button from "../Button.astro";
                     offers.
                 </p>
                 <div class="bg-white rounded-xl shadow-md p-4">
-                    <form class="space-y-3">
+                    <form action={newsletterActionUrl} method="POST" class="space-y-3">
+                         <!-- FormSubmit Hidden Fields -->
+                        <input type="hidden" name="_subject" value="New Newsletter Subscription - MICS Website">
+                        <input type="hidden" name="_next" value={newsletterThankYouUrl}>
+                        <input type="text" name="_honey" style="display:none">
+                        <input type="hidden" name="_template" value="box"> <!-- Optional: Use a template -->
+
                         <div>
+                            <label for="footer-email" class="sr-only">Email address</label>
                             <input
                                 type="email"
+                                id="footer-email"
+                                name="email"
                                 placeholder="Enter your email"
+                                required
                                 class="w-full px-4 py-2 rounded-full text-gray-700 border border-gray-200 focus:outline-none focus:border-secondary-500 focus:ring-2 focus:ring-secondary-200"
                             />
                         </div>
