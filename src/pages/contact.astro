@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 
 import { Image } from "astro:assets";
 import contactHeroImage from "../assets/contact_hero.jpeg";
+
+// Construct the thank you page URL dynamically
+const thankYouUrl = new URL("/mics-website/thank-you", Astro.url).toString();
 ---
 
 <Layout title="Contact Us">
@@ -192,7 +195,13 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                 <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/4"></div>
                 
                 <div class="p-8 md:p-12 relative z-10">
-                    <form class="space-y-6">
+                    <form id="contact-form" action="https://formsubmit.co/5e0c55a2f049db7a5701a65b1c1ca8df" method="POST" class="space-y-6">
+                        <!-- FormSubmit Hidden Fields -->
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - MICS Website">
+                        <input type="hidden" name="_next" value={thankYouUrl}>
+                        <input type="text" name="_honey" style="display:none">
+                        <input type="hidden" name="_template" value="box">
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="group">
                                 <label class="text-white mb-2 flex items-center group-hover:text-secondary-200 transition-colors duration-300" for="name">
@@ -203,8 +212,10 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                                     <input 
                                         type="text" 
                                         id="name" 
+                                        name="name"
                                         class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
                                         placeholder="Your name"
+                                        required
                                     />
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none">
                                         <span class="material-symbols-outlined">badge</span>
@@ -220,8 +231,10 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                                     <input 
                                         type="email" 
                                         id="email" 
+                                        name="email"
                                         class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
                                         placeholder="Your email"
+                                        required
                                     />
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none">
                                         <span class="material-symbols-outlined">alternate_email</span>
@@ -237,28 +250,28 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                             </label>
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
                                 <div class="flex items-center">
-                                    <input type="radio" id="product-info" name="inquiry" value="product" class="hidden peer" checked>
+                                    <input type="radio" id="product-info" name="inquiry" value="product" class="hidden peer inquiry-radio" checked>
                                     <label for="product-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
                                         <span class="material-symbols-outlined mr-2">inventory_2</span>
                                         Products
                                     </label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input type="radio" id="service-info" name="inquiry" value="service" class="hidden peer">
+                                    <input type="radio" id="service-info" name="inquiry" value="service" class="hidden peer inquiry-radio">
                                     <label for="service-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
                                         <span class="material-symbols-outlined mr-2">build</span>
                                         Services
                                     </label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input type="radio" id="quote-info" name="inquiry" value="quote" class="hidden peer">
+                                    <input type="radio" id="quote-info" name="inquiry" value="quote" class="hidden peer inquiry-radio">
                                     <label for="quote-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
                                         <span class="material-symbols-outlined mr-2">request_quote</span>
                                         Quote
                                     </label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input type="radio" id="other-info" name="inquiry" value="other" class="hidden peer">
+                                    <input type="radio" id="other-info" name="inquiry" value="other" class="hidden peer inquiry-radio">
                                     <label for="other-info" class="flex items-center justify-center p-3 bg-white/10 rounded-lg cursor-pointer peer-checked:bg-secondary-500 peer-checked:text-white hover:bg-white/20 transition-all duration-300 w-full text-white text-sm text-center">
                                         <span class="material-symbols-outlined mr-2">help</span>
                                         Other
@@ -276,6 +289,7 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                                 <input 
                                     type="text" 
                                     id="subject" 
+                                    name="subject"
                                     class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
                                     placeholder="Subject of your message"
                                 />
@@ -293,9 +307,11 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                             <div class="relative">
                                 <textarea 
                                     id="message" 
+                                    name="message"
                                     rows="4"
                                     class="w-full px-4 py-3 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-neutral-50 focus:ring-offset-2 focus:ring-offset-primary-600 transition-all duration-300 border-2 border-transparent hover:border-primary-400"
                                     placeholder="Your message"
+                                    required
                                 ></textarea>
                                 <span class="absolute left-3 top-6 opacity-50 pointer-events-none">
                                     <span class="material-symbols-outlined">forum</span>
@@ -304,7 +320,7 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
                         </div>
                         
                         <div class="flex items-center mb-4">
-                            <input id="newsletter" type="checkbox" class="w-5 h-5 rounded text-secondary-500 focus:ring-neutral-50">
+                            <input id="newsletter" name="newsletter" type="checkbox" value="subscribed" class="w-5 h-5 rounded text-secondary-500 focus:ring-neutral-50">
                             <label for="newsletter" class="ml-2 text-sm text-white">Subscribe to our newsletter for the latest updates</label>
                         </div>
                         
@@ -323,4 +339,29 @@ import contactHeroImage from "../assets/contact_hero.jpeg";
             </div>
         </div>
     </section>
+
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactForm = document.getElementById('contact-form'); 
+            const inquiryRadios = document.querySelectorAll('.inquiry-radio');
+            
+            const defaultActionUrl = 'https://formsubmit.co/5e0c55a2f049db7a5701a65b1c1ca8df';
+            const quoteActionUrl = 'https://formsubmit.co/0592fae44781693fa42e1a3913742443';
+
+            function updateFormSettings() {
+                const selectedRadio = document.querySelector('.inquiry-radio:checked');
+                if (selectedRadio && selectedRadio.value === 'quote') {
+                    contactForm.action = quoteActionUrl; 
+                } else {
+                    contactForm.action = defaultActionUrl; 
+                }
+            }
+
+            inquiryRadios.forEach(radio => {
+                radio.addEventListener('change', updateFormSettings); 
+            });
+
+            updateFormSettings();
+        });
+    </script>
 </Layout>
