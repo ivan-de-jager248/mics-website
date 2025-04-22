@@ -68,6 +68,12 @@ export const removeFromCart = (productId: string): void => {
   saveCart(cart);
 };
 
+export const clearCart = (): void => {
+  const emptyCart: Cart = { items: [], total: 0 };
+  saveCart(emptyCart);
+  window.dispatchEvent(new Event('storage'));
+};
+
 const calculateTotal = (cart: Cart): number => {
   return cart.items.reduce((total, item) => {
     return total + (item.product.price * item.quantity);

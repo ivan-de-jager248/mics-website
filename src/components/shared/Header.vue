@@ -4,6 +4,10 @@ import type { Cart } from '../../types';
 import MiniCart from '../cart/MiniCart.vue';
 import { getCart, updateQuantity } from '../../utils/cart';
 
+defineProps<{
+  checkoutEmailID: string;
+}>();
+
 const isCartOpen = ref(false);
 const isMobileMenuOpen = ref(false); // State for mobile menu
 const cart = ref<Cart>({ items: [], total: 0 });
@@ -187,7 +191,7 @@ onUnmounted(() => {
     </nav>
 
     <!-- MiniCart component -->
-    <MiniCart v-if="isCartOpen" :cart="cart" @close="isCartOpen = false" @update-quantity="handleUpdateQuantity" />
+    <MiniCart v-if="isCartOpen" :cart="cart" :checkoutEmailID="checkoutEmailID" @close="isCartOpen = false" @update-quantity="handleUpdateQuantity" />
 
     <!-- Mobile Menu Overlay -->
     <transition enter-active-class="transition ease-out duration-300 transform" enter-from-class="translate-x-full"
