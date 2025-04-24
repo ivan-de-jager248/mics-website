@@ -67,10 +67,6 @@ export default {
     selectedProperties: {
       type: Array,
       default: () => []
-    },
-    maxPrice: {
-      type: Number,
-      default: 2000
     }
   },
   data() {
@@ -93,19 +89,12 @@ export default {
         const matchesProperties = this.selectedProperties.length === 0 || 
           this.selectedProperties.every(prop => product.properties.includes(prop));
         
-        // Filter by price
-        const matchesPrice = product.price <= this.maxPrice;
-        
-        return matchesSearch && matchesCategory && matchesProperties && matchesPrice;
+        return matchesSearch && matchesCategory && matchesProperties;
       });
     },
     sortedProducts() {
       return [...this.filteredProducts].sort((a, b) => {
-        if (this.sortBy === 'price-low') {
-          return a.price - b.price;
-        } else if (this.sortBy === 'price-high') {
-          return b.price - a.price;
-        } else if (this.sortBy === 'name') {
+        if (this.sortBy === 'name') {
           return a.name.localeCompare(b.name);
         } else {
           // Featured sorting

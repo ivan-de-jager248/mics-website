@@ -19,7 +19,6 @@ const products = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/products' }),
     schema: ({ image }) => z.object({
         name: z.string(),
-        price: z.number(),
         category: reference('categories'),
         thumbnail: imageSchema({ image }),
         images: z.array(imageSchema({ image })),

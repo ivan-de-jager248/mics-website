@@ -7,7 +7,6 @@
         :properties="props.properties"
         v-model:selectedCategories="selectedCategories"
         v-model:selectedProperties="selectedProperties"
-        v-model:maxPrice="maxPrice"
       />
     </div>
     
@@ -19,7 +18,6 @@
         :search-query="searchQuery"
         :selected-categories="selectedCategories"
         :selected-properties="selectedProperties"
-        :max-price="maxPrice"
       />
     </div>
   </div>
@@ -53,7 +51,6 @@ const props = defineProps({
 const searchQuery = ref('');
 const selectedCategories = ref([]); // Will store category IDs
 const selectedProperties = ref([]);
-const maxPrice = ref(2000); // Default max price
 
 // Handler for search updates from the event bus
 const handleSearchUpdate = (query) => {
@@ -79,11 +76,6 @@ onMounted(() => {
   if (propertyParam) {
      // Assuming properties are comma-separated
     selectedProperties.value = propertyParam.split(',').map(prop => prop.trim()).filter(prop => props.properties.includes(prop));
-  }
-
-  const maxPriceParam = urlParams.get('maxPrice');
-  if (maxPriceParam && !isNaN(parseInt(maxPriceParam))) {
-    maxPrice.value = parseInt(maxPriceParam);
   }
 });
 

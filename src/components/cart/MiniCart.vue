@@ -30,11 +30,10 @@ const handleRequestQuote = async () => {
       (item) =>
         `${item.product.name} (ID: ${item.product.id}) - Quantity: ${
           item.quantity
-        } - Price: R${item.product.price.toFixed(2)}`
+        }`
     )
     .join('\n');
-  const totalMessage = `\n\nTotal: R${props.cart.total.toFixed(2)}`;
-  const fullMessage = `Quote request details:\n\n${itemsMessage}${totalMessage}`;
+  const fullMessage = `Quote request details:\n\n${itemsMessage}`;
 
   try {
     // Replace 'your@email.com' with your actual FormSubmit email
@@ -140,9 +139,6 @@ const handleRequestQuote = async () => {
               <div class="ml-4 flex-1">
                 <div class="flex items-start justify-between">
                   <h3 class="text-sm font-medium">{{ item.product.name }}</h3>
-                  <p class="text-sm font-medium text-neutral-900">
-                    R{{ (item.product.price * item.quantity).toFixed(2) }}
-                  </p>
                 </div>
                 <div class="mt-1 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
@@ -176,10 +172,6 @@ const handleRequestQuote = async () => {
         </div>
       </div>
       <div v-if="cart.items.length > 0" class="p-4 border-t">
-        <div class="flex items-center justify-between">
-          <span class="text-sm font-medium">Total</span>
-          <span class="text-lg font-medium">R{{ cart.total.toFixed(2) }}</span>
-        </div>
         <button
           @click="handleRequestQuote"
           :disabled="quoteStatus === 'loading' || quoteStatus === 'success'"

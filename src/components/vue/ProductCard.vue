@@ -16,7 +16,6 @@
     <div class="p-6">
       <div class="flex justify-between items-start mb-2">
         <h3 class="text-xl font-bold">{{ product.name }}</h3>
-        <span class="text-secondary-600 font-bold">R{{ product.price.toFixed(2) }}</span>
       </div>
       <div class="mb-4">
         <span class="text-sm bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{{ categoryName }}</span>

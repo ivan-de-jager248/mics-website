@@ -15,7 +15,7 @@ export const getCart = (): Cart => {
   } catch (error) {
     console.error('Error reading cart from localStorage:', error);
   }
-  return { items: [], total: 0 };
+  return { items: [] };
 };
 
 export const saveCart = (cart: Cart): void => {
@@ -38,7 +38,6 @@ export const addToCart = (product: Product, quantity: number = 1): void => {
     cart.items.push({ product, quantity });
   }
 
-  cart.total = calculateTotal(cart);
   saveCart(cart);
 };
 
@@ -54,7 +53,6 @@ export const updateQuantity = (productId: string, quantity: number): void => {
   const item = cart.items.find(item => item.product.id === productId);
   if (item) {
     item.quantity = Math.min(quantity, 99); // Prevent unreasonable quantities
-    cart.total = calculateTotal(cart);
     saveCart(cart);
   }
 };
@@ -64,20 +62,13 @@ export const removeFromCart = (productId: string): void => {
   const cart = getCart();
   // Use string comparison for ID
   cart.items = cart.items.filter(item => item.product.id !== productId);
-  cart.total = calculateTotal(cart);
   saveCart(cart);
 };
 
 export const clearCart = (): void => {
-  const emptyCart: Cart = { items: [], total: 0 };
+  const emptyCart: Cart = { items: [] };
   saveCart(emptyCart);
   window.dispatchEvent(new Event('storage'));
-};
-
-const calculateTotal = (cart: Cart): number => {
-  return cart.items.reduce((total, item) => {
-    return total + (item.product.price * item.quantity);
-  }, 0);
 };
 
 const isValidCart = (cart: any): cart is Cart => {
@@ -91,9 +82,7 @@ const isValidCart = (cart: any): cart is Cart => {
         typeof item.quantity === 'number' &&
         item.product &&
         typeof item.product.id === 'string' && // Validate ID as string
-        typeof item.product.price === 'number' &&
         typeof item.product.name === 'string' // Also validate name
-        // Optional: Add validation for thumbnail if needed
     )
   );
 };

@@ -4,25 +4,6 @@
       <span class="material-symbols-outlined mr-2 text-primary-600">filter_alt</span>
       Filters
     </h2>
-
-    <!-- Price range filter -->
-    <div class="mb-8">
-      <h3 class="font-semibold text-lg mb-3 text-gray-800">Price Range</h3>
-      <div class="px-2">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-sm text-gray-600">R0</span>
-          <span class="text-sm text-gray-600">R{{ computedMaxPrice }}</span>
-        </div>
-        <input 
-          type="range" 
-          min="0" 
-          max="2000" 
-          step="100"
-          v-model="computedMaxPrice"
-          class="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer"
-        />
-      </div>
-    </div>
     
     <!-- Categories filter -->
     <div class="mb-8">
@@ -89,10 +70,6 @@ const props = defineProps({
   selectedProperties: {
     type: Array,
     default: () => []
-  },
-  maxPrice: {
-    type: Number,
-    default: 2000
   }
 });
 
@@ -115,13 +92,6 @@ const computedSelectedProperties = computed({
   set: (value) => emit('update:selectedProperties', value)
 });
 
-// Computed property for maxPrice v-model
-// Ensure the emitted value is a number
-const computedMaxPrice = computed({
-  get: () => props.maxPrice,
-  set: (value) => emit('update:maxPrice', parseInt(value))
-});
-
 // Helper function to format IDs
 const formatId = (str) => {
   const cleanStr = str.replace(/\.[^/.]+$/, "");
@@ -132,6 +102,5 @@ const formatId = (str) => {
 const clearFilters = () => {
   emit('update:selectedCategories', []);
   emit('update:selectedProperties', []);
-  emit('update:maxPrice', 2000); // Reset to default max price
 };
 </script>

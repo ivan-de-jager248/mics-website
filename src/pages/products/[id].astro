@@ -34,7 +34,6 @@ if (!product) {
 const productDataForCart = {
     id: productId, // Use the extension-less productId passed via props
     name: product.data.name,
-    price: product.data.price,
     thumbnail: product.data.thumbnail.src,
 };
 
@@ -110,24 +109,18 @@ const reviews = []; // Replace with actual logic to fetch reviews
                             >
                         </div>
     
-                        <!-- Price Display -->
-                        <p class="text-2xl font-semibold text-secondary-600 mb-6"> {/* Increased margin bottom */}
-                            R {product.data.price.toFixed(2)}
-                        </p>
-    
                         <!-- Call to Action -->
                         <div
                             class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8"
                         >
                             <AddToCartButton client:load product={productDataForCart} />
-                            <Button href="/mics-website/contact" size="md" variant="outline">Request Quote</Button>
                             
-                            <!-- <Button
+                            <Button
                                 href="/mics-website/products"
                                 variant="secondary"
                             >
-                                Back to Products
-                            </Button> -->
+                                Back to All Products
+                            </Button>
                         </div>
     
                         <!-- Markdown Content Area (Product Description) -->

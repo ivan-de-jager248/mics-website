@@ -1,6 +1,5 @@
 ---
 name: "Example Product 1"
-price: 99.99
 category: "medical-shelving" # Category should match the filename of the category file without the .md extension
 properties:
   - "Example 1"
