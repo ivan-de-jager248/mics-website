@@ -3,4 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/mnt/cp4-home2/mmicscz873/public_html/
     - cd $DEPLOYPATH
-    - bin/cp -R dist/* $DEPLOYPATH
+    - cp -R dist/* $DEPLOYPATH
