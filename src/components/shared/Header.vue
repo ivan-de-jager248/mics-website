@@ -18,39 +18,39 @@ const productDropdownLinks = [
     icon: 'shelves',
     title: 'Medical Shelving',
     subtext: 'Durable storage solutions',
-    href: '/mics-website/products?category=medical-shelving'
+    href: '/products?category=medical-shelving'
   },
   {
     icon: 'local_shipping',
     title: 'Medical Trolleys',
     subtext: 'Mobile supply & instrument carts',
-    href: '/mics-website/products?category=medical-trolleys'
+    href: '/products?category=medical-trolleys'
   },
   {
     icon: 'curtains',
     title: 'Curtains & Tracks',
     subtext: 'Privacy and track systems',
-    href: '/mics-website/products?category=curtains-and-tracks'
+    href: '/products?category=curtains-and-tracks'
   },
   {
     icon: 'design_services',
     title: 'Custom Solutions',
     subtext: 'Tailored to your needs',
-    href: '/mics-website/products?category=custom-solutions'
+    href: '/products?category=custom-solutions'
   },
 ];
 
 // Consolidated navigation links for both desktop and mobile
 const navLinks = ref([
-  { title: 'Home', href: '/mics-website', hasDropdown: false },
+  { title: 'Home', href: '/', hasDropdown: false },
   {
     title: 'Products',
-    href: '/mics-website/products',
+    href: '/products',
     hasDropdown: true,
     dropdownLinks: productDropdownLinks // Nest dropdown links here
   },
-  { title: 'About Us', href: '/mics-website/about', hasDropdown: false },
-  { title: 'Contact', href: '/mics-website/contact', hasDropdown: false },
+  { title: 'About Us', href: '/about', hasDropdown: false },
+  { title: 'Contact', href: '/contact', hasDropdown: false },
 ]);
 
 
@@ -111,7 +111,7 @@ onUnmounted(() => {
     <!-- Navigation -->
     <nav class="relative z-10 flex justify-between items-center px-8 h-full">
       <div class="flex items-center">
-        <a href="/mics-website" class="text-4xl font-bold">
+        <a href="/" class="text-4xl font-bold">
           <slot name="logo" />
         </a>
       </div>
@@ -183,7 +183,7 @@ onUnmounted(() => {
         </button>
 
         <!-- CTA Button -->
-        <a href="/mics-website/contact"
+        <a href="/contact"
           class="hidden md:block bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
           Get in Touch
         </a>
@@ -200,7 +200,7 @@ onUnmounted(() => {
       <div v-if="isMobileMenuOpen" class="fixed inset-0 z-40 bg-white md:hidden flex flex-col">
         <!-- Mobile Menu Header -->
         <div class="flex justify-between items-center px-8 h-[10dvh] min-h-16 border-b border-gray-200">
-          <a href="/mics-website" class="text-4xl font-bold">
+          <a href="/" class="text-4xl font-bold">
             <slot name="logo" />
           </a>
 
@@ -236,7 +236,7 @@ onUnmounted(() => {
 
         <!-- Mobile Menu Footer/CTA -->
         <div class="p-8 border-t border-gray-200">
-          <a href="/mics-website/contact" @click="toggleMobileMenu"
+          <a href="/contact" @click="toggleMobileMenu"
             class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
             Get in Touch
           </a>

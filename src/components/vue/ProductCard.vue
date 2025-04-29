@@ -30,7 +30,7 @@
         </span>
       </div>
       
-      <Button :href="`/mics-website/products/${product.id}`" variant="primary" size="sm" classes="w-full justify-center">
+      <Button :href="`/products/${product.id}`" variant="primary" size="sm" classes="w-full justify-center">
         View Details
       </Button>
     </div>

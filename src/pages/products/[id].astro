@@ -103,7 +103,7 @@ const reviews = []; // Replace with actual logic to fetch reviews
                             <span
                                 class="text-sm bg-primary-100 text-primary-700 px-3 py-2 rounded-full hover:underline"
                                 ><a
-                                    href={`/mics-website/products?category=${category?.slug}`}
+                                    href={`/products?category=${category?.slug}`}
                                     >{category?.data.name}</a
                                 ></span
                             >
@@ -116,7 +116,7 @@ const reviews = []; // Replace with actual logic to fetch reviews
                             <AddToCartButton client:load product={productDataForCart} />
                             
                             <Button
-                                href="/mics-website/products"
+                                href="/products"
                                 variant="secondary"
                             >
                                 Back to All Products

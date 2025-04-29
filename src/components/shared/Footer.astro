@@ -6,7 +6,7 @@ const defaultFormSubmitId = import.meta.env.CONTACT_FORMSUBMIT_DEFAULT_ID;
 const newsletterActionUrl = `https://formsubmit.co/${defaultFormSubmitId}`;
 
 // Construct the thank you page URL dynamically for the newsletter
-const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toString();
+const newsletterThankYouUrl = new URL("/thank-you", Astro.url).toString();
 ---
 
 <footer
@@ -75,7 +75,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                 <ul class="space-y-3">
                     <li>
                         <a
-                            href="/mics-website"
+                            href="/"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
@@ -87,7 +87,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                     </li>
                     <li>
                         <a
-                            href="/mics-website/about"
+                            href="/about"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
@@ -111,7 +111,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                     </li>
                     <li>
                         <a
-                            href="/mics-website/contact"
+                            href="/contact"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
@@ -132,7 +132,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                 <ul class="space-y-3">
                     <li>
                         <a
-                            href="/mics-website/products?category=medical-shelving"
+                            href="/products?category=medical-shelving"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
@@ -144,7 +144,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                     </li>
                     <li>
                         <a
-                            href="/mics-website/products?category=medical-trolleys"
+                            href="/products?category=medical-trolleys"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
@@ -156,7 +156,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                     </li>
                     <li>
                         <a
-                            href="/mics-website/products?category=curtains-and-tracks"
+                            href="/products?category=curtains-and-tracks"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
@@ -168,7 +168,7 @@ const newsletterThankYouUrl = new URL("/mics-website/thank-you", Astro.url).toSt
                     </li>
                     <li>
                         <a
-                            href="/mics-website/products?category=custom-solutions"
+                            href="/products?category=custom-solutions"
                             class="text-gray-600 hover:text-secondary-600 flex items-center group"
                         >
                             <span
