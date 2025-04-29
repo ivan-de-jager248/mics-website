@@ -2,5 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/mnt/cp4-home2/mmicscz873/public_html/
-    - npm install
-    - npm run build
+    - bin/cp -R dist/* $DEPLOYPATH
