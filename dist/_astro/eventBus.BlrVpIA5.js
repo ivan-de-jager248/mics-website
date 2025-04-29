@@ -1,1 +1,0 @@
-const r={listeners:{},on(s,i){this.listeners[s]||(this.listeners[s]=[]),this.listeners[s].push(i)},off(s,i){this.listeners[s]&&(this.listeners[s]=this.listeners[s].filter(t=>t!==i))},emit(s,i){this.listeners[s]&&this.listeners[s].forEach(t=>t(i))}};export{r as b};
