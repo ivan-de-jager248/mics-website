@@ -75,7 +75,6 @@ const isValidCart = (cart: any): cart is Cart => {
   return (
     cart &&
     Array.isArray(cart.items) &&
-    typeof cart.total === 'number' &&
     cart.items.every(
       (item: any) =>
         item &&
