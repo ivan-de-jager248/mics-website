@@ -302,86 +302,129 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
 
 <style>
     .variation-content {
-        color: #374151;
-        line-height: 1.6;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: revert;
+            font-weight: revert;
+        }
+
+        blockquote,
+        dl,
+        dd,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        figure,
+        p,
+        pre {
+            margin: revert;
+        }
+
+        ol,
+        ul,
+        menu {
+            list-style: revert;
+            margin: revert;
+            padding: revert;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: revert;
+        }
+
+        hr {
+            height: revert;
+            color: revert;
+            border-top-width: revert;
+            border-color: revert;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate; /* Use separate for rounded corners */
+            border-spacing: 0; /* Remove spacing between cells */
+            margin-top: 1.5em; /* Increased margin */
+            margin-bottom: 1.5em;
+            border: 1px solid #e5e7eb; /* Softer border (gray-200) */
+            border-radius: 0.5rem; /* Rounded corners (like rounded-lg) */
+            font-size: 0.9em;
+            overflow: hidden; /* Clip content to rounded corners */
+            box-shadow:
+                0 1px 3px 0 rgb(0 0 0 / 0.1),
+                0 1px 2px -1px rgb(0 0 0 / 0.1); /* Subtle shadow (shadow-sm) */
+
+            /* Style table header cells */
+            th {
+                background-color: #f9fafb; /* Very light gray (gray-50) */
+                border-bottom: 1px solid #e5e7eb; /* Border between header and body */
+                padding: 0.75rem 1rem; /* Adjusted padding */
+                text-align: left;
+                font-weight: 600;
+                color: #374151; /* Darker gray text (gray-700) */
+                /* Remove individual cell borders if using table border */
+                border-left: none;
+                border-right: none;
+                border-top: none;
+            }
+            /* Add right border only to non-last header cells */
+            th:not(:last-child) {
+                border-right: 1px solid #e5e7eb;
+            }
+
+            /* Style table data cells */
+            td {
+                border-top: 1px solid #e5e7eb; /* Horizontal lines between rows */
+                padding: 0.75rem 1rem;
+                vertical-align: top;
+                color: #4b5563; /* Slightly lighter gray text (gray-600) */
+                /* Remove individual cell borders if using row borders */
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+            }
+            /* Add right border only to non-last data cells */
+            td:not(:last-child) {
+                border-right: 1px solid #e5e7eb;
+            }
+
+            /* Zebra striping for table body rows */
+            tbody tr:nth-child(even) {
+                background-color: #f9fafb; /* Use the same light gray as header for subtle striping */
+            }
+
+            /* Hover effect for rows - use a primary color tint */
+            tbody tr:hover {
+                background-color: #eff6ff; /* Light blue tint (blue-50 / primary-50) */
+            }
+
+            /* Ensure first row cells don't have top border if header exists */
+            thead + tbody tr:first-child td {
+                border-top: none;
+            }
+            /* Ensure header cells in the first row have rounded top corners */
+            thead tr:first-child th:first-child {
+                border-top-left-radius: 0.5rem;
+            }
+            thead tr:first-child th:last-child {
+                border-top-right-radius: 0.5rem;
+            }
+
+            /* Ensure cells in the last row have rounded bottom corners */
+            tbody tr:last-child td:first-child {
+                border-bottom-left-radius: 0.5rem;
+            }
+            tbody tr:last-child td:last-child {
+                border-bottom-right-radius: 0.5rem;
+            }
+        }
     }
-    .variation-content.prose p { margin-bottom: 1em; }
-    .variation-content.prose ul,
-    .variation-content.prose ol { margin-left: 1.5em; margin-bottom: 1em; }
-    .variation-content.prose li { margin-bottom: 0.5em; }
-    .variation-content.prose strong { font-weight: 600; }
-    .variation-content.prose h1,
-    .variation-content.prose h2,
-    .variation-content.prose h3,
-    .variation-content.prose h4,
-    .variation-content.prose h5,
-    .variation-content.prose h6 {
-        font-size: revert;
-        font-weight: revert;
-        margin: revert;
-    }
-    .variation-content.prose blockquote,
-    .variation-content.prose dl,
-    .variation-content.prose dd,
-    .variation-content.prose hr,
-    .variation-content.prose figure,
-    .variation-content.prose pre {
-        margin: revert;
-    }
-    .variation-content.prose menu {
-        list-style: revert;
-        margin: revert;
-        padding: revert;
-    }
-    .variation-content.prose a {
-        color: inherit;
-        text-decoration: revert;
-    }
-    .variation-content.prose hr {
-        height: revert;
-        color: revert;
-        border-top-width: revert;
-        border-color: revert;
-    }
-    .variation-content.prose table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
-        border: 1px solid #e5e7eb;
-        border-radius: 0.5rem;
-        font-size: 0.9em;
-        overflow: hidden;
-        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    }
-    .variation-content.prose th {
-        background-color: #f9fafb;
-        border-bottom: 1px solid #e5e7eb;
-        padding: 0.75rem 1rem;
-        text-align: left;
-        font-weight: 600;
-        color: #374151;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-    }
-    .variation-content.prose th:not(:last-child) { border-right: 1px solid #e5e7eb; }
-    .variation-content.prose td {
-        border-top: 1px solid #e5e7eb;
-        padding: 0.75rem 1rem;
-        vertical-align: top;
-        color: #4b5563;
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-    }
-    .variation-content.prose td:not(:last-child) { border-right: 1px solid #e5e7eb; }
-    .variation-content.prose tbody tr:nth-child(even) { background-color: #f9fafb; }
-    .variation-content.prose tbody tr:hover { background-color: #eff6ff; }
-    .variation-content.prose thead + tbody tr:first-child td { border-top: none; }
-    .variation-content.prose thead tr:first-child th:first-child { border-top-left-radius: 0.5rem; }
-    .variation-content.prose thead tr:first-child th:last-child { border-top-right-radius: 0.5rem; }
-    .variation-content.prose tbody tr:last-child td:first-child { border-bottom-left-radius: 0.5rem; }
-    .variation-content.prose tbody tr:last-child td:last-child { border-bottom-right-radius: 0.5rem; }
 </style>

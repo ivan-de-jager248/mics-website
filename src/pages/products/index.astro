@@ -31,8 +31,6 @@ const allVariations = variationCollection.map(variation => ({
     render: variation.render, 
 }));
 
-console.log('allVariations', allVariations);
-
 // Combine products with their variations
 const productsWithVariations = productCollection.map((product: CollectionEntry<'products'>) => {
     const productId = product.slug;
@@ -47,8 +45,6 @@ const productsWithVariations = productCollection.map((product: CollectionEntry<'
         // but could be if needed for general product description.
     };
 });
-
-console.log('productsWithVariations', productsWithVariations);
 
 // Fetch categories
 const categoryCollection = await getCollection('categories');
