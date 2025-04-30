@@ -22,15 +22,13 @@
         <span class="text-sm bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{{ categoryName }}</span>
       </div>
       <div class="flex flex-wrap gap-2 mb-4">
-        <template v-if="product.variations" v-for="variation in product.variations" :key="variation.id">
-          <span
-            v-for="property in variation.properties"
-            :key="`${variation.id}-${property}`"
-            class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
-          >
-            {{ property }}
-          </span>
-        </template>
+        <span
+          v-for="item in displayedProperties"
+          :key="`${item.variationId}-${item.property}`"
+          class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
+        >
+          {{ item.property }}
+        </span>
       </div>
       
       <Button :href="`/products/${product.id}`" variant="primary" size="sm" classes="w-full justify-center">
@@ -41,8 +39,10 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import Button from '../Button.vue';
 
-defineProps({
+const props = defineProps({
   product: {
     type: Object,
     required: true
@@ -52,5 +52,30 @@ defineProps({
     required: true
   }
 });
-import Button from '../Button.vue';
+
+const displayedProperties = computed(() => {
+  const propertiesToShow = [];
+  let count = 0;
+  const maxProperties = 3;
+
+  if (props.product.variations) {
+    for (const variation of props.product.variations) {
+      if (variation.properties) {
+        for (const property of variation.properties) {
+          if (count < maxProperties) {
+            propertiesToShow.push({ variationId: variation.id, property: property });
+            count++;
+          } else {
+            break; // Stop adding properties for this variation
+          }
+        }
+      }
+      if (count >= maxProperties) {
+        break; // Stop iterating through variations
+      }
+    }
+  }
+  return propertiesToShow;
+});
+
 </script>
