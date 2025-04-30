@@ -85,9 +85,11 @@ export default {
         const matchesCategory = this.selectedCategories.length === 0 || 
           this.selectedCategories.includes(product.category);
         
-        // Filter by properties
+        // Filter by properties within variations
         const matchesProperties = this.selectedProperties.length === 0 || 
-          this.selectedProperties.every(prop => product.properties.includes(prop));
+          (product.variations && product.variations.some(variation => 
+            this.selectedProperties.every(prop => variation.properties.includes(prop))
+          ));
         
         return matchesSearch && matchesCategory && matchesProperties;
       });

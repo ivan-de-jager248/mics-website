@@ -1,67 +1,88 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
 import { removeFileExtension } from "../../utils/general";
 
 import Layout from "../../layouts/Layout.astro";
 import ImageGallery from "../../components/vue/ImageGallery.vue";
 import Button from "../../components/Button.astro";
-import AddToCartButton from "../../components/vue/AddToCartButton.vue"; // Import the new component
+import AddToCartButton from "../../components/vue/AddToCartButton.vue";
+import ProductVariationSelector from "../../components/vue/ProductVariationSelector.vue"; // Import the new component
 import { Image } from "astro:assets";
 
-// 1. Generate a static page for every product using its id (filename without extension)
+// 1. Generate static paths
 export async function getStaticPaths() {
     const products = await getCollection(
         "products",
         ({ data }) => data.draft === false,
     );
     return products.map((product) => ({
-        params: { id: removeFileExtension(product.id) }, // Use the entry id (filename)
-        props: { productId: removeFileExtension(product.id) }, // Pass id to fetch in component
+        params: { id: product.slug },
+        props: { productId: product.slug },
     }));
 }
 
-// 2. Get the product ID from props and fetch the full entry
-const { productId } = Astro.props; // productId is '1' (example)
-
-const product = await getEntry("products", productId); // Fetches entry using '1'
+// 2. Get product ID and fetch product entry
+const { productId } = Astro.props;
+const product = await getEntry("products", productId);
 
 if (!product) {
-    // Optional: Handle case where product is not found (e.g., return a 404)
     return Astro.redirect("/404");
 }
 
-// Prepare product data for the cart, using the string ID from the prop (without extension)
+// 3. Fetch non-draft variations related to this product
+const allVariations = await getCollection(
+    "variations",
+    ({ data }) => data.draft === false, // Add filter for variation draft status
+);
+const productVariationsEntries = allVariations.filter(
+    (variation) => variation.data.product === productId,
+);
+
+// 4. Prepare data for components
 const productDataForCart = {
-    id: productId, // Use the extension-less productId passed via props
+    id: productId,
     name: product.data.name,
     thumbnail: product.data.thumbnail.src,
 };
 
-const { Content } = await product.render();
-
-// Prepare images for the gallery component
-// Ensure the 'src' passed is the string URL from the processed image object
+// Prepare images for gallery
 const galleryImages = [
     {
-        src: product.data.thumbnail.src, // Access the nested src string
+        src: product.data.thumbnail.src,
         alt: product.data.thumbnail.alt ?? `Thumbnail for ${product.data.name}`,
         description: product.data.thumbnail.description,
     },
     ...(product.data.images?.map((img) => ({
-        src: img.src, // Access the nested src string
+        src: img.src,
         alt: img.alt ?? `Image for ${product.data.name}`,
         description: img.description,
     })) ?? []),
 ];
 
-// Fetch category details if needed (optional, depends on display requirements)
-const category = await getEntry("categories", product.data.category); // Fetch category entry if needed
+// Fetch category details
+const category = await getEntry("categories", product.data.category);
 
-// Placeholder for related products logic
-const relatedProducts = []; // Replace with actual logic to find related products
+// Placeholder for related products and reviews
+const relatedProducts = [];
+const reviews = [];
 
-// Placeholder for reviews logic
-const reviews = []; // Replace with actual logic to fetch reviews
+// Prepare variation data AND render their content components
+const variationsData = await Promise.all(productVariationsEntries.map(async (variation) => {
+    const { Content: VariationContent } = await variation.render();
+    return {
+        id: removeFileExtension(variation.id),
+        name: variation.data.name,
+        properties: variation.data.properties,
+        ContentComponent: VariationContent, // Keep this for rendering description
+    };
+}));
+
+// Prepare a simplified version for the button prop (only id and name)
+const variationsForButton = variationsData.map(v => ({ id: v.id, name: v.name }));
+
+// Determine initial variation (e.g., the first one)
+const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
+
 ---
 
 <Layout title={product.data.name}>
@@ -73,29 +94,25 @@ const reviews = []; // Replace with actual logic to fetch reviews
                     <div>
                         <ImageGallery client:load images={galleryImages} />
                     </div>
-    
+
                     <!-- Product Details Column -->
                     <div class="flex flex-col justify-center">
-                        <!-- Optional: Breadcrumbs or Category Link -->
-                        <!-- <a href={`/categories/${product.data.category.slug}`} class="text-sm text-primary-600 hover:underline mb-2">
-                            {category?.data.name ?? 'Category'}
-                        </a> -->
-                        <h1
-                            class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800"
-                        >
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800">
                             {product.data.name}
                         </h1>
-    
-                        <!-- SKU/Product Code -->
-                        {
-                            product.data.sku && (
-                                <p class="text-sm text-gray-500 mb-6">
-                                    SKU: {product.data.sku}
-                                </p>
-                            )
-                        }
-    
-                        <!-- Product Properties/Features -->
+
+                        <!-- Variation Selection -->
+                        {variationsData.length > 0 && (
+                            <div id="variation-selector-wrapper" class="mb-6"> {/* Added wrapper ID */}
+                                <ProductVariationSelector 
+                                    client:load
+                                    variations={variationsData}
+                                    initialVariationId={initialVariation?.id}
+                                />
+                            </div>
+                        )}
+
+                        <!-- Category display -->
                         <div class="mb-6">
                             <h3 class="text-xl font-semibold mb-3 text-gray-700">
                                 Category:
@@ -108,28 +125,63 @@ const reviews = []; // Replace with actual logic to fetch reviews
                                 ></span
                             >
                         </div>
-    
-                        <!-- Call to Action -->
-                        <div
-                            class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8"
-                        >
-                            <AddToCartButton client:load product={productDataForCart} />
-                            
-                            <Button
-                                href="/products"
-                                variant="secondary"
-                            >
+
+                        <!-- Call to Action - Pass initial variation data AND all variations -->
+                        <div id="add-to-cart-wrapper" class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                            <AddToCartButton 
+                                client:load 
+                                product={productDataForCart}
+                                initialVariationId={initialVariation?.id}
+                                initialVariationName={initialVariation?.name}
+                                variations={variationsForButton}
+                            />
+                            <Button href="/products" variant="secondary">
                                 Back to All Products
                             </Button>
                         </div>
-    
-                        <!-- Markdown Content Area (Product Description) -->
-                        <div id="content" class="mb-8 text-gray-700">
-                            <Content />
+
+                        <!-- Variation Description Area - Render all, hide/show with JS -->
+                        <div id="variation-description-container" class="mb-8 text-gray-700 relative">
+                             {variationsData.map((variation, index) => {
+                                const { ContentComponent } = variation;
+                                const isInitial = initialVariation?.id === variation.id;
+                                return (
+                                    <div 
+                                        id={`variation-desc-${variation.id}`} 
+                                        class:list={["variation-content prose max-w-none", { 'hidden': !isInitial }]}
+                                    >
+                                        <ContentComponent />
+                                    </div>
+                                );
+                             })}
+                             {!initialVariation && (
+                                <div id="no-variation-content">
+                                    <p>Product details will appear here.</p> 
+                                </div>
+                             )}
                         </div>
-    
-                        <!-- Social Sharing Placeholder -->
-                        <div class="mb-8">
+
+                        <!-- Variation Properties Area -->
+                        <div id="variation-properties" class="mb-8">
+                            <h3 class="text-xl font-semibold mb-3 text-gray-700">
+                                Properties:
+                            </h3>
+                            {initialVariation && initialVariation.properties.length > 0 ? (
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    {initialVariation.properties.map((prop) => (
+                                        <li>{prop}</li>
+                                    ))}
+                                </ul>
+                            ) : productVariationsEntries.length > 0 ? (
+                                 <p class="text-gray-500 italic">Select a variation to see properties.</p>
+                            ) : (
+                                 <p class="text-gray-500 italic">No specific properties listed.</p>
+                            )
+                           }
+                        </div>
+
+                        <!-- Social Sharing -->
+                         <div class="mb-8">
                             <h3 class="text-lg font-semibold mb-2 text-gray-700">
                                 Share:
                             </h3>
@@ -138,68 +190,40 @@ const reviews = []; // Replace with actual logic to fetch reviews
                                     href="#"
                                     aria-label="Share on Facebook"
                                     class="text-gray-500 hover:text-blue-600 transition-colors"
-                                >
-                                    <!-- Placeholder: Add SVG icon --> F
-                                </a>
+                                > F </a>
                                 <a
                                     href="#"
                                     aria-label="Share on Twitter"
                                     class="text-gray-500 hover:text-sky-500 transition-colors"
-                                >
-                                    <!-- Placeholder: Add SVG icon --> T
-                                </a>
+                                > T </a>
                                 <a
                                     href="#"
                                     aria-label="Share on LinkedIn"
                                     class="text-gray-500 hover:text-blue-700 transition-colors"
-                                >
-                                    <!-- Placeholder: Add SVG icon --> L
-                                </a>
+                                > L </a>
                             </div>
                         </div>
     
                         <!-- Divider -->
                         <hr class="my-8 border-gray-300" />
-    
-                        <!-- Product Specifications -->
-                        {
-                            product.data.properties &&
-                                product.data.properties.length > 0 && (
-                                    <div class="mb-8">
-                                        <h3 class="text-xl font-semibold mb-3 text-gray-700">
-                                            Properties:
-                                        </h3>
-                                        <ul class="list-disc list-inside space-y-1 text-gray-600">
-                                            {product.data.properties.map((prop) => (
-                                                <li>{prop}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )
-                        }
                     </div>
                 </div>
     
-                <!-- Customer Reviews Section Placeholder -->
-                <div class="mt-16">
+                <!-- Customer Reviews Section -->
+                 <div class="mt-16">
                     <h2 class="text-2xl font-bold mb-6 text-gray-800">
                         Customer Reviews
                     </h2>
                     {
                         reviews.length > 0 ? (
                             <div class="space-y-4">
-                                {/* Map through actual reviews here */}
-                                <p class="text-gray-600">
-                                    Review content goes here...
-                                </p>
+                                <p class="text-gray-600"> Review content goes here... </p>
                             </div>
-                        ) : (
-                            <p class="text-gray-500 italic">No reviews yet.</p>
-                        )
+                        ) : ( <p class="text-gray-500 italic">No reviews yet.</p> )
                     }
                 </div>
     
-                <!-- Related Products Section Placeholder -->
+                <!-- Related Products Section -->
                 <div class="mt-16">
                     <h2 class="text-2xl font-bold mb-6 text-gray-800">
                         Related Products
@@ -207,16 +231,9 @@ const reviews = []; // Replace with actual logic to fetch reviews
                     {
                         relatedProducts.length > 0 ? (
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                {/* Map through related products and display ProductCard components */}
-                                <p class="text-gray-600">
-                                    Related product cards go here...
-                                </p>
+                                <p class="text-gray-600"> Related product cards go here... </p>
                             </div>
-                        ) : (
-                            <p class="text-gray-500 italic">
-                                No related products found.
-                            </p>
-                        )
+                        ) : ( <p class="text-gray-500 italic"> No related products found. </p> )
                     }
                 </div>
             </div>
@@ -224,131 +241,147 @@ const reviews = []; // Replace with actual logic to fetch reviews
     </div>
 </Layout>
 
-<style>
-    #content {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-size: revert;
-            font-weight: revert;
+<script define:vars={{ variationsData }}> // Keep variationsData here for description/properties update
+    // Client-side script to handle variation changes triggered by the Vue component
+    const descriptionContainer = document.getElementById('variation-description-container');
+    const propertiesElement = document.getElementById('variation-properties');
+
+    function updateVariationDetails(variationId) {
+        // Find the data for the selected variation using the ID
+        const selectedVariation = variationsData.find(v => v.id === variationId);
+        
+        if (!selectedVariation || !descriptionContainer || !propertiesElement) {
+            console.warn(`Could not find variation data or elements for ID: ${variationId}`);
+            return;
         }
 
-        blockquote,
-        dl,
-        dd,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        hr,
-        figure,
-        p,
-        pre {
-            margin: revert;
+        console.log('Updating description and properties for variation ID:', variationId);
+
+        // Update Description Visibility
+        const allVariationContents = descriptionContainer.querySelectorAll('.variation-content');
+        allVariationContents.forEach(content => {
+            if (content.id === `variation-desc-${variationId}`) {
+                content.classList.remove('hidden');
+            } else {
+                content.classList.add('hidden');
+            }
+        });
+        
+        // Hide the fallback message if it exists and a variation is selected
+        const noVariationContent = descriptionContainer.querySelector('#no-variation-content');
+        if (noVariationContent) {
+            noVariationContent.classList.add('hidden');
         }
 
-        ol,
-        ul,
-        menu {
-            list-style: revert;
-            margin: revert;
-            padding: revert;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: revert;
-        }
-
-        hr {
-            height: revert;
-            color: revert;
-            border-top-width: revert;
-            border-color: revert;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: separate; /* Use separate for rounded corners */
-            border-spacing: 0; /* Remove spacing between cells */
-            margin-top: 1.5em; /* Increased margin */
-            margin-bottom: 1.5em;
-            border: 1px solid #e5e7eb; /* Softer border (gray-200) */
-            border-radius: 0.5rem; /* Rounded corners (like rounded-lg) */
-            font-size: 0.9em;
-            overflow: hidden; /* Clip content to rounded corners */
-            box-shadow:
-                0 1px 3px 0 rgb(0 0 0 / 0.1),
-                0 1px 2px -1px rgb(0 0 0 / 0.1); /* Subtle shadow (shadow-sm) */
-
-            /* Style table header cells */
-            th {
-                background-color: #f9fafb; /* Very light gray (gray-50) */
-                border-bottom: 1px solid #e5e7eb; /* Border between header and body */
-                padding: 0.75rem 1rem; /* Adjusted padding */
-                text-align: left;
-                font-weight: 600;
-                color: #374151; /* Darker gray text (gray-700) */
-                /* Remove individual cell borders if using table border */
-                border-left: none;
-                border-right: none;
-                border-top: none;
-            }
-            /* Add right border only to non-last header cells */
-            th:not(:last-child) {
-                border-right: 1px solid #e5e7eb;
-            }
-
-            /* Style table data cells */
-            td {
-                border-top: 1px solid #e5e7eb; /* Horizontal lines between rows */
-                padding: 0.75rem 1rem;
-                vertical-align: top;
-                color: #4b5563; /* Slightly lighter gray text (gray-600) */
-                /* Remove individual cell borders if using row borders */
-                border-left: none;
-                border-right: none;
-                border-bottom: none;
-            }
-            /* Add right border only to non-last data cells */
-            td:not(:last-child) {
-                border-right: 1px solid #e5e7eb;
-            }
-
-            /* Zebra striping for table body rows */
-            tbody tr:nth-child(even) {
-                background-color: #f9fafb; /* Use the same light gray as header for subtle striping */
-            }
-
-            /* Hover effect for rows - use a primary color tint */
-            tbody tr:hover {
-                background-color: #eff6ff; /* Light blue tint (blue-50 / primary-50) */
-            }
-
-            /* Ensure first row cells don't have top border if header exists */
-            thead + tbody tr:first-child td {
-                border-top: none;
-            }
-            /* Ensure header cells in the first row have rounded top corners */
-            thead tr:first-child th:first-child {
-                border-top-left-radius: 0.5rem;
-            }
-            thead tr:first-child th:last-child {
-                border-top-right-radius: 0.5rem;
-            }
-
-            /* Ensure cells in the last row have rounded bottom corners */
-            tbody tr:last-child td:first-child {
-                border-bottom-left-radius: 0.5rem;
-            }
-            tbody tr:last-child td:last-child {
-                border-bottom-right-radius: 0.5rem;
-            }
-        }
+        // Update Properties
+        const propertiesList = selectedVariation.properties.length > 0
+            ? `<ul class="list-disc list-inside space-y-1 text-gray-600">${selectedVariation.properties.map(prop => `<li>${prop}</li>`).join('')}</ul>`
+            : '<p class="text-gray-500 italic">No specific properties for this variation.</p>';
+        
+        propertiesElement.innerHTML = `
+            <h3 class="text-xl font-semibold mb-3 text-gray-700">
+                Properties:
+            </h3>
+            ${propertiesList}
+        `;
     }
+
+    // Listen for the custom event from the ProductVariationSelector component
+    window.addEventListener('variation-selected', (event) => {
+        // The variation ID is in event.detail
+        console.log('Astro script caught variation-selected event:', event);
+        const selectedId = event.detail;
+        if (selectedId) {
+            updateVariationDetails(selectedId);
+        } else {
+             console.warn('Variation selected event received without detail (ID).');
+             // Optionally handle the case where no variation is selected (e.g., show default state)
+        }
+    });
+</script>
+
+<style>
+    .variation-content {
+        color: #374151;
+        line-height: 1.6;
+    }
+    .variation-content.prose p { margin-bottom: 1em; }
+    .variation-content.prose ul,
+    .variation-content.prose ol { margin-left: 1.5em; margin-bottom: 1em; }
+    .variation-content.prose li { margin-bottom: 0.5em; }
+    .variation-content.prose strong { font-weight: 600; }
+    .variation-content.prose h1,
+    .variation-content.prose h2,
+    .variation-content.prose h3,
+    .variation-content.prose h4,
+    .variation-content.prose h5,
+    .variation-content.prose h6 {
+        font-size: revert;
+        font-weight: revert;
+        margin: revert;
+    }
+    .variation-content.prose blockquote,
+    .variation-content.prose dl,
+    .variation-content.prose dd,
+    .variation-content.prose hr,
+    .variation-content.prose figure,
+    .variation-content.prose pre {
+        margin: revert;
+    }
+    .variation-content.prose menu {
+        list-style: revert;
+        margin: revert;
+        padding: revert;
+    }
+    .variation-content.prose a {
+        color: inherit;
+        text-decoration: revert;
+    }
+    .variation-content.prose hr {
+        height: revert;
+        color: revert;
+        border-top-width: revert;
+        border-color: revert;
+    }
+    .variation-content.prose table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-size: 0.9em;
+        overflow: hidden;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    }
+    .variation-content.prose th {
+        background-color: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: #374151;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+    }
+    .variation-content.prose th:not(:last-child) { border-right: 1px solid #e5e7eb; }
+    .variation-content.prose td {
+        border-top: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem;
+        vertical-align: top;
+        color: #4b5563;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+    .variation-content.prose td:not(:last-child) { border-right: 1px solid #e5e7eb; }
+    .variation-content.prose tbody tr:nth-child(even) { background-color: #f9fafb; }
+    .variation-content.prose tbody tr:hover { background-color: #eff6ff; }
+    .variation-content.prose thead + tbody tr:first-child td { border-top: none; }
+    .variation-content.prose thead tr:first-child th:first-child { border-top-left-radius: 0.5rem; }
+    .variation-content.prose thead tr:first-child th:last-child { border-top-right-radius: 0.5rem; }
+    .variation-content.prose tbody tr:last-child td:first-child { border-bottom-left-radius: 0.5rem; }
+    .variation-content.prose tbody tr:last-child td:last-child { border-bottom-right-radius: 0.5rem; }
 </style>

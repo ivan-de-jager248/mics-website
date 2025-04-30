@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, ref } from 'vue'; // Import ref
-import type { Cart } from '../../types';
-import { removeFromCart, clearCart } from '../../utils/cart';
+import { defineProps, defineEmits, ref } from 'vue';
+import type { Cart, CartItem } from '../../types';
+import { removeFromCart, clearCart, updateQuantity } from '../../utils/cart';
 
 const props = defineProps<{
   cart: Cart;
   checkoutEmailID: string;
 }>();
 
-const emit = defineEmits(['close', 'update-quantity']);
+const emit = defineEmits(['close']);
 
 // State for the quote request
 const quoteStatus = ref<'idle' | 'loading' | 'success' | 'error'>('idle');
 const quoteError = ref<string | null>(null);
 
-const handleRemove = (productId: string) => {
-  removeFromCart(productId);
-  window.dispatchEvent(new Event('storage'));
+// Use cartItemId for removal
+const handleRemove = (cartItemId: string) => {
+  removeFromCart(cartItemId);
+};
+
+// Use cartItemId for quantity updates
+const handleUpdateQuantity = (cartItemId: string, newQuantity: number) => {
+  updateQuantity(cartItemId, newQuantity);
 };
 
 // Method to handle the quote request
@@ -24,19 +29,16 @@ const handleRequestQuote = async () => {
   quoteStatus.value = 'loading';
   quoteError.value = null;
 
-  // Format cart items for the email body
+  // Format cart items including variation name
   const itemsMessage = props.cart.items
     .map(
       (item) =>
-        `${item.product.name} (ID: ${item.product.id}) - Quantity: ${
-          item.quantity
-        }`
+        `${item.product.name}${item.variationName ? ` (${item.variationName})` : ''} (ID: ${item.product.id}${item.variationId ? ` / Var: ${item.variationId}` : ''}) - Quantity: ${item.quantity}`
     )
     .join('\n');
   const fullMessage = `Quote request details:\n\n${itemsMessage}`;
 
   try {
-    // Replace 'your@email.com' with your actual FormSubmit email
     const response = await fetch(`https://formsubmit.co/ajax/${props.checkoutEmailID}`, {
       method: 'POST',
       headers: {
@@ -51,13 +53,10 @@ const handleRequestQuote = async () => {
     });
 
     if (!response.ok) {
-      // Try to parse error from FormSubmit response if possible
       let errorData;
       try {
         errorData = await response.json();
-      } catch (e) {
-        // Ignore if response is not JSON
-      }
+      } catch (e) {}
       throw new Error(
         errorData?.message || `HTTP error! status: ${response.status}`
       );
@@ -67,8 +66,6 @@ const handleRequestQuote = async () => {
     console.log('FormSubmit Success:', data);
     quoteStatus.value = 'success';
 
-    // Clear cart and notify other components
-    window.dispatchEvent(new Event('storage'));
     setTimeout(() => {
       clearCart();
       emit('close');
@@ -79,11 +76,10 @@ const handleRequestQuote = async () => {
     quoteError.value =
       error instanceof Error ? error.message : 'An unknown error occurred.';
     quoteStatus.value = 'error';
-    // Reset status after a delay so user can see the error
     setTimeout(() => {
-        if (quoteStatus.value === 'error') {
-             quoteStatus.value = 'idle';
-        }
+      if (quoteStatus.value === 'error') {
+        quoteStatus.value = 'idle';
+      }
     }, 5000);
   }
 };
@@ -128,7 +124,7 @@ const handleRequestQuote = async () => {
           <ul class="divide-y divide-neutral-200">
             <li
               v-for="item in cart.items"
-              :key="item.product.id"
+              :key="item.id"
               class="py-4 flex"
             >
               <img
@@ -138,13 +134,16 @@ const handleRequestQuote = async () => {
               />
               <div class="ml-4 flex-1">
                 <div class="flex items-start justify-between">
-                  <h3 class="text-sm font-medium">{{ item.product.name }}</h3>
+                  <div>
+                    <h3 class="text-sm font-medium">{{ item.product.name }}</h3>
+                    <p v-if="item.variationName" class="text-xs text-gray-500 mt-1">{{ item.variationName }}</p>
+                  </div>
                 </div>
                 <div class="mt-1 flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <button
                       class="text-sm text-primary-dark hover:text-primary transition-colors px-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                      @click="emit('update-quantity', item.product.id, item.quantity - 1)"
+                      @click="handleUpdateQuantity(item.id, item.quantity - 1)"
                       :disabled="item.quantity <= 1 || quoteStatus === 'loading'"
                     >
                       -
@@ -152,14 +151,14 @@ const handleRequestQuote = async () => {
                     <span class="text-sm">{{ item.quantity }}</span>
                     <button
                       class="text-sm text-primary-dark hover:text-primary transition-colors px-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                      @click="emit('update-quantity', item.product.id, item.quantity + 1)"
+                      @click="handleUpdateQuantity(item.id, item.quantity + 1)"
                       :disabled="quoteStatus === 'loading'"
                     >
                       +
                     </button>
                   </div>
                   <button
-                    @click="handleRemove(item.product.id)"
+                    @click="handleRemove(item.id)"
                     class="text-sm text-red-500 hover:text-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     :disabled="quoteStatus === 'loading'"
                   >

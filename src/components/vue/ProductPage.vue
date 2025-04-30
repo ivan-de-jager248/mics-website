@@ -47,6 +47,9 @@ const props = defineProps({
   }
 });
 
+console.log('ProductPage props:', props);
+
+
 // Define reactive state
 const searchQuery = ref('');
 const selectedCategories = ref([]); // Will store category IDs

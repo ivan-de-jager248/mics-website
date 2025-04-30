@@ -24,9 +24,18 @@ const products = defineCollection({
         images: z.array(imageSchema({ image })),
         draft: z.boolean().default(true),
         featured: z.boolean().default(false),
-        properties: z.array(z.string()),
     }),
 });
 
-// 4. Export a single `collections` object to register your collection(s)
-export const collections = { products, categories };
+const productVariations = defineCollection({
+    loader: glob({ pattern: '**/*.md', base: './src/content/variations' }),
+    schema: z.object({
+        name: z.string(), 
+        product: reference('products'), 
+        properties: z.array(z.string()),
+        draft: z.boolean().default(true),
+    }),
+});
+
+// 4. Export all collections
+export const collections = { products, categories, productVariations };

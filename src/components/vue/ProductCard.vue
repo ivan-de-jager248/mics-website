@@ -6,11 +6,12 @@
       </div>
       <img
         :src="product.thumbnail.src"
+        :alt="product.thumbnail.alt || `${product.name} thumbnail`"
         class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
       <div class="absolute bottom-0 left-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300">
-        <p class="font-medium">{{ product.description }}</p>
+        <p v-if="product.variations && product.variations.length > 0" class="font-medium">{{ product.variations[0].description.split('\n')[0] }}</p>
       </div>
     </div>
     <div class="p-6">
@@ -21,13 +22,15 @@
         <span class="text-sm bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{{ categoryName }}</span>
       </div>
       <div class="flex flex-wrap gap-2 mb-4">
-        <span 
-          v-for="property in product.properties" 
-          :key="property"
-          class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
-        >
-          {{ property }}
-        </span>
+        <template v-if="product.variations" v-for="variation in product.variations" :key="variation.id">
+          <span
+            v-for="property in variation.properties"
+            :key="`${variation.id}-${property}`"
+            class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
+          >
+            {{ property }}
+          </span>
+        </template>
       </div>
       
       <Button :href="`/products/${product.id}`" variant="primary" size="sm" classes="w-full justify-center">

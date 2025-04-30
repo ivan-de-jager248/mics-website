@@ -12,17 +12,45 @@ import ProductPage from "../../components/vue/ProductPage.vue";
 import ProductSearch from "../../components/vue/ProductSearch.vue";
 import type { CollectionEntry } from 'astro:content';
 
+// Fetch non-draft products
 const productCollection = await getCollection('products', ({ data }) => {
     return data.draft === false;
 });
 
-const products = productCollection.map((product: CollectionEntry<'products'>) => {
+// Fetch all non-draft product variations
+const variationCollection = await getCollection(
+    'variations',
+    ({ data }) => data.draft === false // Add filter for variation draft status
+);
+
+// Process variations, adding slug and description (body)
+const allVariations = variationCollection.map(variation => ({
+    ...variation.data,
+    id: removeFileExtension(variation.id),
+    description: variation.body, // Add the markdown body as description
+    render: variation.render, 
+}));
+
+console.log('allVariations', allVariations);
+
+// Combine products with their variations
+const productsWithVariations = productCollection.map((product: CollectionEntry<'products'>) => {
+    const productId = product.slug;
+    const variationsForProduct = allVariations.filter(
+        variation => variation.product === productId
+    );
     return {
         ...product.data,
-        id: removeFileExtension(product.id)
+        id: productId,
+        variations: variationsForProduct, // Add the filtered variations
+        // Note: product.body (markdown content from the product file) is not explicitly added here,
+        // but could be if needed for general product description.
     };
 });
 
+console.log('productsWithVariations', productsWithVariations);
+
+// Fetch categories
 const categoryCollection = await getCollection('categories');
 const categories = categoryCollection.map((category: CollectionEntry<'categories'>) => {
     return {
@@ -31,10 +59,13 @@ const categories = categoryCollection.map((category: CollectionEntry<'categories
     };
 });
 
-const allProperties = products.flatMap((product) => product.properties || []);
+// Extract properties from variations associated with non-draft products
+const allProperties = productsWithVariations.flatMap(product => 
+    product.variations.flatMap(variation => variation.properties || [])
+);
 const uniqueProperties = [...new Set(allProperties)];
 
-// Get initial search query from URL for the search input component
+// Get initial search query from URL
 const initialSearchQuery = Astro.url.searchParams.get('q') || '';
 ---
 
@@ -52,13 +83,9 @@ const initialSearchQuery = Astro.url.searchParams.get('q') || '';
                     Browse our comprehensive range of quality medical equipment
                     solutions
                 </p>
-
-                <!-- Pass initialSearchQuery to ProductSearch -->
                 <ProductSearch client:load searchQuery={initialSearchQuery} />
             </div>
         </div>
-
-        <!-- Decorative elements -->
         <div
             class="absolute top-0 right-0 w-24 h-24 bg-secondary-500 rounded-full opacity-20 -translate-y-1/3 translate-x-1/4"
         >
@@ -68,10 +95,9 @@ const initialSearchQuery = Astro.url.searchParams.get('q') || '';
     <!-- Main content section -->
     <section class="py-12 px-8 bg-gray-50">
         <div class="container mx-auto">
-            <!-- ProductPage reads initial state from URL itself -->
             <ProductPage
                 client:load
-                products={products}
+                products={productsWithVariations}
                 categories={categories}
                 properties={uniqueProperties}
             />
