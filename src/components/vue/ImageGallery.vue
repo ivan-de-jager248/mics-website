@@ -20,7 +20,7 @@
         </div>
 
         <!-- Thumbnail Navigation -->
-        <div v-if="images.length > 1" class="thumbnail-list flex space-x-2 overflow-x-auto pb-2">
+        <div v-if="images.length > 1" class="thumbnail-list flex space-x-2 overflow-x-auto p-2">
             <button
                 v-for="(image, index) in images"
                 :key="index"
