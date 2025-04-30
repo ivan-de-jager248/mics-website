@@ -13,8 +13,6 @@
           class="border border-gray-300 rounded-md text-sm p-2 focus:ring-primary-500 focus:border-primary-500"
         >
           <option value="featured">Featured</option>
-          <option value="price-low">Price: Low to High</option>
-          <option value="price-high">Price: High to Low</option>
           <option value="name">Name</option>
         </select>
       </div>
