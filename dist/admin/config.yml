@@ -1,0 +1,70 @@
+media_folder: "public/images/content" # Location where files will be stored in the repo
+public_folder: "/images/content" # The src attribute for uploaded media
+backend:
+  name: github
+  repo: "ivan-de-jager248/mics-website" # Path to your GitHub repository
+  branch: main # Branch to update (optional; defaults to master)
+collections:
+  - name: "categories"
+    label: "Categories"
+    folder: "src/content/categories"
+    create: true
+    slug: "{{name}}" # Use the name field for the filename
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+
+  - name: "products"
+    label: "Products"
+    folder: "src/content/products"
+    create: true
+    slug: "{{name}}" # Use the name field for the filename
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "relation"
+        collection: "categories"
+        search_fields: ["name"]
+        value_field: "{{slug}}" # Reference by slug (filename)
+        display_fields: ["name"]
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: "object"
+        fields:
+          - { label: "Image", name: "src", widget: "image" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+          - { label: "Alt Text", name: "alt", widget: "string", required: false }
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        field:
+          label: "Image Item"
+          name: "image_item"
+          widget: "object"
+          fields:
+            - { label: "Image", name: "src", widget: "image" }
+            - { label: "Description", name: "description", widget: "string", required: false }
+            - { label: "Alt Text", name: "alt", widget: "string", required: false }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+
+  - name: "productVariations"
+    label: "Product Variations"
+    folder: "src/content/variations"
+    create: true
+    slug: "{{name}}" # Use the name field for the filename
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - label: "Product"
+        name: "product"
+        widget: "relation"
+        collection: "products"
+        search_fields: ["name"]
+        value_field: "{{slug}}" # Reference by slug (filename)
+        display_fields: ["name"]
+      - label: "Properties"
+        name: "properties"
+        widget: "list"
+        field: { label: "Property", name: "property", widget: "string" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Body", name: "body", widget: "markdown", required: false } # Add body field if needed
