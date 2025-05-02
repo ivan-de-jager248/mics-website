@@ -5,7 +5,7 @@ thumbnail:
   image: /images/products/wall-mounted-scrub-sink.jpg
   alt: MacCare Wall Mounted Scrub Sink
 draft: true
-featured: true
+featured: false
 variations:
   - name: Wall Mounted Scrub Sink - 1200mm
     draft: true

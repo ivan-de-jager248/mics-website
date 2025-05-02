@@ -6,7 +6,7 @@ thumbnail:
   alt: Solid Wall Band Shelving # Adjusted from 'description' to 'alt'
 images: []
 draft: true
-featured: true
+featured: false
 variations:
   - name: Solid Wall Band - Stainless Steel 430
     draft: true

@@ -75,5 +75,5 @@ variations:
 
       This larger rack is ideal for busy hospital wards, emergency departments, or extended care facilities requiring substantial storage capacity while maintaining organization and hygiene standards.
 draft: true
-featured: true
+featured: false
 ---

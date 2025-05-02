@@ -5,7 +5,7 @@ thumbnail:
   image: /images/products/packing-table.jpg
   alt: Stainless Steel Packing Table
 draft: true
-featured: true
+featured: false
 variations:
   - name: Packing Table - 1500 x 600mm
     draft: true

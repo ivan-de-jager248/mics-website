@@ -5,7 +5,7 @@ thumbnail:
   image: /images/products/food-linen-trolley.jpg
   alt: 3 Tier Food/Linen Trolley
 draft: true
-featured: true
+featured: false
 variations:
   - name: 3 Tier Food/Linen Trolley - Stainless Steel
     draft: true

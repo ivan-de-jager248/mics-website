@@ -5,7 +5,7 @@ thumbnail:
   image: /images/products/mobile-linen-trolley.jpg
   alt: 4 Tier Mobile Linen Trolley
 draft: true
-featured: true
+featured: false
 variations:
   - name: 4 Tier Mobile Linen Trolley
     draft: true

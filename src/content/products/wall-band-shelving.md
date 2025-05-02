@@ -6,7 +6,7 @@ thumbnail:
   alt: Wall Band Shelving System # Adjusted from 'description' to 'alt'
 images: []
 draft: true
-featured: true
+featured: false
 variations:
   - name: Wire Shelving - Stainless Steel 430
     draft: true

@@ -5,7 +5,7 @@ thumbnail:
   image: /images/products/instrument-cabinet.jpg
   alt: Instrument Cabinet
 draft: true
-featured: true
+featured: false
 variations:
   - name: Instrument Cabinet - Double Door
     draft: true

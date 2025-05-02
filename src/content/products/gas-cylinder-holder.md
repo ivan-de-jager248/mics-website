@@ -5,7 +5,7 @@ thumbnail:
   image: /images/products/gas-cylinder-holder-thumbnail.jpg
   alt: Gas Cylinder Holder
 draft: true
-featured: true
+featured: false
 variations:
   - name: Gas Cylinder Holder - 4 Way
     draft: true

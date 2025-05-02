@@ -5,7 +5,7 @@ thumbnail:
   src: /images/medical-shelving/ez-rack-solid.jpg # Note: Changed 'image' to 'src' to match example schema
   alt: EZ Rack Freestanding Shelving System
 draft: true
-featured: true
+featured: false
 variations:
   - name: EZ Rack Wire Mesh Shelving - Stainless Steel
     draft: true
