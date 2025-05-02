@@ -7,7 +7,7 @@ thumbnail:
 variations:
   - name: Var 1
     properties:
-      - "123"
+      - 123
     body: >-
       # Solid Wall Band Shelving - Stainless Steel 430
 
@@ -35,7 +35,7 @@ variations:
     properties:
       - prop 1
       - prop 2
-    body: "*sdaafeaf*"
+    body: *sdaafeaf*
 draft: true
 featured: false
 ---

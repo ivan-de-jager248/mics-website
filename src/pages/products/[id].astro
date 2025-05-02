@@ -1,12 +1,12 @@
 ---
-import { getCollection, getEntry, type CollectionEntry } from "astro:content";
-import { removeFileExtension } from "../../utils/general";
+import { getCollection, getEntry } from "astro:content";
+import { marked } from 'marked';
 
 import Layout from "../../layouts/Layout.astro";
 import ImageGallery from "../../components/vue/ImageGallery.vue";
 import Button from "../../components/Button.astro";
 import AddToCartButton from "../../components/vue/AddToCartButton.vue";
-import ProductVariationSelector from "../../components/vue/ProductVariationSelector.vue"; // Import the new component
+import ProductVariationSelector from "../../components/vue/ProductVariationSelector.vue";
 import { Image } from "astro:assets";
 
 // 1. Generate static paths
@@ -25,20 +25,11 @@ export async function getStaticPaths() {
 const { productId } = Astro.props;
 const product = await getEntry("products", productId);
 
-if (!product) {
+if (!product || !product.data) {
     return Astro.redirect("/404");
 }
 
-// 3. Fetch non-draft variations related to this product
-const allVariations = await getCollection(
-    "variations",
-    ({ data }) => data.draft === false, // Add filter for variation draft status
-);
-const productVariationsEntries = allVariations.filter(
-    (variation) => variation.data.product === productId,
-);
-
-// 4. Prepare data for components
+// 3. Prepare data for components
 const productDataForCart = {
     id: productId,
     name: product.data.name,
@@ -66,16 +57,17 @@ const category = await getEntry("categories", product.data.category);
 const relatedProducts = [];
 const reviews = [];
 
-// Prepare variation data AND render their content components
-const variationsData = await Promise.all(productVariationsEntries.map(async (variation) => {
-    const { Content: VariationContent } = await variation.render();
+// Prepare variation data from product.data.variations
+const variationsData = (product.data.variations ?? []).map((variation, index) => {
+    // Generate a unique ID based on product ID, index, and variation name
+    const variationId = `${productId}-variation-${index}-${variation.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
     return {
-        id: removeFileExtension(variation.id),
-        name: variation.data.name,
-        properties: variation.data.properties,
-        ContentComponent: VariationContent, // Keep this for rendering description
+        id: variationId,
+        name: variation.name,
+        properties: variation.properties ?? [],
+        body: variation.body ?? '',
     };
-}));
+});
 
 // Prepare a simplified version for the button prop (only id and name)
 const variationsForButton = variationsData.map(v => ({ id: v.id, name: v.name }));
@@ -103,10 +95,10 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
 
                         <!-- Variation Selection -->
                         {variationsData.length > 0 && (
-                            <div id="variation-selector-wrapper" class="mb-6"> {/* Added wrapper ID */}
+                            <div id="variation-selector-wrapper" class="mb-6">
                                 <ProductVariationSelector 
                                     client:load
-                                    variations={variationsData}
+                                    variations={variationsData.map(v => ({ id: v.id, name: v.name }))}
                                     initialVariationId={initialVariation?.id}
                                 />
                             </div>
@@ -140,17 +132,16 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
                             </Button>
                         </div>
 
-                        <!-- Variation Description Area - Render all, hide/show with JS -->
+                        <!-- Variation Description Area - Render Markdown content -->
                         <div id="variation-description-container" class="mb-8 text-gray-700 relative">
-                             {variationsData.map((variation, index) => {
-                                const { ContentComponent } = variation;
+                             {variationsData.map((variation) => {
                                 const isInitial = initialVariation?.id === variation.id;
                                 return (
                                     <div 
                                         id={`variation-desc-${variation.id}`} 
                                         class:list={["variation-content prose max-w-none", { 'hidden': !isInitial }]}
+                                        set:html={ marked.parse(variation.body) }
                                     >
-                                        <ContentComponent />
                                     </div>
                                 );
                              })}
@@ -172,7 +163,7 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
                                         <li>{prop}</li>
                                     ))}
                                 </ul>
-                            ) : productVariationsEntries.length > 0 ? (
+                            ) : variationsData.length > 0 ? (
                                  <p class="text-gray-500 italic">Select a variation to see properties.</p>
                             ) : (
                                  <p class="text-gray-500 italic">No specific properties listed.</p>
@@ -217,13 +208,11 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
     </div>
 </Layout>
 
-<script define:vars={{ variationsData }}> // Keep variationsData here for description/properties update
-    // Client-side script to handle variation changes triggered by the Vue component
+<script define:vars={{ variationsData }}>
     const descriptionContainer = document.getElementById('variation-description-container');
     const propertiesElement = document.getElementById('variation-properties');
 
     function updateVariationDetails(variationId) {
-        // Find the data for the selected variation using the ID
         const selectedVariation = variationsData.find(v => v.id === variationId);
         
         if (!selectedVariation || !descriptionContainer || !propertiesElement) {
@@ -262,16 +251,12 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
         `;
     }
 
-    // Listen for the custom event from the ProductVariationSelector component
     window.addEventListener('variation-selected', (event) => {
-        // The variation ID is in event.detail
-        console.log('Astro script caught variation-selected event:', event);
         const selectedId = event.detail;
         if (selectedId) {
             updateVariationDetails(selectedId);
         } else {
              console.warn('Variation selected event received without detail (ID).');
-             // Optionally handle the case where no variation is selected (e.g., show default state)
         }
     });
 </script>
@@ -326,67 +311,57 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
 
         table {
             width: 100%;
-            border-collapse: separate; /* Use separate for rounded corners */
-            border-spacing: 0; /* Remove spacing between cells */
-            margin-top: 1.5em; /* Increased margin */
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1.5em;
             margin-bottom: 1.5em;
-            border: 1px solid #e5e7eb; /* Softer border (gray-200) */
-            border-radius: 0.5rem; /* Rounded corners (like rounded-lg) */
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
             font-size: 0.9em;
-            overflow: hidden; /* Clip content to rounded corners */
+            overflow: hidden;
             box-shadow:
                 0 1px 3px 0 rgb(0 0 0 / 0.1),
-                0 1px 2px -1px rgb(0 0 0 / 0.1); /* Subtle shadow (shadow-sm) */
+                0 1px 2px -1px rgb(0 0 0 / 0.1);
 
-            /* Style table header cells */
             th {
-                background-color: #f9fafb; /* Very light gray (gray-50) */
-                border-bottom: 1px solid #e5e7eb; /* Border between header and body */
-                padding: 0.75rem 1rem; /* Adjusted padding */
+                background-color: #f9fafb;
+                border-bottom: 1px solid #e5e7eb;
+                padding: 0.75rem 1rem;
                 text-align: left;
                 font-weight: 600;
-                color: #374151; /* Darker gray text (gray-700) */
-                /* Remove individual cell borders if using table border */
+                color: #374151;
                 border-left: none;
                 border-right: none;
                 border-top: none;
             }
-            /* Add right border only to non-last header cells */
             th:not(:last-child) {
                 border-right: 1px solid #e5e7eb;
             }
 
-            /* Style table data cells */
             td {
-                border-top: 1px solid #e5e7eb; /* Horizontal lines between rows */
+                border-top: 1px solid #e5e7eb;
                 padding: 0.75rem 1rem;
                 vertical-align: top;
-                color: #4b5563; /* Slightly lighter gray text (gray-600) */
-                /* Remove individual cell borders if using row borders */
+                color: #4b5563;
                 border-left: none;
                 border-right: none;
                 border-bottom: none;
             }
-            /* Add right border only to non-last data cells */
             td:not(:last-child) {
                 border-right: 1px solid #e5e7eb;
             }
 
-            /* Zebra striping for table body rows */
             tbody tr:nth-child(even) {
-                background-color: #f9fafb; /* Use the same light gray as header for subtle striping */
+                background-color: #f9fafb;
             }
 
-            /* Hover effect for rows - use a primary color tint */
             tbody tr:hover {
-                background-color: #eff6ff; /* Light blue tint (blue-50 / primary-50) */
+                background-color: #eff6ff;
             }
 
-            /* Ensure first row cells don't have top border if header exists */
             thead + tbody tr:first-child td {
                 border-top: none;
             }
-            /* Ensure header cells in the first row have rounded top corners */
             thead tr:first-child th:first-child {
                 border-top-left-radius: 0.5rem;
             }
@@ -394,7 +369,6 @@ const initialVariation = variationsData.length > 0 ? variationsData[0] : null;
                 border-top-right-radius: 0.5rem;
             }
 
-            /* Ensure cells in the last row have rounded bottom corners */
             tbody tr:last-child td:first-child {
                 border-bottom-left-radius: 0.5rem;
             }

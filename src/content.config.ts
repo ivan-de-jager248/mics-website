@@ -15,27 +15,25 @@ export const imageSchema = ({ image }: SchemaContext) =>
         alt: z.string().optional(),
     });
 
+// Define the schema for an individual variation inline
+const variationSchema = z.object({
+    name: z.string(),
+    properties: z.array(z.string()).optional(),
+    body: z.string().optional(), // Add body here
+});
+
 const products = defineCollection({
     loader: glob({ pattern: '**/*.md', base: './src/content/products' }),
     schema: ({ image }) => z.object({
         name: z.string(),
         category: reference('categories'),
         thumbnail: imageSchema({ image }),
-        images: z.array(imageSchema({ image })),
+        images: z.array(imageSchema({ image })).optional(), // Make images optional
         draft: z.boolean().default(true),
         featured: z.boolean().default(false),
+        variations: z.array(variationSchema).optional(), // Use the inline schema, make optional
     }),
 });
 
-const productVariations = defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/variations' }),
-    schema: z.object({
-        name: z.string(), 
-        product: reference('products'), 
-        properties: z.array(z.string()),
-        draft: z.boolean().default(true),
-    }),
-});
-
-// 4. Export all collections
-export const collections = { products, categories, productVariations };
+// 4. Export the updated collections
+export const collections = { products, categories };
