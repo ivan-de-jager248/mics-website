@@ -4,7 +4,7 @@ category: medical-trolleys
 thumbnail: 
   image: /images/products/paper-packing-trolley.jpg
   alt: Paper Packing Trolley
-draft: false
+draft: true
 featured: false
 variations:
   - name: Paper Packing Trolley - Grade 306

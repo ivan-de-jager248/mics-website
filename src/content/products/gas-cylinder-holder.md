@@ -4,7 +4,7 @@ category: medical-shelving
 thumbnail: 
   image: /images/products/gas-cylinder-holder-thumbnail.jpg
   alt: Gas Cylinder Holder
-draft: false
+draft: true
 featured: true
 variations:
   - name: Gas Cylinder Holder - 4 Way

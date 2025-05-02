@@ -4,7 +4,7 @@ category: custom-solutions
 thumbnail: 
   image: /images/products/sms-scrub-sink.jpg
   alt: MacCare SMS Scrub Sink
-draft: false
+draft: true
 featured: false
 variations:
   - name: S/S SMS 545 Scrub Sink

@@ -4,7 +4,7 @@ category: custom-solutions
 thumbnail: 
   image: /images/products/drug-poison-cabinet.jpg
   alt: Lockable Drug/Poison Cabinet
-draft: false
+draft: true
 featured: false
 variations:
   - name: 2-Tier Lockable Drug/Poison Cabinet - Small

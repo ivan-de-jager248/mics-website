@@ -5,7 +5,7 @@ thumbnail:
   src: /images/perforated-wall-band-thumbnail.jpg # Adjusted from 'image' to 'src'
   alt: Perforated Wall Band Shelving # Adjusted from 'description' to 'alt'
 images: []
-draft: false
+draft: true
 featured: false
 variations:
   - name: Perforated Wall Band - Stainless Steel 430

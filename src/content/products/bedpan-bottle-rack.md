@@ -74,6 +74,6 @@ variations:
       - Easy-to-clean surfaces that support hospital sanitization protocols
 
       This larger rack is ideal for busy hospital wards, emergency departments, or extended care facilities requiring substantial storage capacity while maintaining organization and hygiene standards.
-draft: false
+draft: true
 featured: true
 ---

@@ -4,7 +4,7 @@ category: custom-solutions
 thumbnail: 
   image: /images/products/packing-table.jpg
   alt: Stainless Steel Packing Table
-draft: false
+draft: true
 featured: true
 variations:
   - name: Packing Table - 1500 x 600mm

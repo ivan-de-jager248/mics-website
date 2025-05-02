@@ -4,7 +4,7 @@ category: medical-trolleys
 thumbnail: 
   image: /images/products/mobile-linen-trolley.jpg
   alt: 4 Tier Mobile Linen Trolley
-draft: false
+draft: true
 featured: true
 variations:
   - name: 4 Tier Mobile Linen Trolley

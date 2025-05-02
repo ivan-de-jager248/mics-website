@@ -4,7 +4,7 @@ category: custom-solutions
 thumbnail: 
   image: /images/products/instrument-cabinet.jpg
   alt: Instrument Cabinet
-draft: false
+draft: true
 featured: true
 variations:
   - name: Instrument Cabinet - Double Door
