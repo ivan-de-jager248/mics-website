@@ -11,7 +11,6 @@
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
       <div class="absolute bottom-0 left-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-all duration-300">
-        <p v-if="product.variations && product.variations.length > 0" class="font-medium">{{ product.variations[0].description.split('\n')[0] }}</p>
       </div>
     </div>
     <div class="p-6">
@@ -52,6 +51,9 @@ const props = defineProps({
     required: true
   }
 });
+
+console.log('ProductCard props:', props);
+
 
 const displayedProperties = computed(() => {
   const propertiesToShow = [];

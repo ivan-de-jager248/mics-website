@@ -57,17 +57,19 @@ const category = await getEntry("categories", product.data.category);
 const relatedProducts = [];
 const reviews = [];
 
-// Prepare variation data from product.data.variations
-const variationsData = (product.data.variations ?? []).map((variation, index) => {
-    // Generate a unique ID based on product ID, index, and variation name
-    const variationId = `${productId}-variation-${index}-${variation.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
-    return {
-        id: variationId,
-        name: variation.name,
-        properties: variation.properties ?? [],
-        body: variation.body ?? '',
-    };
-});
+// Prepare variation data from product.data.variations, filtering out drafts
+const variationsData = (product.data.variations ?? [])
+    .filter(variation => !variation.draft) // Add filter to exclude draft variations
+    .map((variation, index) => {
+        // Generate a unique ID based on product ID, index, and variation name
+        const variationId = `${productId}-variation-${index}-${variation.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`;
+        return {
+            id: variationId,
+            name: variation.name,
+            properties: variation.properties ?? [],
+            body: variation.body ?? '',
+        };
+    });
 
 // Prepare a simplified version for the button prop (only id and name)
 const variationsForButton = variationsData.map(v => ({ id: v.id, name: v.name }));

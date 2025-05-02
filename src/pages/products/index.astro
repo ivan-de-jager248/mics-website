@@ -17,30 +17,15 @@ const productCollection = await getCollection('products', ({ data }) => {
     return data.draft === false;
 });
 
-// Fetch all non-draft product variations
-const variationCollection = await getCollection(
-    'variations',
-    ({ data }) => data.draft === false // Add filter for variation draft status
-);
-
-// Process variations, adding slug and description (body)
-const allVariations = variationCollection.map(variation => ({
-    ...variation.data,
-    id: removeFileExtension(variation.id),
-    description: variation.body, // Add the markdown body as description
-    render: variation.render, 
-}));
-
-// Combine products with their variations
+// Combine products with their variations (filtering draft variations)
 const productsWithVariations = productCollection.map((product: CollectionEntry<'products'>) => {
-    const productId = product.slug;
-    const variationsForProduct = allVariations.filter(
-        variation => variation.product === productId
-    );
+    // Filter out draft variations if the variations array exists
+    const nonDraftVariations = (product.data.variations || []).filter(variation => !variation.draft);
+
     return {
         ...product.data,
-        id: productId,
-        variations: variationsForProduct, // Add the filtered variations
+        id: product.slug, // Use slug as the product ID
+        variations: nonDraftVariations, // Assign filtered variations
         // Note: product.body (markdown content from the product file) is not explicitly added here,
         // but could be if needed for general product description.
     };
@@ -56,8 +41,9 @@ const categories = categoryCollection.map((category: CollectionEntry<'categories
 });
 
 // Extract properties from variations associated with non-draft products
-const allProperties = productsWithVariations.flatMap(product => 
-    product.variations.flatMap(variation => variation.properties || [])
+const allProperties = productsWithVariations.flatMap(product =>
+    // Ensure variations exist before trying to flatMap properties
+    (product.variations || []).flatMap(variation => variation.properties || [])
 );
 const uniqueProperties = [...new Set(allProperties)];
 

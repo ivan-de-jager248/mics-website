@@ -19,7 +19,8 @@ export const imageSchema = ({ image }: SchemaContext) =>
 const variationSchema = z.object({
     name: z.string(),
     properties: z.array(z.string()).optional(),
-    body: z.string().optional(), // Add body here
+    body: z.string(),
+    draft: z.boolean().default(true),
 });
 
 const products = defineCollection({
@@ -31,7 +32,7 @@ const products = defineCollection({
         images: z.array(imageSchema({ image })).optional(), // Make images optional
         draft: z.boolean().default(true),
         featured: z.boolean().default(false),
-        variations: z.array(variationSchema).optional(), // Use the inline schema, make optional
+        variations: z.array(variationSchema).min(1), // Use the inline schema, make optional
     }),
 });
 
