@@ -36,6 +36,7 @@ collections:
       - label: "Variations" # Add the variations list here
         name: "variations"
         widget: "list"
+        min: 1 # Require at least one variation
         fields: # Define the fields for each variation item
           - { label: "Variation Name", name: "name", widget: "string" }
           - label: "Properties"
@@ -43,5 +44,6 @@ collections:
             widget: "list"
             field: { label: "Property", name: "property", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown", required: false }
+          - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Draft", name: "draft", widget: "boolean", default: true } # Product level draft status
       - { label: "Featured", name: "featured", widget: "boolean", default: false } # Product level featured status
