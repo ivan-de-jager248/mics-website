@@ -1,5 +1,6 @@
 media_folder: "public/images/content" # Location where files will be stored in the repo
 public_folder: "/images/content" # The src attribute for uploaded media
+site_url: https://mmics.co.za
 backend:
   name: github
   repo: "ivan-de-jager248/mics-website" # Path to your GitHub repository
