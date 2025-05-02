@@ -24,4 +24,5 @@ variations:
       - S/S Tray with Galvanised Rail for secure item placement
 
       Designed for medical utility storage with functional features specific to healthcare environments.
+draft: true
 ---
