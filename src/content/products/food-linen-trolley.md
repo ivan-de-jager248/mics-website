@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: 3 Tier Food/Linen Trolley - Stainless Steel
+    draft: true
     properties:
       - 3 Tier
       - Stainless Steel
@@ -21,6 +22,7 @@ variations:
       - 4x 75mm Swivel Castors
       - Superior corrosion resistance
   - name: 3 Tier Food/Linen Trolley - Epoxy Coated
+    draft: true
     properties:
       - 3 Tier
       - Epoxy Coated

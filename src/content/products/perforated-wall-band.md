@@ -9,6 +9,7 @@ draft: true
 featured: false
 variations:
   - name: Perforated Wall Band - Stainless Steel 430
+    draft: true
     properties:
       - Stainless Steel 430
       - Brushed Finished
@@ -35,6 +36,7 @@ variations:
       - Multiple tier configurations for flexible storage solutions
       - Standard 914mm width suitable for most medical settings
   - name: Perforated Wall Band - Powder Coated
+    draft: true
     properties:
       - Powder Coated
       - Perforated Surface

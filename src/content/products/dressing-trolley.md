@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Dressing Trolley - Small (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Stainless Steel Shelves
@@ -26,6 +27,7 @@ variations:
 
       This small dressing trolley is ideal for use in confined spaces while still providing the essential functionality needed for wound care and dressing procedures. The stainless steel shelves ensure easy cleaning and durability in demanding clinical environments.
   - name: Dressing Trolley - Small (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
       - Stainless Steel Shelves
@@ -44,6 +46,7 @@ variations:
 
       This small stainless steel dressing trolley is ideal for surgical and critical care environments where hygiene standards are paramount. The complete stainless steel construction ensures maximum durability and infection control while maintaining a compact footprint for use in confined spaces.
   - name: Dressing Trolley - Medium (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Stainless Steel Shelves
@@ -62,6 +65,7 @@ variations:
 
       This medium dressing trolley offers additional storage space compared to the small model, making it ideal for procedures requiring more supplies or equipment while still maintaining excellent maneuverability. The stainless steel shelves ensure easy cleaning and durability in demanding clinical environments.
   - name: Dressing Trolley - Medium (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
       - Stainless Steel Shelves
@@ -80,6 +84,7 @@ variations:
 
       This medium stainless steel dressing trolley is ideal for surgical and critical care environments where hygiene standards are paramount. The complete stainless steel construction ensures maximum durability and infection control while providing expanded storage capacity for more complex procedures.
   - name: Dressing Trolley - Large (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Stainless Steel Shelves
@@ -98,6 +103,7 @@ variations:
 
       This large dressing trolley offers expansive storage space, making it ideal for complex procedures requiring extensive supplies or equipment. The generous shelf space allows for efficient organization of materials while maintaining mobility for positioning where needed.
   - name: Dressing Trolley - Large (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
       - Stainless Steel Shelves

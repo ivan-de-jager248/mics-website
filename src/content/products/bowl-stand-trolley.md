@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Bowl Stand Trolley - Single (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
     body: >-
@@ -26,6 +27,7 @@ variations:
 
       This single bowl stand trolley provides a convenient mobile solution for procedures requiring washing or solution bowls, with a stable platform and smooth-rolling castors for easy positioning.
   - name: Bowl Stand Trolley - Single (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
     body: >-
@@ -44,6 +46,7 @@ variations:
 
       This stainless steel single bowl stand trolley is ideal for surgical and critical care environments where hygiene standards are paramount, providing a durable and easy-to-clean mobile solution for procedures requiring washing or solution bowls.
   - name: Bowl Stand Trolley - Double (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
     body: >-
@@ -62,6 +65,7 @@ variations:
 
       This double bowl stand trolley provides a convenient mobile solution for procedures requiring multiple washing or solution bowls, with a stable platform and smooth-rolling castors for easy positioning.
   - name: Bowl Stand Trolley - Double (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
     body: >-

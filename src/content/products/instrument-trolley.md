@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Instrument Trolley - Small (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Stainless Steel Shelves
@@ -26,6 +27,7 @@ variations:
 
       This small instrument trolley is designed for transporting and storing medical instruments in confined spaces while ensuring they remain secure and readily accessible. The special tube caps help maintain a sterile environment by preventing dust and contaminants from collecting in open tubes.
   - name: Instrument Trolley - Small (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
       - Stainless Steel Shelves
@@ -44,6 +46,7 @@ variations:
 
       This small stainless steel instrument trolley is ideal for surgical theaters and sterile environments where both space efficiency and maximum hygiene standards are essential. The complete stainless steel construction ensures superior durability and infection control in demanding clinical settings.
   - name: Instrument Trolley - Medium (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Stainless Steel Shelves
@@ -62,6 +65,7 @@ variations:
 
       This medium instrument trolley offers additional storage space compared to the small model, making it ideal for procedures requiring more instruments or equipment while still maintaining excellent maneuverability. The special tube caps help maintain a sterile environment by preventing dust and contaminants from collecting in open tubes.
   - name: Instrument Trolley - Medium (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
       - Stainless Steel Shelves
@@ -80,6 +84,7 @@ variations:
 
       This medium stainless steel instrument trolley is ideal for surgical theaters and sterile environments where both expanded storage capacity and maximum hygiene standards are essential. The complete stainless steel construction ensures superior durability and infection control in demanding clinical settings.
   - name: Instrument Trolley - Large (Epoxy Coated)
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Stainless Steel Shelves
@@ -98,6 +103,7 @@ variations:
 
       This large instrument trolley offers expansive storage space, making it ideal for complex procedures requiring extensive sets of instruments or equipment. The generous shelf space allows for efficient organization of materials while maintaining mobility for positioning where needed.
   - name: Instrument Trolley - Large (Stainless Steel)
+    draft: true
     properties:
       - Stainless Steel
       - Stainless Steel Shelves

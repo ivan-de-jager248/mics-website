@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Paper Packing Trolley - Grade 306
+    draft: true
     properties:
       - Stainless Steel
       - Grade 306

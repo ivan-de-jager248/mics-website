@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: Wall Mounted Scrub Sink - 1200mm
+    draft: true
     properties:
       - Stainless Steel
       - Grade 304
@@ -26,6 +27,7 @@ variations:
 
       Designed specifically for surgical scrubbing and medical hand hygiene procedures, this sink meets the highest standards for healthcare environments.
   - name: Wall Mounted Scrub Sink - 1500mm
+    draft: true
     properties:
       - Stainless Steel
       - Grade 304

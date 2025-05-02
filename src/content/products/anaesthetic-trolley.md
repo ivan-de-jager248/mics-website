@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Anaesthetic Trolley - 1 Drawer (TW-OE55)
+    draft: true
     properties:
       - Powder Coated
       - Stainless Steel Shelf
@@ -27,6 +28,7 @@ variations:
 
       This compact anaesthetic trolley is perfect for smaller treatment areas where space efficiency is important while maintaining necessary functionality for anaesthetic supply management.
   - name: Anaesthetic Trolley - 2 Drawer (TW-OE54)
+    draft: true
     properties:
       - Powder Coated
       - Stainless Steel Shelf
@@ -47,6 +49,7 @@ variations:
 
       This anaesthetic trolley provides an excellent balance of storage capacity and maneuverability, making it ideal for busy clinical environments where efficient organization of supplies is essential.
   - name: Anaesthetic Trolley - 6 Drawer Only (TW-OE26C/A)
+    draft: true
     properties:
       - Powder Coated
       - Stainless Steel Worktop
@@ -67,6 +70,7 @@ variations:
 
       This high-capacity anaesthetic trolley is ideal for busy operating theaters and anaesthetic departments where comprehensive storage solutions are required for efficient workflow.
   - name: Anaesthetic Trolley - 6 Drawer with 3 Shelves (TW-OE26C)
+    draft: true
     properties:
       - Powder Coated
       - Stainless Steel Worktop

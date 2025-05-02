@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Mayo Table Trolley with Large Tray
+    draft: true
     properties:
       - Stainless Steel
       - Large Tray
@@ -26,6 +27,7 @@ variations:
 
       This premium large-tray version provides a stable, movable surface for surgical instruments and supplies during medical procedures.
   - name: Mayo Table Trolley with Standard Tray
+    draft: true
     properties:
       - Stainless Steel
       - Standard Tray

@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Soiled Linen Reciever Trolley with Canvas Bag
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Powder Coated
@@ -27,6 +28,7 @@ variations:
 
       This soiled linen receiver trolley provides a hygienic and organized solution for managing soiled linen in healthcare facilities. The included canvas bag with draw cord allows for easy handling and disposal of soiled materials, while the additional shelves provide convenient storage for clean linen or other supplies.
   - name: Soiled Linen Reciever Trolley without Canvas Bag
+    draft: true
     properties:
       - Epoxy Coated Mild Steel
       - Powder Coated

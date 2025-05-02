@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: Gas Cylinder Holder - 4 Way
+    draft: true
     properties: 
       - Epoxy Coated
       - Mild Steel
@@ -25,6 +26,7 @@ variations:
 
       Perfect for smaller medical rooms, clinics, or departments with moderate cylinder usage, this 4-way holder balances storage capacity with space conservation.
   - name: Gas Cylinder Holder - 8 Way
+    draft: true
     properties: 
       - Epoxy Coated
       - Mild Steel
@@ -42,6 +44,7 @@ variations:
 
       This 8-way holder provides an essential storage solution for managing multiple gas cylinders while ensuring staff safety and easy access in medical environments.
   - name: Gas Cylinder Holder - 12 Way
+    draft: true
     properties: 
       - Epoxy Coated
       - Mild Steel

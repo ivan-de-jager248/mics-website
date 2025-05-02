@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: S/S SMS 545 Scrub Sink
+    draft: true
     properties:
       - Stainless Steel
       - Grade 304

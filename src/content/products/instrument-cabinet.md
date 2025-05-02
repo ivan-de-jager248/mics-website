@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: Instrument Cabinet - Double Door
+    draft: true
     properties:
       - Double Door
       - Epoxy Powder Coated

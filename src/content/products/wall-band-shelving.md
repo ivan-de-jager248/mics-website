@@ -9,6 +9,7 @@ draft: true
 featured: true
 variations:
   - name: Wire Shelving - Stainless Steel 430
+    draft: true
     properties:
       - Stainless Steel 430
       - Wire Construction
@@ -34,6 +35,7 @@ variations:
       - Multiple tier options for various storage needs
       - Standard 914mm width compatible with most medical storage areas
   - name: Wire Shelving - Powder Coated
+    draft: true
     properties:
       - Powder Coated
       - Wire Construction

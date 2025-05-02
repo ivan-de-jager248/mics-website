@@ -6,6 +6,7 @@ thumbnail:
   alt: Utility Cabinet
 variations:
   - name: Utility Cabinet
+    draft: true
     properties:
       - Epoxy Coated
       - Mild Steel

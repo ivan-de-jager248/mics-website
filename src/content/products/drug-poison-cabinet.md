@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: 2-Tier Lockable Drug/Poison Cabinet - Small
+    draft: true
     properties:
       - Small Size
       - 2-Tier
@@ -25,6 +26,7 @@ variations:
 
       Ideal for healthcare environments requiring segregated secure storage for different categories of medications or controlled substances.
   - name: Lockable Drug/Poison Cabinet - Large
+    draft: true
     properties:
       - Large Size
       - Epoxy Coated
@@ -42,6 +44,7 @@ variations:
 
       This cabinet is designed for healthcare facilities requiring more substantial secure storage for pharmaceuticals and controlled substances.
   - name: Lockable Drug/Poison Cabinet - Small
+    draft: true
     properties:
       - Small Size
       - Epoxy Coated

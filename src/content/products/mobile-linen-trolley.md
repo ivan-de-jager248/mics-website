@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: 4 Tier Mobile Linen Trolley
+    draft: true
     properties:
       - 4 Tier
       - Chrome Plated

@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: Fold-Down Wall Bench/Desk 1000x400mm
+    draft: true
     properties: 
       - Stainless Steel
       - Brushed Finish

@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: Neo-Natal Bed End Trolley (TW-OE106)
+    draft: true
     properties:
       - Powder Coated
       - Epoxy Coated Mild Steel

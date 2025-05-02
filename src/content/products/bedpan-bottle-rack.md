@@ -6,13 +6,13 @@ thumbnail:
   src: /images/content/3d-image-from-home.jpeg
 variations:
   - name: Bedpan & Bottle Rack - 2 Bedpans & 3 Bottles
+    draft: true
     properties:
       - Stainless Steel
       - Integrated Drip Tray
       - Wall Mounted
       - 2 Bedpans
       - 3 Bottles
-    draft: false
     body: >-
       The Bedpan & Bottle Rack (TW-BPBR-305) is designed for efficient storage and organization of bedpans and bottles in medical facilities. This compact model features:
 
@@ -29,13 +29,13 @@ variations:
 
       This smaller-sized rack is ideal for patient rooms or smaller wards where space is limited but organization is essential.
   - name: Bedpan & Bottle Rack - 4 Bedpans & 5 Bottles
+    draft: true
     properties:
       - Stainless Steel
       - Integrated Drip Tray
       - Wall Mounted
       - 4 Bedpans
       - 5 Bottles
-    draft: false
     body: >-
       The Bedpan & Bottle Rack (TW-BPBR-610) offers medium capacity storage for bedpans and bottles in healthcare settings. This model features:
 
@@ -52,13 +52,13 @@ variations:
 
       This medium-sized rack provides an excellent balance of capacity and space efficiency, making it suitable for standard hospital wards and departments.
   - name: Bedpan & Bottle Rack - 6 Bedpans & 7 Bottles
+    draft: true
     properties:
       - Stainless Steel
       - Integrated Drip Tray
       - Wall Mounted
       - 6 Bedpans
       - 7 Bottles
-    draft: false
     body: >-
       The Bedpan & Bottle Rack (TW-BPBR-1000) is a high-capacity storage solution for bedpans and bottles in busy medical environments. This larger model features:
 

@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: EZ Rack Wire Mesh Shelving - Stainless Steel
+    draft: true
     properties:
       - Stainless Steel 430
       - Brushed Finished
@@ -45,6 +46,7 @@ variations:
 
       The open wire construction allows for complete visual inspection of contents and maximum airflow, making these shelves ideal for demanding medical environments.
   - name: EZ Rack Wire Mesh Shelving - Powder Coated
+    draft: true
     properties:
       - Powder Coated
       - Wire Construction
@@ -81,6 +83,7 @@ variations:
 
       The wire mesh construction makes these shelves ideal for environments where maximum airflow is required or where visual inspection of contents is beneficial.
   - name: EZ Rack Solid Shelving - Stainless Steel
+    draft: true
     properties:
       - Stainless Steel 430
       - Brushed Finished
@@ -118,6 +121,7 @@ variations:
 
       The brushed finish offers a sleek appearance while also being easy to clean and maintain in medical environments.
   - name: EZ Rack Solid Shelving - Powder Coated
+    draft: true
     properties:
       - Powder Coated
       - Solid Shelves
@@ -154,6 +158,7 @@ variations:
 
       All units feature solid shelves that provide complete coverage, ideal for storing smaller items or containers that might fall through open shelving designs.
   - name: EZ Rack Perforated Shelving - Stainless Steel
+    draft: true
     properties:
       - Stainless Steel 430
       - Brushed Finished
@@ -191,6 +196,7 @@ variations:
 
       The perforated design allows for excellent air circulation while the stainless steel construction ensures durability in demanding medical environments.
   - name: EZ Rack Perforated Shelving - Powder Coated
+    draft: true
     properties:
       - Powder Coated
       - Perforated Shelves

@@ -8,6 +8,7 @@ draft: true
 featured: false
 variations:
   - name: ICU Bed End Trolley - 2 Drawer (TW-OE104)
+    draft: true
     properties:
       - Powder Coated
       - Epoxy Coated Mild Steel
@@ -26,6 +27,7 @@ variations:
 
       This ICU bed end trolley is specifically designed to maximize efficiency in critical care environments by placing essential supplies within easy reach at the foot of patient beds, while organizing accessories with dedicated holders.
   - name: ICU Bed End Trolley - 4 Drawer (TW-OE105)
+    draft: true
     properties:
       - Powder Coated
       - Epoxy Coated Mild Steel

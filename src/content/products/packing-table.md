@@ -8,6 +8,7 @@ draft: true
 featured: true
 variations:
   - name: Packing Table - 1500 x 600mm
+    draft: true
     properties:
       - Stainless Steel
       - Grade 304
@@ -26,6 +27,7 @@ variations:
 
       This table provides an optimal work surface for packing medical supplies and equipment in healthcare environments where cleanliness and durability are essential.
   - name: Packing Table - 1500 x 1000mm
+    draft: true
     properties:
       - Stainless Steel
       - Grade 304
