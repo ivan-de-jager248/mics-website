@@ -5,7 +5,7 @@ backend:
   name: github
   repo: "ivan-de-jager248/mics-website" # Path to your GitHub repository
   branch: main # Branch to update (optional; defaults to master)
-  base_url: https://decap-proxy.gwht7p26s9.workers.dev
+  site_domain: mics.netlify.app
 collections:
   - name: "categories"
     label: "Categories"
