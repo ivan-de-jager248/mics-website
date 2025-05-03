@@ -1,11 +1,9 @@
 ---
-name: Anaesthetic Trolley
+name: "Anaesthetic Trolley "
 category: medical-trolleys
 thumbnail:
   alt: Medical Anaesthetic Trolley
   src: /images/content/3d-image-from-home.jpeg
-draft: true
-featured: false
 variations:
   - name: Anaesthetic Trolley - 1 Drawer (TW-OE55)
     draft: true
@@ -19,12 +17,7 @@ variations:
 
       ## Features
 
-      - Epoxy Coated Mild Steel construction
-      - Powder Coated finish for durability
-      - 1 Pull-Out Lockable Drawer for secure storage
-      - Stainless Steel Shelf for easy cleaning
-      - 10mm Chrome-plated Guard Rail around top perimeter
-      - 4x75mm Swivel Castors for smooth mobility
+      - Epoxy Coated Mild Steel construction - Powder Coated finish for durability - 1 Pull-Out Lockable Drawer for secure storage - Stainless Steel Shelf for easy cleaning - 10mm Chrome-plated Guard Rail around top perimeter - 4x75mm Swivel Castors for smooth mobility
 
       This compact anaesthetic trolley is perfect for smaller treatment areas where space efficiency is important while maintaining necessary functionality for anaesthetic supply management.
   - name: Anaesthetic Trolley - 2 Drawer (TW-OE54)
@@ -39,13 +32,7 @@ variations:
 
       ## Features
 
-      - Epoxy Coated Mild Steel construction
-      - Powder Coated finish for durability
-      - 2 Pull-Out Drawers for organized storage
-      - Stainless Steel Top & Shelf for easy cleaning
-      - 10mm Chrome-plated Guard Rail around top perimeter
-      - 4x75mm Swivel Castors for smooth mobility
-      - Also available in Stainless Steel construction
+      - Epoxy Coated Mild Steel construction - Powder Coated finish for durability - 2 Pull-Out Drawers for organized storage - Stainless Steel Top & Shelf for easy cleaning - 10mm Chrome-plated Guard Rail around top perimeter - 4x75mm Swivel Castors for smooth mobility - Also available in Stainless Steel construction
 
       This anaesthetic trolley provides an excellent balance of storage capacity and maneuverability, making it ideal for busy clinical environments where efficient organization of supplies is essential.
   - name: Anaesthetic Trolley - 6 Drawer Only (TW-OE26C/A)
@@ -60,13 +47,7 @@ variations:
 
       ## Features
 
-      - Epoxy Coated Mild Steel construction
-      - Powder Coated finish for durability
-      - 6 Drawers for extensive organized storage
-      - Stainless Steel Worktop Surface for easy cleaning and durability
-      - Metal Clips on each Side for securing accessories
-      - 10mm Chrome-plated Guard Rail around top perimeter
-      - 4x125mm Swivel Castors for smooth mobility
+      - Epoxy Coated Mild Steel construction - Powder Coated finish for durability - 6 Drawers for extensive organized storage - Stainless Steel Worktop Surface for easy cleaning and durability - Metal Clips on each Side for securing accessories - 10mm Chrome-plated Guard Rail around top perimeter - 4x125mm Swivel Castors for smooth mobility
 
       This high-capacity anaesthetic trolley is ideal for busy operating theaters and anaesthetic departments where comprehensive storage solutions are required for efficient workflow.
   - name: Anaesthetic Trolley - 6 Drawer with 3 Shelves (TW-OE26C)
@@ -81,14 +62,9 @@ variations:
 
       ## Features
 
-      - Epoxy Coated Mild Steel construction
-      - Powder Coated finish for durability
-      - 6 Drawers for extensive organized storage
-      - 3 Additional shelves for open-access storage
-      - Stainless Steel Worktop Surface for easy cleaning and durability
-      - Metal Clips on each Side for securing accessories
-      - 10mm Chrome-plated Guard Rail around top perimeter
-      - 4x125mm Swivel Castors for smooth mobility
+      - Epoxy Coated Mild Steel construction - Powder Coated finish for durability - 6 Drawers for extensive organized storage - 3 Additional shelves for open-access storage - Stainless Steel Worktop Surface for easy cleaning and durability - Metal Clips on each Side for securing accessories - 10mm Chrome-plated Guard Rail around top perimeter - 4x125mm Swivel Castors for smooth mobility
 
       This comprehensive anaesthetic trolley provides maximum storage flexibility with both drawer and shelf storage options, making it ideal for complex procedures requiring access to a wide range of supplies and equipment.
+draft: true
+featured: false
 ---
