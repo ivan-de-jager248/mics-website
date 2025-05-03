@@ -5,6 +5,7 @@ backend:
   name: github
   repo: "ivan-de-jager248/mics-website" # Path to your GitHub repository
   branch: main # Branch to update (optional; defaults to master)
+  site_domain: https://mics.netlify.app/
 collections:
   - name: "categories"
     label: "Categories"
